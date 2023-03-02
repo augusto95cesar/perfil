@@ -1,0 +1,35 @@
+ try
+            {
+
+                WebRequest request = WebRequest.Create(ConfigJson.GetUrlServBltec() + "/v1/logins/listar/" + pagina);
+                // If required by the server, set the credentials.
+                //request.Credentials = CredentialCache.DefaultCredentials;
+
+                request.Credentials = new NetworkCredential("Authorization", "AugustoLindo");
+
+                request.Headers.Add("Authorization", "AugustoLindo");
+               
+               // client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(Convert.ToString(jsonParse.Token));
+               
+                // Get the response.
+                WebResponse response = request.GetResponse();
+                // Display the status.
+               // Console.WriteLine(((HttpWebResponse)response).StatusDescription);
+
+                // Get the stream containing content returned by the server.
+                // The using block ensures the stream is automatically closed.
+                using (Stream dataStream = response.GetResponseStream())
+                {
+                    // Open the stream using a StreamReader for easy access.
+                    StreamReader reader = new StreamReader(dataStream);
+                    // Read the content.
+                    string responseFromServer = reader.ReadToEnd();
+                    // Display the content.
+                    return  JsonConvert.DeserializeObject<UsuarioListDto>(responseFromServer);
+                }
+            }
+            catch (Exception)
+            {
+                return new UsuarioListDto();
+            }
+        }

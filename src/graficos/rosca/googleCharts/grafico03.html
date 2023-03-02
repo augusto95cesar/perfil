@@ -1,0 +1,67 @@
+<script type="text/javascript" src="js/jquery/google-charts-script.js"></script>
+<script type="text/javascript" src="js/jquery/jquery.js"></script>
+<script>
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(function drawChart3(chartData3) {
+        var result = google.visualization.arrayToDataTable(chartData3, false); // 'false' means that the first row contains labels, not data.
+        var chart3 = new google.visualization.ChartWrapper({
+            'chartType': 'PieChart',
+            'containerId': 'chart3_div',
+            'dataTable': result,
+            'options': {
+                'width': 500,
+                'height': 500,
+                'legend': { position: 'none' },
+                'pieSliceText': 'none',
+                'colors': ['blue']
+            },
+            'view': { 'columns': [0, 1] }
+        });
+
+        var liquidityDT = new google.visualization.DataTable();
+        // Declare columns
+        liquidityDT.addColumn('number', 'Liquidity');
+        // Add data.
+        liquidityDT.addRows([
+            [1],
+            [2],
+            [3],
+            [4],
+            [5],
+        ]);
+
+        // Create a range slider, passing some options
+        var liquidityRangeSlider = new google.visualization.ControlWrapper({
+            'controlType': 'NumberRangeFilter',
+            'containerId': 'filter3_div',
+            'dataTable': liquidityDT,
+            'options': {
+                'filterColumnLabel': 'Liquidity',
+                'minValue': 0,
+                'maxValue': 5
+            }
+        });
+
+        liquidityRangeSlider.draw();
+        chart3.draw();
+        var chart = new google.visualization.PieChart(document.getElementById('graphic-venda')); 
+        chart.draw(data, options);
+    });
+    google.visualization.events.addListener(liquidityRangeSlider, 'statechange', setChartColor);
+
+    function setChartColor() {
+        var state = liquidityRangeSlider.getState();
+        var stateLowValue = state.lowValue;
+        var stateHighValue = state.highValue;
+        for (var i = 0; i < result.getNumberOfRows(); i++) {
+
+            var testValue = result.getValue(i, 2);
+            if (testValue < stateLowValue || testValue > stateHighValue) {
+                alert("attempting to set colors")
+                //this bit I have no clue how to change the color of the table row currently being iterated on 
+                chart3.setOption({ 'colors': ['red'] });
+            }
+        }
+        chart3.draw();
+    }
+</script>

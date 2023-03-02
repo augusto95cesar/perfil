@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>Site</title>
+	
+	<!-- boostrap -->
+	<link href="../../public/css/bootstrap.css" rel="stylesheet">
+
+	<!-- font awesome -->
+	<link href="../../public/css/all.css" rel="stylesheet">
+
+	<!-- folha de estilo propria -->
+	<link href="../../public/css/style.css" rel="stylesheet">
+
+	<!-- favicon -->
+	<link href="../../public/alfahelix/public/img/favicon.png" rel="icon">
+
+
+</head>
+<body>
+	 
+		  <!-- inicio menu -->
+  <nav class="navbar navbar-dark navbar-expand-lg navbar-default fixed-top">
+    <div class="container-fluid"> 
+      <h2 id="menuletra"> MVC ##</h2> 
+      <!-- botao para menu no celular --> 
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+        <span class="navbar-toggler-icon"></span>
+      </button>      
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ml-md-auto text-light">
+          <li class="nav-item">
+            <a class="nav-link" id="menuletra"  href="../../index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="menuletra"  href="../../list_curso.html">Cursos</a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" id="menuletra"  href="../../perfil.html">Perfil</a>
+          </li>                   
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <br>
+  <br>
+  <br>
+	<!-- fim menu -->
+
+	<div class="container margemtop">
+		<h4>Quartz.Net</h4>
+		<!-- # SeCtion 01-->	
+		
+		<p class="list-group-item " >			
+			Enviar Email Automatico		
+		</p> 
+		
+		<div class="container">
+			<h4>-Configurando Quartz MVC global.asax</h4>
+			<p><a href="https://crontab.guru/#0_0/30_8-9_5,20_*_?">Site para cronTrigger do Quartz.Net</a></p>
+			<hr>
+			<img width="100%" src="../../public/img/csharp/envioEmail/01.jpg">
+			<img width="100%" src="../../public/img/csharp/envioEmail/02.jpg">
+			<div class="container">
+				<p>using Quartz;</p>
+				<p>using Quartz.Impl;</p>
+				<p>using Quartz_Mvc.Models;</p>
+				<p>using System;</p>
+				<p>using System.Collections.Specialized;</p>
+				<p>using System.Threading.Tasks;</p>
+				<p>using System.Web.Mvc;</p>
+				<p>using System.Web.Optimization;</p>
+				<p>using System.Web.Routing;</p>
+
+				<p>namespace Quartz_Mvc</p>
+				<p>{</p>
+				<div class="container">
+				    <p>public class MvcApplication : System.Web.HttpApplication</p>
+				    <p>{</p>
+				    <div class="container">
+				        <p>protected void Application_Start()</p>
+				        <p>{</p>
+				            <p>AreaRegistration.RegisterAllAreas();</p>
+				            <p>FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);</p>
+				            <p>RouteConfig.RegisterRoutes(RouteTable.Routes);</p>
+				            <p>BundleConfig.RegisterBundles(BundleTable.Bundles);</p>
+
+				            <p>RunProgram().GetAwaiter().GetResult();</p>
+				        <p>}</p>
+
+				        <p>private static async Task RunProgram()</p>
+				        <p>{</p>
+				            <p>try</p>
+				            <p>{</p>
+				                <p>// Grab the Scheduler instance from the Factory</p>
+				                <p>//pegue o agendador istace da fábrica</p>
+				                <p>NameValueCollection props = new NameValueCollection</p>
+				                <p>{</p>
+				                    <p>{ "quartz.serializer.type", "binary" }</p>
+				                <p>};</p>
+				                <p>StdSchedulerFactory factory = new StdSchedulerFactory(props);</p>
+				                <p>IScheduler scheduler = await factory.GetScheduler();</p>
+
+				                <p>// and start it off</p>
+				                <p>await scheduler.Start();</p>
+				                <p>//define the job and tie it to our HelloJob class</p>
+				                <p>IJobDetail job = JobBuilder.Create< EnviarEmail>()</p>
+				                                            <p>.WithIdentity("job1", "group1")</p>
+				                                            <p>.Build();</p>
+				                <p>// Trigger the job to run now, and then repeat every 10 seconds</p>
+				                <p>ITrigger trigger = TriggerBuilder.Create()</p>
+				                                                 <p>.WithIdentity("trigger1", </p>"group1")                                                
+				                                                 <p>.WithSimpleSchedule(x => x</p>
+				                                                    <p>.WithIntervalInSeconds(5)</p>
+				                                                    <p>.RepeatForever())</p>
+				                                                    <p>.EndAt(DateBuilder.DateOf(11,35,0))</p>
+				                                                    <p>.Build();</p>
+				                <p>// Tell quartz to schedule the job using our trigger</p>
+				                <p>await scheduler.ScheduleJob(job, trigger);</p>
+				            <p>}</p>
+				            <p>catch (SchedulerException se)</p>
+				            <p>{</p>
+				                <p>await Console.Error.WriteLineAsync(se.ToString());</p>
+				            <p>}</p>
+				        </div>
+				        <p>}</p>
+				    </div>
+				    <p>}</p>
+				</div>
+			<hr>    
+			<h4>Hotmail</h4>
+			<img width="100%" src="../../public/img/csharp/envioEmail/03.jpg">
+
+			<p>public static void EnviandoEmail()</p>
+	        <p>{</p>
+	            <p>SmtpClient smtp = new SmtpClient();</p>
+	            <p>MailMessage mail = new MailMessage();</p>
+	            <p>//Host</p>
+	            <p>//   "smtp.live.com" -> host do hotmail do gmail "smtp.gmail.com"</p>
+	            <p>smtp.Host = "smtp.live.com";</p>
+	            <p>smtp.Port = 587;</p>
+	            <p>smtp.EnableSsl = true;</p>
+	            <p>smtp.UseDefaultCredentials = false;</p>
+<p></p>
+	            <p>//Credenciariais                                Email@hotmail.com -> Senha:*********</p>
+	            <p>smtp.Credentials = new NetworkCredential("amais_augusto@hotmail.com", "senhaUsuario");</p>
+<p></p>
+	            <p>//Email de saida</p>
+	            <p>mail.From = new MailAddress("amais_augusto@hotmail.com");</p>
+<p></p>
+	            <p>//Email enviado</p>
+	            <p>mail.To.Add(new MailAddress("augusto95cesar@gmail.com"));</p>
+<p></p>
+	            <p>mail.Subject = "Hoje Sim";</p>
+	            <p>mail.Body = "Caramba Augusto Não se esquça do Codgio";</p>
+<p></p>
+	            <p>//Enviando Emaill</p>
+	            <p>smtp.Send(mail);</p>
+	            <p>Console.WriteLine("Email Enviado");</p>
+	        <p>}</p>
+
+	        <hr>
+			<h4>Servidor</h4>
+
+			<img width="100%" src="../../public/img/csharp/envioEmail/04.jpg">
+
+			<div class="container" >
+				<p>using System.Net.Mail;</p>
+				<p>using System.Threading.Tasks;</p>
+				<p>using Quartz;</p>
+<p></p>
+				<p>namespace Quartz_Mvc.Models</p>
+				<p>{</p>
+				    <p>class EnviarEmail : IJob</p>
+				    <p>{</p>
+				        <p>//Configuração do Quartz.Net</p>
+				        <p>public async Task Execute(IJobExecutionContext context)</p>
+				        <p>{</p>
+				            <p>EnviandoEmail();</p>
+				        <p>}</p>
+				        <p>public static void EnviandoEmail()</p>
+				        <p>{           </p>
+				                                                               <p>//De onde -> Para onde</p>
+				            <p>MailMessage mail = new MailMessage("compras@odilonsantos.com","augusto95cesar@gmail.com");</p>
+				            <p>SmtpClient client = new SmtpClient();</p>
+				            <p>//ip do Servidor</p>
+				            <p>client.Host = "192.168.155.213";</p>
+				            <p>//Pora do Servidor</p>
+				            <p>client.Port = 25;</p>
+				            <p>client.DeliveryMethod = SmtpDeliveryMethod.Network;</p>
+				            <p>client.UseDefaultCredentials = false;</p>
+				            <p>//Titulo</p>
+				            <p>mail.Subject = "Sevidor";</p>
+				            <p>//Mensagem do Email</p>
+				            <p>mail.Body = "Aprendendo Enviar Email...";</p>
+				            <p>//Enviando Email</p>
+				            <p>client.Send(mail);           </p>
+				        <p>}</p>
+				    <p>}</p>
+				<p>}</p>
+			</div>
+
+
+		</div>
+	
+	<!-- # SeCtion 01-->
+	
+	<script src="../../public/js/jquery.js"></script>
+	<script src="../../public/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+<!-- https://www.devmedia.com.br/quartz-net-job-scheduling-revista-net-magazine-102/26956    :Site do Bagulho-->

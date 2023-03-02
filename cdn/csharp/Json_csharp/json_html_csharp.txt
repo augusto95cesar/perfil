@@ -1,0 +1,23 @@
+@*<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.Salvar').on('click', function () {
+            //var CodigoEmpresa = document.getElementById('CodigoEmpresa').value;
+            //var CodigoOutorgante = document.getElementById('CodigoOutorgante').value;   
+
+            var CodigoEmpresa = 5;
+            var CodigoOutorgante = 1;
+
+            $.ajax({
+                type: 'POST',
+                url: '/@controllerName/ObterCaminhoArquivo/',
+                data: { 'CodigoEmpresa': CodigoEmpresa, 'CodigoOutorgante': CodigoOutorgante },
+                dataType: 'json'
+            }).done(function (response) { 
+                
+                var texto = $("testeText");
+                texto.appendChild(response.data);
+            });
+        });
+    });
+</script>*@

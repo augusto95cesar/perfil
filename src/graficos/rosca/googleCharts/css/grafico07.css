@@ -1,0 +1,101 @@
+:root{
+    --big-graphic:250px;
+    --big-font-graphic:150%;
+    --cor-transparent:rgba(0,0,0, 0.6);
+    --cor-branco:red;
+    }
+
+    #donut_single{
+        height: var(--big-graphic);
+        width: var(--big-graphic);
+    } 
+    #graphic-venda{
+        height: var(--big-graphic);
+        width: var(--big-graphic);
+    } 
+    .g-rosca{
+        height: var(--big-graphic);
+        width: var(--big-graphic); 
+        position: relative;
+    } 
+    .g-graphic{
+        height: var(--big-graphic);
+        width: var(--big-graphic);
+        position: relative; 
+        border-radius: 50%; 
+        margin: auto;   
+    }
+    
+    .g-text{
+        margin: 0; 
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: var(--big-font-graphic);
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+    }
+    
+    .g-text:hover{ 
+       cursor: pointer;
+        z-index: 2;
+    }
+    
+    .flex-grafico{
+        display: flex;
+    }
+    
+    svg{
+        height: var(--big-graphic);
+        width: var(--big-graphic);
+    }
+    
+    .largura-flex-50{
+        width: 70%;
+        height: 100vh; 
+    }
+    
+    #g-indicador-vendas{
+        height: var(--big-graphic);
+        width: var(--big-graphic);
+        position: absolute;
+        z-index: 5;
+        background: var(--cor-transparent);
+        text-align: center;  
+        border-radius: 50%;
+        color: white;
+    }
+    
+    #g-indicador-vendas input{ 
+        width: 80%;
+        margin-bottom: 5px; 
+    }
+    
+    #g-indicador-vendas button{ 
+        width: 70%;
+        margin-bottom: 5px; 
+    }
+    
+    #g-indicador-vendas input:hover{ 
+        cursor: pointer;
+    }
+    
+    #g-indicador-vendas button:hover{ 
+       cursor: pointer;
+    }
+    
+    .margin-auto{
+        margin: 0; 
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: var(--big-font-graphic);
+        top: 40%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+    }

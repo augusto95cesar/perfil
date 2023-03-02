@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>Site</title>
+	
+	<!-- boostrap -->
+	<link href="../../public/css/bootstrap.css" rel="stylesheet">
+
+	<!-- font awesome -->
+	<link href="../../public/css/all.css" rel="stylesheet">
+
+	<!-- folha de estilo propria -->
+	<link href="../../public/css/style.css" rel="stylesheet">
+
+	<!-- favicon -->
+	<link href="../../public/alfahelix/public/img/favicon.png" rel="icon">
+
+
+</head>
+<body>		  <!-- inicio menu -->
+  <nav class="navbar navbar-dark navbar-expand-lg navbar-default fixed-top">
+    <div class="container-fluid"> 
+      <h2 id="menuletra"> MVC ##</h2> 
+      <!-- botao para menu no celular --> 
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+        <span class="navbar-toggler-icon"></span>
+      </button>      
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ml-md-auto text-light">
+          <li class="nav-item">
+            <a class="nav-link" id="menuletra"  href="../../index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="menuletra"  href="../../list_curso.html">Cursos</a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" id="menuletra"  href="../../perfil.html">Perfil</a>
+          </li>                   
+        </ul>
+      </div>
+    </div>
+  </nav>
+	<!-- fim menu -->
+	<br><br><br>
+<div>
+	<div id="list-example" class="list-group" style="position: fixed; ">
+		  <a class="list-group-item list-group-item-action" href="#section01">Criar Projeto MVC</a>
+		  <a class="list-group-item list-group-item-action" href="#section02">Class Owin</a>
+		  <a class="list-group-item list-group-item-action" href="#section03">Class Usuario</a>
+		  <a class="list-group-item list-group-item-action" href="#section04">Class Context</a>
+		  <a class="list-group-item list-group-item-action" href="#section05">View Model</a>
+		  <a class="list-group-item list-group-item-action" href="#section06">JQuery Validation</a>		 
+		  <a class="list-group-item list-group-item-action" href="#section08">Controle Autenticação</a>
+		  <a class="list-group-item list-group-item-action" href="#section09">Criptografando</a>
+		  <a class="list-group-item list-group-item-action" href="#section10">Login Duplicado</a>
+		  <a class="list-group-item list-group-item-action" href="#section11">LoginViewModel</a>
+		  <a class="list-group-item list-group-item-action" href="#section12">Tela Login</a>
+		  <a class="list-group-item list-group-item-action" href="#section13">Method Post Login</a>
+		  <a class="list-group-item list-group-item-action" href="#section14">Action Logout</a>
+		  <a class="list-group-item list-group-item-action" href="#section15">Alterar Login</a>
+		  <a class="list-group-item list-group-item-action" href="#section16">Controler Perfil</a>
+		  <a class="list-group-item list-group-item-action" href="#section17">View Alterar Login</a>
+	</div>
+	<div class="container">
+		<div class="section01" id="section01">
+			<br><br><br>
+			<h4 >Criar Projeto MVC</h4>
+			<div style="background: #A9A9A9; padding: 5px; margin-bottom: 8px;">
+				<span>- Pacotes Para instalação no Nuget</span>
+			</div>
+			<br>
+			<div class="divpai">
+				<p>- Instalar o Entity FrameWork</p>
+				<p>- Instalar o Microsoft.Owin.Host.SystemWeb</p>
+				<p>- Instalar o Microsoft.Owin.Security.Cookies</p>
+			</div>			
+		</div>
+		<!-- # SeCtion 02-->
+		<div class="section02" id="section02">
+			<br><br><br>
+			<hr>
+			<h4>Criar Owin</h1>
+			<div style="background: #A9A9A9; padding: 5px; margin-bottom: 8px;">	
+				<span>- Criar a Class Startup... </span>
+			</div>
+			<br>
+			<p>-Obs:*Criar a Class na Raiz do Projeto "Assemble".</p>
+			<p><img src="../../public/img/csharp/autenticacao/Class_Startup.jpg"><!--[img](Class_Startup)--></p>
+			<p><img src="../../public/img/csharp/autenticacao/Class_Startup_Assemble.jpg"><!--[img](Class_Startup_Assemble)--></p>
+			<p><img src="../../public/img/csharp/autenticacao/Class_Startup_Metodo.jpg"><!--[img](Class_Startup_Metodo)--></p>
+			<hr>
+			<div class="divpai">
+				<p>	using System;</p>
+				<p>	using System.Threading.Tasks;</p>
+				<p>	using Microsoft.Owin;</p>
+				<p>	using Owin;</p>
+				<p>	using Microsoft.Owin.Security.Cookies;</p>
+				<br>
+				<p>[assembly: OwinStartup(typeof(AutenticConnetion.Startup))]</p>			
+				<p>namespace AutenticConnetion</p>
+				<p>{</p>
+					<div class="divfilho">
+					<p>public class Startup</p>	
+					<p>{</p>
+						<div class="divfilho">
+						<p>public void Configuration(IAppBuilder app)</p>
+						<p>{</p>
+						<div class="divfilho">
+							<p>app.UseCookieAuthentication(</p>
+							<p>new CookieAuthenticationOptions</p>	
+							<p>{</p>
+							<div class="divfilho">
+								<p>AuthenticationType = "ApplicationCookie",</p>	
+								<p>LoginPath = new PathString("/Autenticacao/Login")</p>	
+							</div><!--Fim da div Quarto Filho -->
+							<p>});//Fim app.UseCookieAuthentication...</p>
+							</div><!--Fim da div Terceiro Filho -->
+						<p>}</p>
+						</div><!--Fim da div Segundo Filho -->
+					<p>}</p>
+					</div><!--Fim da div Primeiro Filho -->
+				<p>} </p>				
+			</div><!--Fim da div Pai -->
+			<hr>		
+		</div><!--Fim da div Section -->
+		<!-- # SeCtion 02-->
+		<!-- # SeCtion 03-->
+		<div class="section03" id="section03"><br><br><br>
+			<hr>
+			<h4>Class Usuario</h4>
+			<div style="background: #A9A9A9; padding: 5px; margin-bottom: 8px;">
+				<span>- Criar a Class Usuario no Pacote Model.</span>
+			</div>
+			<p><img src="../../public/img/csharp/autenticacao/Class_Usuario.jpg"><!--[img](Class_Usuario)--></p>
+			<p><img src="../../public/img/csharp/autenticacao/Class_Usuario_DataAnnotations.jpg"><!--[img](Class_Usuario_DataAnnotations)--></p>			
+			<hr>
+			<div class="divpai">				
+				<p>using System.ComponentModel.DataAnnotations;<p>			
+				<p>using System.ComponentModel.DataAnnotations.Schema;</p>		
+				<p>namespace AutenticConnetion.Models</p>
+				<p>{</p>
+					<div class="divfilho">
+						<p>[Table("Usuarios")]//Nome da Tabela</p>	    			
+						<p>public class Usuario</p>
+						<p>{</p>
+							<div class="divfilho">
+							<p>public int Id { get; set; }</p>
+							<br>
+							<p>[Required]//Campo Obrigatorio</p>
+							<p>[MaxLength(100)]//Tamanho Maximo</p>
+							<p>[Column("nome_usuario")]//Nome da Couluna</p>
+							<p>public string Nome { get; set; }<p>
+							<br>
+							<p>[Required]//Campo Obrigatorio</p>
+							<p>	[MaxLength(50)]//Tamanho Maximo</p>
+							<p>public string Login { get; set; }</p>     				
+							<br>
+							<p>[Required]//Campo Obrigatorio</p>
+							<p>[MaxLength(100)]//Tamanho Maximo</p>
+							<p>public string Senha { get; set; }</p>	
+							</div><!--Fim do Segundo Filho -->
+						<p>}</p>						
+					</div><!--Fim do Primeiro Filho -->
+				<p>}</p>
+			</div><!--Fim da div Pai -->
+		</div><!--Fim da Seciton -->
+		<!-- # SeCtion 03-->
+		<!-- # SeCtion 04-->
+		<div class="section04" id="section04"><br><br><br>	  
+			<hr>
+			<h4>Conexao ao Banco de Dados</h4>
+			<div style="background: #A9A9A9; padding: 5px; margin-bottom: 8px;">
+				<span>- Criar a Class Context (UsuarioContext).</span>
+			</div>
+			<p><img src="../../public/img/csharp/autenticacao/Class_Context.jpg"> <!--[img](Class_Context)--></p>
+			<hr>
+			<div class="divpai">	
+				<p>using System.Data.Entity;</p>
+				<p>namespace AutenticConnetion.Models</p>
+				<p>{</p>
+					<div class="divfilho">
+		    			<p>public class UsuarioContext : DbContext</p>
+		    			<p>{</p>
+		    				<div class="divfilho">
+		        				<p>public UsuarioContext(): base("Usuarios")</p>
+		        				<p>{</p>
+		        				<p>}</p>
+		        				<p>public DbSet<Usuario> Usuarios { get; set; }</Usuario>
+		        			</div><!-- Fim Segundo Filho-->		      				
+		    			<p>}</p>
+		    		</div>	<!-- Fim Primeiro Filho-->
+				<p>}</p>
+			</div><!-- Fim da div Pai-->
+			<hr>
+			<div style="background: #A9A9A9; padding: 5px; margin-bottom: 8px;">	
+				<span>- Criar String de connetion</span>
+			</div>
+			<div id="scrollfoto">
+				<p><img src="../../public/img/csharp/autenticacao/StringConnection_SQLSever.jpg"><!--[img](StringConnection_SQLSever)--></p>
+			</div>
+			<hr>				
+		  	<div class="divpai">
+		  		<div class="divfilho">		
+		  			<p>< connectionStrings ></p>
+	  				<div class="divfilho"><p>
+	    				< add name="Usuarios" 
+						connectionString="Data Source=Localhost\SQLExpress;
+								Initial Catalog=DbUsuario;
+								Integrated Security=True;" 
+	         				providerName="System.Data.sqlClient"
+						/><!--Fim ADD String --></p>
+					</div><!-- Fim Segundo Filho-->
+		  			<p>< /connectionStrings></p>
+		  		</div><!-- Fim Primeiro Filho-->
+		  	</div><!-- Fim da div Pai-->			
+		</div>
+		<!-- # SeCtion 04-->
+		<!-- # SeCtion 05-->
+		<div class="section05" id="section05"><br><br><br>	  
+			<hr>
+			 <h4>View Model</h4>
+			 <div style="background: #A9A9A9; padding: 5px; margin-bottom: 8px;">
+				<span>- ViewModels para representar a interação com o Usuario atraves da Interface...</span>
+			</div>
+			<p><img src="../../public/img/csharp/autenticacao/Pasta_Class_ViewModels.jpg"><!--[img](Pasta_Class_ViewModels)--></p>
+			<p><img src="../../public/img/csharp/autenticacao/TelaCadastroViewModel.jpg"><!--[img](TelaCadastroViewModel)--></p>
+			<div style="background: #A9A9A9; padding: 5px; margin-bottom: 8px;">
+				<span>- Codigo da Class CadastroUsuarioViewModels para a Construção da Interface de Usuario.</span>
+			</div>
+			<br>
+			<div class="divpai">
+				<p>using System.ComponentModel.DataAnnotations;</p>
+				<p>namespace AutenticConnetion.ViewModels</p>
+				<p>{</p>
+					<div class="divfilho">
+						<p>public class CadastroUsuarioViewModels</p>
+				    	<p>{</p>
+				    		<div class="divfilho">
+				        	<p>[Required(ErrorMessage = "Informe Seu Nome")]//Campo Obrigatorio</p>
+				        	<p>[MaxLength(100,ErrorMessage ="O Nome deve ter até 100 Caracteres")]</p>
+							<p>public string Nome { get; set; }</p>
+							<br>
+							<p>[Required(ErrorMessage = "Informe seu Login")]</p>        
+							<p>[MaxLength(50,ErrorMessage ="O Login deve ter até 50 caracteres")]</p>
+							<p>public string Login { get; set; }</p>
+							<br>
+							<p>[Required(ErrorMessage ="Informe sua Senha")]</p>
+							<p>[DataType(DataType.Password)]//type do input</p>
+							<p>[MinLength(6,ErrorMessage ="A senha deve ter ao menos 6 Caracteres")]</p>
+							<p>public string Senha { get; set; }</p>
+							<br>
+							<p>[Required(ErrorMessage = "Informe sua Senha")]</p>
+							<p>[DataType(DataType.Password)]//type do input</p>
+							<p>[MinLength(6, ErrorMessage = "A senha deve ter ao menos 6 Caracteres")]</p>
+							<p>[Display(Name ="Confirmar Senha")]</p>
+							<p>[Compare(nameof(Senha),ErrorMessage = "Senha de Confirmação Diferente")]</p>
+							<p>public string ConfimacaoSenha { get; set; }</p>
+						</div>
+						<p>}</p>
+					</div>
+				<p>}</p>
+			</div>		
+		</div>
+		<!-- # SeCtion 05-->
+		<!-- # SeCtion 06-->
+		<div class="section06" id="section06"><br><br><br>	  
+			<hr>
+			<h4>JQuery Validação</h4>
+			<div style="background: #A9A9A9; padding: 5px; margin-bottom: 8px;">
+				<span>- Pacotes JavaScript</span>
+			</div>
+			<br>			
+			<p>- Install-Package jquery.validation</p>
+			<p>- Install-Packege Microsoft.jQuery.Unobtrusive.Validation</p>
+			<p><img src="../../public/img/csharp/autenticacao/jQuereyValidation.jpg"><!--[img](jQuereyValidation.jpg)--></p>	
+			<p><a href="https://www.devmedia.com.br/view/viewaula.php?idcomp=39694 ">https://www.devmedia.com.br/view/viewaula.php?idcomp=39694 </a> </p>
+		</div>
+		<!-- # SeCtion 06-->
+		<!-- # SeCtion 07-->
+		<div class="section07" id="section07">	  
+				<!-- Mescleie com a Section * -->
+		</div>
+		<!-- # SeCtion 07-->
+		<!-- # SeCtion 08-->
+		<div class="section08" id="section08"><br><br><br>
+			<hr>
+		   	<h4>Controller Home</h4>
+		   	<div style="background: #A9A9A9; padding: 5px; margin-bottom: 8px;">
+		   		<span>Criar O Controle Home tamplate Vazio apenas com o Index...</span>
+		   	</div>
+		   	<br>
+		   	<p><img src="../../public/img/csharp/autenticacao/HomeController.jpg"></p>
+			<div style="background: #A9A9A9; padding: 5px; margin-bottom: 8px;">						
+				<span>- Criar O Controle Auteticação vazio com a View Create Com o Paramentro CadastroUsuarioViewModels ...</span>
+			</div>				
+			<p><img src="../../public/img/csharp/autenticacao/ViewCadastrar_Criando.jpg">[img](ViewCadastrar_Criando)</p>
+			<p><img src="../../public/img/csharp/autenticacao/ViewCadastrar_Criada.jpg">[img](ViewCadastrar_Criada)</p>				
+			<p>-Criar um link apartir do Layout para a pagina Cadastrar com ActionLink</p>				  
+			<hr>	
+			<h4>Controller Autenticação</h4>
+			<div style="background: #A9A9A9; padding: 5px; margin-bottom: 8px;">
+				<span>- Transformar o Controle da view Auteticacao/Cadastrar do modelo </span>
+			</div>
+			<br>
+			<p>CadastroUsuarioViewModels em Dados para o Banco usando o Model Usuario<p>
+			<p>- Criar Metodo Post</p>
+			<p><img src="../../public/img/csharp/autenticacao/MetodoPost.jpg"></p>
+			<p>- Metodo Post Com Paramentor da View de Retorno</p>
+			<p>- Criar Comuicação entre a View e o Banco</p>
+			<p><img src="../../public/img/csharp/autenticacao/MetodoPost_Tarefas.jpg"></p>			 	
+		</div>
+		<!-- # SeCtion 08-->
+		<!-- # SeCtion 09-->
+		<div class="section09" id="section09"><br><br><br>	  
+			<hr>	
+			<h4>Criptografia</h4>
+			<div style="background: #A9A9A9; padding: 5px; margin-bottom: 8px;">
+				<span>- Criptografando a senha do Usuario - com Algoritmo SHA256</span>
+			</div>
+			<p>- Criar uma pasta "Utils" na raiz do projeto</p>
+			<p>- Criar uma Class "Hash" dentro da pastar "Utils"</p>
+			<p>- Importar o namespace "using System.Security.Cryptography;"</p>
+			<p>- Importar o namespace "using System.Text;"</p>
+			<p>- System.Security.Cryptography;"</p>
+			<p>- Criar um metodo estatico </p>
+			<p><img src="../../public/img/csharp/autenticacao/GerarHash_Class.jpg"></p>
+			<hr>			
+			<div class="divpai">
+				<p>using System.Security.Cryptography;</p>
+				<p>using System.Text;</p>
+				<p>namespace WAutentic.Utils</p>
+				<p>{</p>
+					<div class="divfilho">
+					    <p>public class Hash</p>
+					    <p>{</p>
+					        <div class="divfilho">
+						        <p>public static string GerarHash(string texto)</p>
+						        <p>{</p>
+						        	<div class="divfilho">
+							            <p>SHA256 sha256 = SHA256Managed.Create();</p>
+							            <p>byte[] bytes = Encoding.UTF8.GetBytes(texto);</p>
+							            <p>byte[] hash = sha256.ComputeHash(bytes);</p>
+							            <p>StringBuilder result = new StringBuilder();</p>
+							            <p>for(int i =0; i< hash.Length; i++)</p>
+							            <p>{</p>
+							            	<div class="divfilho">
+							                	<p>result.Append(hash[i].ToString("X"));</p>
+							                </div>
+							            <p>}</p>
+							            <p>return result.ToString();</p>
+						        	</div>
+						        <p>}</p>
+						    </div>
+					    <p>}</p>
+					</div>
+				<p>}</p>
+			</div><!--Fim da div Pai-->
+			<div style="background: #A9A9A9; padding: 5px; margin-bottom: 8px;">
+				<span> - Voltar para o controle de autenticação e importar a classe GerarHash & acrecentar o metodo atribuido a senha</span>
+			</div>
+			<p><img src="../../public/img/csharp/autenticacao/MetodoHash_Controler.jpg"></p>			
+			<hr>						
+		</div>	
+		<!--Passo 10 -->
+		<div class="section10" id="section10"><br><br><br>
+			<hr>
+			<h4>Evitando Login Duplicado</h4>
+			<p><img src="../../public/img/csharp/autenticacao/VerificarSeLoginExiste.jpg"></p>
+			<p> -No controller AutenticacaoController antes de salvar o novo usuario 
+			fazer uma verificação se já existe o Login Cadastrado</p>
+			<hr>
+			<div class="divpai" >
+				<p>if(db.Usuarios.Count(u => u.Login == viewModel.Login) >0)</p>
+				<p>{</p>
+				<div class="divfilho">
+					<p>ModelState.AddModelError("Login", "Esse login já está em uso");</p>
+					<p>return View(viewModel);</p>
+				</div>
+				<p>}</p>
+			</div>
+		</div>
+		<!--Passo 11 -->
+		<div class="section11" id="section11"><br><br><br>
+			<hr>
+			<h4>Criando o LoginViewModel</h4>
+			<div style="background: #A9A9A9; padding: 5px; margin-bottom: 8px;">
+			 	<span>- Criar uma class ViewModel chamada LoginViewModel</span>
+			 </div>
+			 <p><img src="../../public/img/csharp/autenticacao/LoginViewModel.jpg"></p>
+			 <hr>
+			 <div class="divpai">
+			 	<p>using System.ComponentModel.DataAnnotations;</p>
+				<p>namespace ConnetionPostgre.ViewModels</p>
+				<p>{</p>
+				<div class="divfilho">
+				    <p>public class LoginViewModel</p>
+				    <p>{</p>
+				    <div class="divfilho">
+				        <p>public string urlRetorno { get; set; }</p>
+				        <br>
+				        <p>[Required(ErrorMessage = "Informe seu Login")]</p>
+				        <p>[MaxLength(50, ErrorMessage = "O Login deve ter até 50 caracteres")]</p>
+				        <p>public string Login { get; set; }</p>
+				        <br>
+				        <p>[Required(ErrorMessage = "Informe sua Senha")]</p>
+				        <p>[DataType(DataType.Password)]//type do input</p>
+				        <p>[MinLength(6, ErrorMessage = "A senha deve ter ao menos 6 Caracteres")]</p>
+				        <p>public string Senha { get; set; }</p>
+				    </div>
+				    <p>}</p>
+				</div>
+				<p>}</p>
+			</div>	
+		</div>
+		<!--Passo 12 -->
+		<div class="section12" id="section12"><br><br><br>
+			<hr>
+			<h4>Adicionar a tela Login</h4>
+			<div style="background: #A9A9A9; padding: 5px; margin-bottom: 8px;">
+				<span>-dentro do Controller Autenticacao</span>
+			</div>
+			<p>criar a uma Action Login com um parametro do tipo strtig e no me ReturnUrl obs ReturnUrl é um parametro do Oiew por tanto tem que ser exatemente este nome</p>
+			<p><img src="../../public/img/csharp/autenticacao/returnUrl_Action.jpg"><!--[img](returnUrl_Action)--></p>
+			<hr>
+			<div class="divpai">
+				<p>public ActionResult Login(string ReturnUrl)</p>
+				<p>{</p>
+				<div class="divfilho">
+					<p>var viewModel = new LoginViewModel</p>
+					<p>{</p>
+					<div class="divfilho">
+						<p>UrlRetorno = ReturnUrl</p>
+					</div>
+					<p>};</p>
+					<p>return View(ViewModel);</p>
+				</div>
+				<p>}</p>
+			</div>
+			<hr>
+			<div style="background: #A9A9A9; padding: 5px; margin-bottom: 8px;">
+				<span>-Criar View do tipo Create e base "Class LoginViewModel"</span>
+			</div>
+			<br>
+			<p><img src="../../public/img/csharp/autenticacao/tela_Login.jpg"></p>
+			<br>
+			<div class="divpai">
+			<p>Editar a View</p>
+				<div class="divfilho">
+					<p>- transformar  urlRetorno em Hiddenfor</p>
+					<p>- trocar o nome de create para Login</p>
+					<p>- apagar link Back to List</p>
+					<p>- acrescentar jQuery validation</p>
+				</div>
+			</div>
+		<div>
+		<!--Passo 13 -->
+		<div class="section13" id="section13"><br><br><br>
+			<hr>
+			<h4>Criar o Method Post do Login</h4>
+			<div style="background: #A9A9A9; padding: 5px; margin-bottom: 8px;"> 
+				<span>- no Controller Autenticacao</span>
+			</div>
+			<br>
+			<p><img src="../../public/img/csharp/autenticacao/LoginAction.jpg"></p>
+			<hr>
+			<div class="divpai">
+				<p>[HttpPost]</p>
+				<p>public ActionReuslt Login(LoginViewModel viewModel)</p>
+				<p>{</p>
+				<div class="divfilho"> 	
+					<p>if(!ModelState.IsValid)</p>
+					<p>{</p>
+					<div class="divfilho">
+						<p>return View(viewModel);</p>
+					</div>
+					<p>}</p>				
+					<br>
+					<p>var usuario = db.Usuarios.FirstOrDefault(u => u.Login == viewModel.Login);</p>
+					<br>
+					<p>if(usuario == null)</p>
+					<p>{</p>
+					<div class="divfilho">
+							<p>ModelState.AddModelError("Login", "Login incorreto");</p>
+							<p>return View(viewModel);</p>
+					</div>
+					<p>}</p>
+					<br>
+					<p>(usuario.Senha != Hash.GerarHash(viewModel.Senha))</p>
+					<p>{</p>
+					<div class="divfilho">					
+						<p>ModelState.AddModelError("Senha","Senha Incorreta");</p>
+						<p>return View(viewModel);</p>
+					</div>
+					<p>}</p>
+					<br>
+					<p>var identity = new ClaimsIdentity(new[]</p>
+					<p>{</p>
+					<div class="divfilho">
+						<p>new Claim(ClaimTypes.Name, usuario.Nome),</p>
+						<p>new Claim("login", usuario.Login)</p>
+					</div>
+					<p>},"ApplicationCookie");</p>
+					<br>
+					<p>Request.GetOwinContext().Authentication.SignIn(identity);</p>
+					<br>
+						<p>if(!String.IsNullOrWhiteSpace(viewModel.urlRetorno)||Url.IsLocalUrl(viewModel.urlRetorno))</p>
+						<p>return Redirect(viewModel.urlRetorno);</p>
+						<p>else</p>
+						<p>return RedirectToAction("Index", "Painel");</p>
+				</div>
+				<p>}</p>
+			</div>			
+		</div>
+		<!--Passo 14 -->	
+		<div class="section14" id="section14"><br><br>
+			<br>
+			<br>
+			<hr>
+			<h4>Implementando o logout</h4>
+			<div style="background: #A9A9A9; padding: 5px; margin-bottom: 8px;"> 
+				<span>- No Controller Autenticacao criar uma Action chamda logout</span>
+			</div>
+			<br>
+			<img src="../../public/img/csharp/autenticacao/Logout_Action.jpg">
+			<hr>
+			<div class="divpai">
+				<p>public ActionResult Logout()</p>
+		        <p>{</p>
+		        <div class="divfilho">
+		            <p>Request.GetOwinContext().Authentication.SignOut("ApplicationCookie");</p>
+		            <p>return RedirectToAction("Login","Autenticacao");</p>
+		        </div>
+		        <p>}</p>
+		    </div>
+		    <div>		       
+		        <h4>-Criar link na view Layaout para Logout</h4>
+				<div style="background: #A9A9A9; padding: 5px; margin-bottom: 8px;"> 
+					<span>-Customizar Menu</span>
+				</div>
+				<br>
+		        <p>- Na view Layout fazer uma verificação</p>
+		        <p><img src="../../public/img/csharp/autenticacao/verf_log_in_out.jpg"></p>
+		        <br>
+		        <div class="divpai">
+		    	   	<p>@if (User.Identity.IsAuthenticated)</p>
+		            <p>{</p>
+		            <div class="divfilho">
+		                <p>< li>@Html.ActionLink("Sair", "Logout", "Autenticacao")< /li></p>
+		            </div>
+		            <p>}</p>
+		            <p>else</p>
+		            <p>{</p>
+		            <div class="divfilho">
+		                <p>< li>@Html.ActionLink("Login", "Login", "Autenticacao")< /li></p>
+		            </div>
+		            <p>}</p>
+	        	</div>
+	        	<br>
+	        	<div style="background: #A9A9A9; padding: 5px; margin-bottom: 8px;"> 
+				<span>- Mostrar o Usuario Logado</span>
+				</div>
+				<br>
+				<div class="divpai">
+					<p>< li class="dropdown"></p>
+					<div class="divfilho">
+			            <p>< a href="#" class="dropdown-toggle"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@User.Identity.Name
+			                < span class="caret">< /span>
+			             < /a></p>
+			        
+				        <p>< ul class="dropdown-menu"></p>
+				            <div class="divfilho">
+				                <p>< li>@Html.ActionLink("Sair", "Logout", "Autenticacao")< /li></p>
+				            </div>
+				        <p>< /ul></p>
+			        </div>			       
+			        <p>< /li></p>
+			    </div>
+	    	</div>
+	    </div>
+	    	<!--Passo 15 -->	    	
+	    <div class="section15" id="section15">
+	    	<hr>
+	    	<br>
+	    	<br>
+	    	<br>
+	    	<h4>Criar a Tela de Alterar Login</h4>
+	        <div style="background: #A9A9A9; padding: 5px; margin-bottom: 8px;"> 	       
+	        	<span>Va na Class Startup e acrescente o AntiForgery para permitir que possa reenviar os dados para o Controller.</span>
+	        </div>
+	        <p><img src="../../public/img/csharp/autenticacao/antiforgery.jpg"></p>
+	        <br>
+	        <p>AntiForgeryConfig.UniqueClaimTypeIdentifier = "Login";</p>
+	        <div style="background: #A9A9A9; padding: 5px; margin-bottom: 8px;"> 	       
+	        	<span>- Criew a ViewModel  AlterarLogin</span>
+	        </div>
+	        <br>
+	        <p><img src="../../public/img/csharp/autenticacao/altererar_login.jpg"></p>
+	        <br>
+	        <div class="divpai">
+	         	<p>using System.ComponentModel.DataAnnotations;</p>
+	         	<br>
+				<p>namespace ConnetionPostgre.ViewModels</p>
+				<p>{</p>
+				<div class="divfilho">
+				    <p>public class AlterarLoginViewModel
+				    <p>{
+				    <div class="divfilho">				        
+				        <p>[Required(ErrorMessage = "Informe sua Senha")]</p>
+				        <p>[DataType(DataType.Password)]//type do input</p>
+				        <p>[MinLength(6, ErrorMessage = "A senha deve ter ao menos 6 Caracteres")]</p>
+				        <p>public string Senha { get; set; }</p>
+						<br>
+				        <p>[Required(ErrorMessage = "Informe sua Senha")]</p>
+				        <p>[DataType(DataType.Password)]//type do input        </p>
+				        <p>[Display(Name = "Nova Senha")]       </p>
+				        <p>public string NovaSenha { get; set; }</p>
+						<br>
+				        <p>[Required(ErrorMessage = "Informe sua Senha")]</p>
+				        <p>[DataType(DataType.Password)]//type do input</p>
+				        <p>[MinLength(6, ErrorMessage = "A senha deve ter ao menos 6 Caracteres")]</p>
+				        <p>[Display(Name = "Confirmar Senha")]</p>
+				        <p>[Compare(nameof(NovaSenha), ErrorMessage = "Senha de Confirmação Diferente")]</p>
+				        <p>public string ConfimacaoSenha { get; set; }</p>
+				    </div>
+				    <p>}</p>
+				</div>
+				<p>}</p>
+			</div>
+		</div>				    	
+		<!--Passo 16 -->	    	
+	    <div class="section16" id="section16">
+	    	<hr>
+	    	<br>
+	    	<br>
+	    	<br>
+	    	<h4>Criar Controller para alterar o Login</h4>
+	    	<div style="background: #A9A9A9; padding: 5px; margin-bottom: 8px;"> 	
+	         <sapan>- Criar Controller com o Nome Perfil</sapan>
+	     	</div>
+	     	<p><img src="../../public/img/csharp/autenticacao/perfilController.jpg"></p>
+	     	<br>
+			<div class="divpai">	
+				<p>using ConnetionPostgre.Models;</p>
+				<p>using ConnetionPostgre.Utils;</p>
+				<p>using ConnetionPostgre.ViewModels;</p>
+				<p>using System.Linq;</p>
+				<p>using System.Security.Claims;</p>
+				<p>using System.Web.Mvc;</p>
+				<br>
+				<p>namespace ConnetionPostgre.Controllers</p>
+				<p>{</p>
+				<div class="divfilho">
+				    <p>public class PerfilController : Controller</p>
+				    <p>{</p>	
+				    <div class="divfilho">
+				        <p>BancoDadosContext db = new BancoDadosContext();</p>
+				        <br>
+				        <p>[Authorize]</p>
+				        <p>public ActionResult AlterarSenha()</p>
+				        <p>{</p>
+				        <div class="divfilho">
+				            <p>return View();</p>
+				        </div>
+				        <p>}</p>
+				        <br>	
+				        <p>[Authorize]</p>
+				        <p>[HttpPost]</p>
+				        <p>public ActionResult AlterarSenha(AlterarLoginViewModel senhaNova)</p>
+				        <p>{</p>
+			        	<div class="divfilho">
+				            <p>if (!ModelState.IsValid)</p>
+				            <p>{</p>
+				                <p>return View();</p>
+				            <p>}</p>
+				            <p>/* Capturar o usuario logado fazendo um Cast para o tipo ClaimsIdentity
+				             para poder pegar o login*/</p>
+				            <p>var identity = User.Identity as ClaimsIdentity;</p>
+				            <p>var login = identity.Claims.FirstOrDefault(c => c.Type == "Login").Value;</p>
+
+				            <p>var usuario = db.Usuarios.FirstOrDefault(u => u.Login == login);</p>
+
+				            <p>if (Hash.GerarHash(senhaNova.Senha) != usuario.Senha)</p>
+				            <p>{</p>
+				            <div class="divfilho">
+				                <p>ModelState.AddModelError("SenhaAtual", "Senha incorreta");</p>
+				                <p>return View();</p>
+				            </div>
+				            <p>}</p>
+				            <p>usuario.Senha = Hash.GerarHash(senhaNova.NovaSenha);</p>
+				            <p>db.Entry(usuario).State = System.Data.Entity.EntityState.Modified;</p>
+				            <p>db.SaveChanges();</p>
+
+				            <p>return RedirectToAction("Index", "Home");</p>
+				        </div>
+				        <p>}</p>
+				    </div>				    
+				    <p>}</p>
+				</div>
+				<p>}</p>
+			</div>
+
+			<!--Passo 16 -->	    	
+	    <!--Passo 17 -->
+	    <div class="section17" id="section17">
+	    	<hr>
+	    	<br>
+	    	<br>
+	    	<br>
+	    	<h4>View Alterar Login</h4>
+	    	<div style="background: #A9A9A9; padding: 5px; margin-bottom: 8px;"> 	
+		         <span>- Criar View com a viewModel AlterarLogin</span>
+		     </div>
+		     <br>
+		     <p><img src="../../public/img/csharp/autenticacao/viewAlterarLogin.jpg"></p>
+	         <br>
+	         <div style="background: #A9A9A9; padding: 5px; margin-bottom: 8px;"> 	
+		         <span>- - Criar method Post do AlterarSenha</span>
+		     </div>
+		     <br>
+		      <p><img src="../../public/img/csharp/autenticacao/post_Login.jpg"></p>
+		      <hr>
+		      <div class="divpai"> 
+			       	<p>[HttpPost]</p>
+			        <p>public ActionResult Login(LoginViewModel viewModel)</p>
+			        <p>{</p>
+			        <div class="divfilho"> 
+			            <p>if (!ModelState.IsValid)</p>
+			            <p>{</p>
+			               <div class="divfilho"> 
+			                <p>return View(viewModel);</p>
+			            	</div>
+			            <p>}</p>
+						<br>
+			            <p>var usuario = db.Usuarios.FirstOrDefault(u => u.Login == viewModel.Login);</p>
+						<br>
+			            <p>if (usuario == null)</p>
+			            <p>{</p>
+			                <div class="divfilho">
+			                <p>ModelState.AddModelError("Login", "Login incorreto");</p>
+			                <p>return View(viewModel);</p>
+		                	</div>
+			            <p>}</p>
+
+			            <p>if (usuario.Senha != Hash.GerarHash(viewModel.Senha))</p>
+			            <p>{</p>
+			                <div class="divfilho">
+			                <p>ModelState.AddModelError("Senha", "Senha Incorreta");</p>
+			                <p>return View(viewModel);</p>
+							</div>
+			            <p>}</p>
+						<br>			            
+						<p>var identity = new ClaimsIdentity(new[]</p>
+			            <p>{</p>
+						<div class="divfilho">
+				            <p>new Claim(ClaimTypes.Name, usuario.nome),</p>
+				            <p>new Claim("Login", usuario.Login)</p>
+						</div>
+			            <p>}, "ApplicationCookie");</p>
+						<br>
+			            <p>Request.GetOwinContext().Authentication.SignIn(identity);</p>
+						<br>
+			            <p>if (!String.IsNullOrWhiteSpace(viewModel.urlRetorno) || Url.IsLocalUrl(viewModel.urlRetorno))</p>
+		                <div class="divfilho">
+		                <p>return Redirect(viewModel.urlRetorno);</p>
+						</div>
+			            <p>else</p>
+		                <div class="divfilho">
+		                	<p>return RedirectToAction("Index", "Home");</p>
+						</div>
+			        <br>
+			        </div>             
+			        <p>}</p>
+
+			        <p>public ActionResult Logout()</p>
+			        <p>{</p>
+			        <div class="divfilho">
+			            <p>Request.GetOwinContext().Authentication.SignOut("ApplicationCookie");</p>
+			            <p>return RedirectToAction("Login","Autenticacao");</p>
+			        </div>
+			        <p>}</p>
+		    </div><!--Fim da div Pai-->
+		</div><!--Fim da div Section -->
+	</div><!--Fim Container -->
+<div>
+
+	<script src="../../public/js/jquery.js"></script>
+	<script src="../../public/js/bootstrap.bundle.min.js"></script>
+	
+
+</body>
+</html>

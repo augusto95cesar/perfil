@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>Site</title>
+	
+	<!-- boostrap -->
+	<link href="../../public/css/bootstrap.css" rel="stylesheet">
+
+	<!-- font awesome -->
+	<link href="../../public/css/all.css" rel="stylesheet">
+
+	<!-- folha de estilo propria -->
+	<link href="../../public/css/style.css" rel="stylesheet">
+
+	<!-- favicon -->
+	<link href="../../public/alfahelix/public/img/favicon.png" rel="icon">
+
+
+</head>
+<body>
+	 
+		  <!-- inicio menu -->
+  <nav class="navbar navbar-dark navbar-expand-lg navbar-default fixed-top">
+    <div class="container-fluid"> 
+      <h2 id="menuletra"> MVC ##</h2> 
+      <!-- botao para menu no celular --> 
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+        <span class="navbar-toggler-icon"></span>
+      </button>      
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ml-md-auto text-light">
+          <li class="nav-item">
+            <a class="nav-link" id="menuletra"  href="../../index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="menuletra"  href="../../list_curso.html">Cursos</a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" id="menuletra"  href="../../perfil.html">Perfil</a>
+          </li>                   
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <br>
+  <br>
+  <br>
+	<!-- fim menu -->
+	
+	<div class="container margemtop">
+		<h4>Entendendo Chave Estrangeira</h4>
+		<!-- # SeCtion 01-->	
+		<div id="list-example" class="list-group">
+			<a class="list-group-item list-group-item-action" href="#section01" data-toggle="collapse"  role="button" aria-expanded="false" aria-controls="collapseExample">Sobre O Projeto</a>			  
+			<div class="section01 collapse" id="section01" >
+				<div class="container">
+					<h1>Sobre</h1>
+					<p>O Projeto - tem como função criar um Cadastro de Empresa e um data de Funiconamento no qual foi criado uma Entidade chamada de Parametro.
+					Finalidade do Projeto "Criar assinatura digital"<p>
+				</p>
+			</div>
+		</div>
+		<!-- # SeCtion 01-->
+		<!-- # SeCtion 02-->
+		<div id="list-example" class="list-group">
+			<a class="list-group-item list-group-item-action" href="#section02" data-toggle="collapse"  role="button" aria-expanded="false" aria-controls="collapseExample">Criar Class Parametro</a>
+			<div class="container">				
+				<div class="section02 collapse" id="section02">
+					<h2>Class Parametro</h2>
+					<p><img src="../../public/img/csharp/list_chavestrang/class_parametro.jpg"></p>
+					<p>[img](class_parametro.jpg)</p>
+
+					<div class="divpai">
+						<p>using System;</p>
+						<p>using System.ComponentModel.DataAnnotations;</p>
+						<p>using System.ComponentModel.DataAnnotations.Schema;</p>
+						<p>using System.Web.Mvc;</p>
+						<p>namespace SistemaAssinaturaDigital.Models</p>
+						<p>{</p>
+						<div class="divfilho01">    
+						    <p>[Table("SGSTF.ASD_PARAMETRO")]</p>
+						    <p>public class Parametro</p>
+						    <p>{</p>             
+						        <div class="divfilho01"> 
+						        <p>[Key]</p>
+						        <p>[Column("PRT_IN_SEQUENCIA")]</p>
+						        <p>public int Codigo { get; set; }</p>
+						        <br>
+						        <p>//relacionamento de chave estrangeira</p>
+						        <p>//o entity framework sabe que é um relacionamento n para 1</p>
+						        <p>public virtual Empresa Empresa { get; set; }</p>
+						        <br>
+						        <p>[Required(ErrorMessage = "O Codigo da Empresa é obrigatorio")]</p>
+						        <p>[Display(Name = "Codigo da Empresa")]</p>
+						        <p>[ForeignKey(nameof(Empresa)), Column("EMP_IN_CODIGO")]</p>
+						        <p>public int CodigoEmpresa { get; set; }</p>
+						        <br>
+						        <p>[Required(ErrorMessage = "Data da Vigência é Obrigatorio")]</p>
+						        <p>[Display(Name = "Data da Vigênica")]</p>
+						        <p>[Column("PRT_DT_VIGENCIA")]</p>
+						        <p>[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]//aparecer no campo o valor da data</p>
+						        <p>[DataType(DataType.Date)]//Formatação para  não salvar a hora</p>
+						        <p>public DateTime DataVigencia { get; set; }</p>
+						        <br>
+						        <p>[Column("USU_ST_INCLUSAO")]</p>
+						        <p>public string UsuarioInclusao { get; set; }</p>
+						        <br>
+						        <p>[Column("USU_DT_INCLUSAO")]</p>
+						        <p>public DateTime? DataInclusao { get; set; }</p>
+						        <br>
+						        <p>[Column("USU_ST_ALTERACAO")]</p>
+						        <p>public string UsuarioAlteracao { get; set; }</p>
+						        <br>
+						        <p>[Column("USU_DT_ALTERACAO")]</p>
+						        <p>public DateTime? DataAlteracao { get; set; }</p>
+						        <br>
+						        <p>[NotMapped]//não vai mapear</p>
+						        <p>[Display(Name = "Empresas")]</p>
+						        <p>public SelectList EmpresasList { get; set; }</p>
+						        <p>//selectlist não precisar criar uma viewModel>/
+						    </div>
+						    <p>}</p>
+						</div>   
+						<p>}//Fim da Class</p>
+					</div>
+					<a href="#section02" data-toggle="collapse"  role="button" aria-expanded="false" aria-controls="collapseExample">Fechar</a>					
+				</div>				
+			</div>
+		</div>
+		<!-- # SeCtion 02-->
+		<!-- # SeCtion 03-->
+		<div id="list-example" class="list-group">
+			<a class="list-group-item list-group-item-action" href="#section03" data-toggle="collapse"  role="button" aria-expanded="false" aria-controls="collapseExample">Criar View Index</a>
+			<div class="container">				
+				<div class="section03 collapse" id="section03">
+					<h1>Criar Controller Parametro</h1>
+					<h4>- Criar ActionResult Index</h4>
+					<p ><img src="../../public/img/csharp/list_chavestrang/controler_Index.jpg"></p>
+					<!--[img](controler_Index.jpg)-->
+					<div class="divpai">
+						<p>[Authorize]</p>
+				        <p>public ActionResult Index()</p>
+				        <p>{        </p>
+				        <div class="divfilho01">
+				            <p>return View(db.Parametros.ToList());</p>
+				        </div>
+				        <p>}</p>
+					</div>
+					<h4>- Criar View Index</h4>
+					<p id="scrollfoto"><img  src="../../public/img/csharp/list_chavestrang/View_Index.jpg"><!--[img](View_Index.jpg)--></p>
+					<br>
+					<div class="divpai">
+						<p>@model IEnumerable< SistemaAssinaturaDigital.Models.Parametro ></p>
+						<p>@{ViewBag.Title = "Parametro";}</p>
+					<div class="divfilho01">	
+						<p>< div class="card mt-4"></p>
+						<div class="divfilho01">
+						    <p>< div class="card-header"></p>
+						    <div class="divfilho01">
+						        <p>< div class="row align-items-center"><p>
+						        <div class="divfilho01">
+						            <p>< div class="col"></p>
+						            	<div class="divfilho01">
+							                <p>< h4></p>
+							                <div class="divfilho01">
+							                    <p>Parametros</p>
+							                </div>                       
+							                <p>< /h4><p>
+						            	</div>
+						            <p>< /div></p>
+						            <p>< div class="align-content-lg-end"><p>
+						            <div class="divfilho01 ">
+						               <p> @Html.ActionLink("Adicionar Parametro", "Cadastrar", "Parametro", null, new { @class = "btn btn-success" })</p>
+						            </div>
+						            <p>< /div></p>
+						        </div>
+						        <p>< /div></p>
+						    </div>
+						    <p>< /div></p>
+						</div>
+						    <p>< div class="card-body"></p>
+						    <div class="divfilho01">
+						        <p>< table class="table table-striped dt-responsive" cellspacing="0" id="Itens"></p>
+							     <div class="divfilho01">    
+						            <p>< thead></p>
+						             <div class="divfilho01">
+						                <p>< tr></p>
+						                 <div class="divfilho01">
+						                    <p>< th>Codigo Empresa< /th></p>
+						                    <p>< th>Nome Empresa< /th></p>
+						                    <p>< th>Data Vigencia< /th></p>							              
+						                </div>
+						                <p>< /tr></p>
+						            </div>
+						            <p>< /thead></p>
+						        </div>
+						            <p>< tbody></p>
+						                <p>@foreach (var item in Model){</p>
+						                <div class="divfilho01">
+					                    <p>< tr></p>
+					                    <div class="divfilho01">
+					                        <p>< td> @item.Empresa.CodigoMega < /td></p>
+					                        <p>< td> @item.Empresa.Nome < /td></p>
+					                        <p>< td> @item.DataVigencia.ToShortDateString() < /td></p>
+					                        <p>< td></p>
+					                        <div class="divfilho01">
+					                            <p>@Html.ActionLink("Editar", "Editar", "Parametro", new { Codigo = item.Codigo }, new { @class = "btn btn-sm btn-secondary" })</p>
+					                            <p>< button type="button" data-Codigo="@item.Codigo" id="Excluir" class="btn btn-sm btn-danger d-md-inline-block"></p>
+					                            <div class="divfilho01">
+					                                <p>Excluir</p>
+					                            </div>
+					                            <p>< /button></p>
+					                        </div>
+					                        <p>< /td></p>
+					                    </div>
+					                    <p>< /tr></p>
+						                </div>
+						                <p>}<!--Fim do Loop--></p>
+						            <p>< /tbody></p>
+						        </div>
+						        <p>< /table></p>
+						    </div>
+						    <p>< /div></p>
+						</div>
+						<a href="#section03" data-toggle="collapse"  role="button" aria-expanded="false" aria-controls="collapseExample">Fechar</a>
+					</div>				
+				</div>				
+			</div>
+		</div>
+		<!-- # SeCtion 03-->
+		<!-- # SeCtion 04-->
+		<div id="list-example" class="list-group">
+			<a class="list-group-item list-group-item-action" href="#section04" data-toggle="collapse"  role="button" aria-expanded="false" aria-controls="collapseExample">Criar View Cadastrar</a>
+			<div class="container">				
+				<div class="section04 collapse"  id="section04">						
+					<h4>- Criar ActionResult Cadastrar</h4>
+					<p id="scrollfoto"><img src="../../public/img/csharp/list_chavestrang/controler_cadastrar.jpg"></p>
+					<!--[img](controler_cadastrar.jpg)-->
+					<br>
+					<div class="divpai">
+						<p>public ActionResult Cadastrar()</p>
+					    <p>{</p>
+					    	<div class="divfilho01">
+					            <p>/*ViewBag.Topico = new SelectList(db.Empresas, "Codigo", "Nome");             
+					             na view ->@Html.DropDownList("Topico", string.Empty) */</p>
+					            <p>var parametro = new Parametro();</p>
+					            <p>parametro.EmpresasList = new SelectList(db.Empresas.ToList(), "Codigo", "Nome");</p>
+					            <p>return View(parametro);</p>
+					        </div>
+					        }</p>
+				    </div>
+				    <br>
+				     <h4>- Criar View Cadastrar</h4>
+				     <p id="scrollfoto"><img src="../../public/img/csharp/list_chavestrang/View_Cadastrar.jpg"></p>
+				     <!--[img](View_Cadastrar.jpg.jpg)-->
+				     <br>
+
+				     <div class="divpai" >
+				     	<p>@model SistemaAssinaturaDigital.Models.Parametro</p>
+						<p>@{ViewBag.Title = "Cadastrar Parametro";}</p>
+						<br>
+						<p>@using (Html.BeginForm("Salvar", "Parametro")){</p>
+						<div class="divfilho01">
+						    <p>@Html.AntiForgeryToken()</p>
+						    <p>< div class="form-horizontal"></p>
+						    <p>< hr /></p>
+						    <p>@Html.ValidationSummary(true, "", new { @class = "text-danger" })</p>
+						    <div class="divfilho01">
+						        <p>< div class="form-group"></p>
+						        <div class="divfilho01">
+						            <p>@Html.LabelFor(model => model.DataVigencia, htmlAttributes: new { @class = "control-label col-md-2" })</p>
+						            <p>< div class="col-md-10"></p>
+						            <div class="divfilho01">
+						                <p>@Html.EditorFor(model => model.DataVigencia, new { htmlAttributes = new { @class = "form-control", @Value="2019-01-01" } })</p>
+						                <p>@Html.ValidationMessageFor(model => model.DataVigencia, "", new { @class = "text-danger" })</p>
+						            </div>
+						            <p>< /div></p>
+						        </div>
+						        <p>< /div></p>
+						        <p>< div class="form-group"></p>
+						        <div class="divfilho01">
+						            <p>@Html.LabelFor(model => model.EmpresasList, htmlAttributes: new { @class = "control-label col-md-2" })</p>
+						            <p>< div class="col-md-10"></p>
+						            <div class="divfilho01">
+						                <p>< select class="custom-select mr-sm-2" id="CodigoEmpresa" name="CodigoEmpresa"></p>
+						                <div class="divfilho01">
+						                    <p>@foreach (var item in Model.EmpresasList)</p>
+						                    <p>{</p>
+						                    <div class="divfilho01">
+						                        <p>< option selected value="@item.Value">@item.Text< /option></p>
+						                    </div>
+						                    <p>}</p>
+						                    <p>@Html.ValidationMessageFor(model => model.EmpresasList, "", new { @class = "text-danger", })</p>
+						                </div>
+						                <p>< /select></p>
+						            </div>
+						            <p>< /div></p>
+						        </div>
+						        <p>< /div></p>
+						        <p>< div class="form-group"></p>
+						        <div class="divfilho01">
+						            <p>< button type="submit" class="btn btn-success mr-2">Salvar< /button></p>
+						            <p>< a class="btn btn-light" href="/Parametro">Cancelar< /a></p>
+						        </div>
+						        <p>< /div></p>
+						    </div>
+						    <p>< /div></p>
+						</div>
+						 <p>}<!--Fim @using (Html.BeginForm("Salvar", "Parametro"))--></p>
+				     </div>
+				
+				<a href="#section04" data-toggle="collapse"  role="button" aria-expanded="false" aria-controls="collapseExample">Fechar</a>
+				</div>
+			</div>
+		</div>
+		<!-- # SeCtion 04-->
+		<!-- # SeCtion 05-->
+		<div id="list-example" class="list-group" >
+			<a class="list-group-item list-group-item-action" href="#section05" data-toggle="collapse"  role="button" aria-expanded="false" aria-controls="collapseExample">Criar View Editar</a>
+			<div class="container">
+				<div class="section05 collapse" id="section05">
+					<h4>- Criar ActionResult Editar</h4>
+					<p><img src="../../public/img/csharp/list_chavestrang/controler_editar.jpg"></p>
+					<hr>
+					<div class="divpai">
+					<p>public ActionResult Editar(int Codigo)</p>
+			        <p>{</p>
+			        <div class="divpai">
+			            <p>Parametro parametro = db.Parametros.Find(Codigo);</p>
+			            <p>parametro.EmpresasList = new SelectList(db.Empresas.ToList(), "Codigo", "Nome"); </p>
+			            <p>return View(parametro);</p>
+			        </div>
+			        <p>}</p>
+			    	</div>
+			    	<br>
+					<h4>- Criar View Editar</h4>
+					<p><img src="../../public/img/csharp/list_chavestrang/View_Editar.jpg"></p>
+					<hr>
+					<div class="divpai">
+						<p>@model SistemaAssinaturaDigital.Models.Parametro</p>
+						<p>@{ ViewBag.Title = "Editar Parametro";}</p>
+						<h4 class="mt-2">Editar Parametro</h4>
+						<br>
+						<p>@using (Html.BeginForm("Salvar", "Parametro"))</p>
+						<p>{</p>
+						<div class="divpai">
+						    <p>@Html.AntiForgeryToken()</p>
+						    <p>< div class="form-horizontal" id="teste"></p>
+						    <div class="divpai">
+						        <p>< hr /></p>
+						        <p>@Html.ValidationSummary(true, "", new { @class = "text-danger" })</p>
+						        <p>@Html.HiddenFor(model => model.Codigo)</p>
+						        <p>@Html.HiddenFor(model => model.UsuarioInclusao)</p>
+						        <p>@Html.HiddenFor(model => model.DataInclusao)</p>
+						        <br>
+						        <p>< div class="form-group"></p>
+						        <div class="divpai">
+						            <p>@Html.LabelFor(model => model.DataVigencia, htmlAttributes: new { @class = "control-label col-md-2" })</p>
+						            <p>< div class="col-md-10"></p>
+						            <div class="divpai">
+						                <p>@Html.EditorFor(model => model.DataVigencia, new { htmlAttributes = new { @class = "form-control " } })</p>
+						                <p>@Html.ValidationMessageFor(model => model.DataVigencia, "", new { @class = "text-danger" })</p>
+						            </div>
+						            <p>< /div></p>
+						        </div>
+						        <p>< /div></p>
+						        <p>< div class="form-group"></p>
+						        <div class="divpai">
+						            <p>@Html.LabelFor(model => model.EmpresasList, htmlAttributes: new { @class = "control-label col-md-2" })</p>
+						            <p>< div class="col-md-10"></p>
+						            <div class="divpai">
+						                <p>< select class="custom-select mr-sm-2" id="CodigoEmpresa" name="CodigoEmpresa"></p>
+						                    <p>@foreach (var item in Model.EmpresasList)</p>
+						                    <p>{</p>
+						                    <div class="divpai">
+						                        <p>< option selected value="@item.Value">@item.Text< /option></p>
+						                    </div>
+						                    <p>} </p>
+						                    <p>@Html.ValidationMessageFor(model => model.EmpresasList, "", new { @class = "text-danger" })</p>
+						                <p>< /select></p>
+						            </div>
+						            <p>< /div></p>
+						        </div>
+							    <p>< /div></p>
+						        <p>< div class="form-group"></p>
+						        <div class="divpai">
+						            <p>< button type="submit" class="btn btn-success mr-2">Salvar< /button></p>
+						            <p>< a class="btn btn-light" href="/Parametro">Cancelar< /a></p>
+						        </div>
+						        <p>< /div></p>
+						    </div>
+						    <p>< /div></p>
+						</div>
+						<p>}<!-- Fim using (Html.BeginForm("Salvar", "Parametro") --></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- # SeCtion 05-->
+		<!-- # SeCtion 06-->
+		<div id="list-example" class="list-group" >
+			<a class="list-group-item list-group-item-action" href="#section06" data-toggle="collapse"  role="button" aria-expanded="false" aria-controls="collapseExample">Action Post Salvar</a>
+			<div class="container">
+				<div class="section06 collapse" id="section06">
+					<h4>Action Post Salvar</h4>
+					<p><img src="../../public/img/csharp/list_chavestrang/action_salvar.jpg"></p>
+					<hr>
+					<div class="divpai">
+						<p>[HttpPost]</p>
+				        <p>[ValidateAntiForgeryToken]</p>
+				        <p>public ActionResult Salvar(Parametro parametro)</p>
+				        <p>{</p>
+				        <div class="divpai">
+				            <p>try</p>
+				            <p>{</p>
+				            <div class="divpai">
+				                <p>if (!ModelState.IsValid) return View(parametro);</p>
+								<br>
+				                <p>var UsuarioLogado = User.Identity.Name;</p>
+				                <p>if (parametro.Codigo != 0)</p>
+				                <p>{</p>
+				                <div class="divpai">
+				                    <p>db.Entry(parametro).State = EntityState.Modified;</p>
+				                    <p>parametro.UsuarioAlteracao = UsuarioLogado;</p>
+				                    <p>parametro.DataAlteracao = DateTime.Now;</p>
+				                    <p>AlertHandler.AddNotification(AlertNotification.Success(Mensagens.SucessoEditarRegistro));</p>
+				                </div>
+				                <p>}</p>
+				                <p>else</p>
+				                <p>{</p>
+				                <div class="divpai">
+				                    <p>db.Entry(parametro).State = EntityState.Added;</p>
+				                    <p>parametro.UsuarioInclusao = UsuarioLogado;</p>
+				                    <p>parametro.DataInclusao = DateTime.Now;</p>
+				                    <p>AlertHandler.AddNotification(AlertNotification.Success(Mensagens.SucessoSalvarRegistro));</p>
+				                </div>
+				                <p>}</p>
+								<br>
+				                <p>db.SaveChanges();</p>
+								<br>		
+				                <p>return RedirectToAction("Index");</p>
+				            </div>
+				            <p>}</p>
+				            <p>catch (Exception ex)</p>
+				            <p>{</p>
+				            <div class="divpai">
+				                <p>AlertHandler.AddNotification(AlertNotification.Success(Mensagens.ErroSalvarUsuario + " " + ex.Message));</p>
+				                <p>return View("Cadastrar", parametro);</p>
+				            </div>
+				            <p>}</p>
+				        </div>
+				        <p>}</p>
+				    </div>
+				</div>
+			</div>
+		</div>
+		<!-- # SeCtion 06-->
+		<!-- # SeCtion 07-->
+		<div id="list-example" class="list-group" >
+			<a class="list-group-item list-group-item-action" href="#section07" data-toggle="collapse"  role="button" aria-expanded="false" aria-controls="collapseExample">Action Post Deletar</a>
+			<div class="container">
+				<div class="section07 collapse" id="section07">
+					<h4>Action Post Deletar</h4>
+					<p><img src="../../public/img/csharp/list_chavestrang/action_deletar.jpg"></p>
+					<hr>
+					<div class="divpai">
+					    <p>[HttpDelete]</p>
+				        <p>public JsonResult Deletar(int Codigo)</p>
+				        <p>{</p>
+				        <div class="divpai">
+				            <p>try</p>
+				            <p>{</p>
+				            <div class="divpai">
+				                <p>var parametro = db.Parametros.Find(Codigo);</p>
+				                <p>if (parametro == null)</p>
+				                <p>{</p>
+				                <div class="divpai">
+				                    <p>return Json(new { Descricao = Mensagens.ErroExcluirItem + "Item não encontrado", Status = Mensagens.StatusErro });</p>
+				                </div>
+				                <p>}</p>
+				                <p>else</p>
+				                <p>{</p>
+				                <div class="divpai">
+				                    <p>db.Parametros.Remove(parametro);</p>
+				                    <p>db.SaveChanges();</p>
+				                    <p>return Json(new { Descricao = Mensagens.SucessoExcluirRegistro, Status = Mensagens.StatusSucesso });</p>
+				                </div>
+				                <p>}</p>
+				            </div>
+				            <p>}</p>
+				            <p>catch (Exception ex)</p>
+				            <p>{</p>
+				            <div class="divpai">
+				                <p>return Json(new { Descricao = Mensagens.ErroExcluirItem + ex.Message, Status = Mensagens.StatusErro });</p>
+				            </div>
+				            <p>}</p>
+				        </div>
+				        <p>}</p>
+					</div>
+					<hr>
+					<h4>No Layout Função Ajax</h4>
+					<p><img src="../../public/img/csharp/list_chavestrang/ajax_delet_layout.jpg"></p>
+					<hr>
+					<div class="divpai">
+						 <p>@Html.Raw(SistemaAssinaturaDigital.Helpers.AlertHandler.RenderNotifications())</p>
+						 <br>
+					    <p>< script></p>
+					    <div class="divpai">
+					        <p>$(document).ready(function () {</p>
+					        <div class="divpai">	
+					            <p>$("#Itens").DataTable({</p>
+					            <div class="divpai">
+					                <p>"language": {</p>
+					                    <p>"url": "/i18n/Portugues.json"</p>
+					                <p>}</p>
+					            </div>
+					            <p>});</p>
+					            <p>$('.table #Excluir').on('click', function () {</p>
+					            <div class="divpai">
+					                <p>var Codigo = $(this).attr("data-Codigo");</p>
+					                <p>console.log(Codigo);</p>
+					                <p>bootbox.confirm({</p>
+					                <div class="divpai">
+					                    <p>message: "Confirma a exclusão do registro?",</p>
+					                    <p>buttons: {</p>
+					                    <div class="divpai">
+					                        <p>confirm: {</p>
+					                            <p>label: 'Sim',</p>
+					                            <p>className: 'btn-success'</p>
+					                        <p>},</p>
+					                        <p>cancel: {</p>
+					                            <p>label: 'Não',</p>
+					                            <p>className: 'btn-danger'</p>
+					                        <p>}</p>
+					                    </div>
+					                    <p>},</p>
+					                    <p>callback: function (result) {</p>
+					                    <div class="divpai">
+					                        <p>if (result) {</p>
+					                        <div class="divpai">
+					                            <p>$.ajax({</p>
+					                            <div class="divpai">
+					                                <p>type: 'DELETE',</p>
+					                                <p>url: '/@controllerName/Deletar/',</p>
+					                                <p>data: { 'Codigo': Codigo },</p>
+					                                <p>dataType: 'json'</p>
+					                            </div>
+					                            <p>}).done(function (response) {</p>
+					                            <div class="divpai">
+					                                <p>if (response.Status) {</p>
+					                                <div class="divpai">
+					                                    <p>bootbox.alert(response.Descricao, function (result) {</p>
+					                                    <div class="divpai">
+					                                        <p>window.location = '/@controllerName';</p>
+					                                    </div>
+					                                    <p>});</p>
+					                                </div>
+					                                <p>} else {</p>
+					                                <div class="divpai">
+					                                    <p>bootbox.alert(response.Descricao);</p>
+					                                </div>
+					                                <p>}</p>
+					                            </div>
+					                            <p>});</p>
+					                        </div>
+					                        <p>}</p>
+					                    </div>
+					                    <p>}</p>
+					                </div>
+					                <p>});</p>
+					            </div>
+					            <p>});</p>
+					        </div>
+					        <p>});</p>
+					    </div>
+					    <p>< /script></p>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!-- # SeCtion 07-->
+		<!-- # SeCtion 08-->
+		<div id="list-example" class="list-group" >
+			<a class="list-group-item list-group-item-action" href="#section08" data-toggle="collapse"  role="button" aria-expanded="false" aria-controls="collapseExample">Class Empresa - Bonus</a>
+			<div class="container">
+				<div class="section08 collapse" id="section08">
+					<h4>Class Empresa com Marcação E Relacionamento</h4>
+					<p><img src="../../public/img/csharp/list_chavestrang/Class_Empresa.jpg"></p>
+					<hr>
+					<p>using System;</p>
+					<p>using System.Collections.Generic;</p>
+					<p>using System.ComponentModel.DataAnnotations;</p>
+					<p>using System.ComponentModel.DataAnnotations.Schema;</p>
+ 					<br>
+					<p>namespace SistemaAssinaturaDigital.Models</p>
+					<p>{</p>
+					<div class="divpai">
+					    <p>[Table("SGSTF.ASD_EMPRESA")]</p>
+					    <p>public class Empresa</p>
+					    <p>{</p>
+					    <div class="divpai">
+					        <p>public Empresa()</p>
+					        <p>{</p>
+					        <div class="divpai">
+					            <p>Parametro = new List< Parametro>();</p>
+					        </div>
+					        <p>}</p>
+							<br>
+					        <p>public virtual ICollection< Parametro> Parametro { get; set; }</p>
+							<br>
+					        <p>[Key]</p>
+					        <p>[Column("EMP_IN_SEQUENCIA")]</p>
+					        <p>public int Codigo { get; set; }</p>
+					        <br>
+					        <p>[Required(ErrorMessage = "O Codigo do Mega é obrigatorio")]</p>
+					        <p>[Display(Name = "Codigo do Mega")]</p>
+					        <p>[Column("EMP_IN_CODIGO_MEGA")]</p>
+					        <p>public int CodigoMega { get; set; }</p>
+							<br>
+					        <p>//[Required(ErrorMessage = "O nome da Empresa é obrigatorio")]</p>
+					        <p>[Display(Name = "Nome de Empresa")]</p>
+					        <p>[Column("EMP_ST_NOME")]</p>
+					        <p>public string Nome { get; set; }</p>
+							<br>
+					        <p>[Column("USU_ST_INCLUSAO")]</p>
+					        <p>public string UsuarioInclusao { get; set; }</p>
+							<br>
+					        <p>[Column("USU_DT_INCLUSAO")]</p>
+					        <p>public DateTime? DataInclusao { get; set; }</p>
+							<br>
+					        <p>[Column("USU_ST_ALTERACAO")]</p>
+					        <p>public string UsuarioAlteracao { get; set; }</p>
+							<br>
+					        <p>[Column("USU_DT_ALTERACAO")]</p>
+					        <p>public DateTime? DataAlteracao { get; set; }</p>
+							<br>
+						</div>
+					    <p>}</p>
+					</div>
+					<p>}</p>
+				<a href="#section08" data-toggle="collapse"  role="button" aria-expanded="false" aria-controls="collapseExample">Fechar</a>	
+				</div>
+			</div>
+	</div>
+
+	<script src="../../public/js/jquery.js"></script>
+	<script src="../../public/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

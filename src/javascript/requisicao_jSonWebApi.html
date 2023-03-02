@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>Site</title>
+	
+	<!-- boostrap -->
+	<link href="../../public/css/bootstrap.css" rel="stylesheet">
+
+	<!-- font awesome -->
+	<link href="../../public/css/all.css" rel="stylesheet">
+
+	<!-- folha de estilo propria -->
+	<link href="../../public/css/style.css" rel="stylesheet">
+
+	<!-- favicon -->
+	<link href="../../public/alfahelix/public/img/favicon.png" rel="icon">
+
+
+</head>
+<body>
+	 
+		  <!-- inicio menu -->
+  <nav class="navbar navbar-dark navbar-expand-lg navbar-default fixed-top">
+    <div class="container-fluid"> 
+      <h2 id="menuletra"> MVC ##</h2> 
+      <!-- botao para menu no celular --> 
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+        <span class="navbar-toggler-icon"></span>
+      </button>      
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ml-md-auto text-light">
+          <li class="nav-item">
+            <a class="nav-link" id="menuletra"  href="../../index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="menuletra"  href="../../list_curso.html">Cursos</a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" id="menuletra"  href="../../perfil.html">Perfil</a>
+          </li>                   
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <br>
+  <br>
+  <br>
+	<!-- fim menu -->
+	<div class="container margemtop">
+		<h4>Web Api Requisição Ajax "jSon"</h4>
+		<p>localizada no git: <a href="https://github.com/augusto95cesar/Web_Api_Cadastro_Nome">web Api</a></p>
+		<!-- # SeCtion 01-->	
+		<div id="list-example" class="list-group">
+			<a class="list-group-item list-group-item-action" href="https://github.com/augusto95cesar/Web_Api_Cadastro_Nome" data-toggle="collapse"  role="button" aria-expanded="false" aria-controls="collapseExample">Requisição git</a>
+		<br>
+
+			<div class="container">
+				<br>
+				<p>url : "http://localhost:60267/api/Nomes" - da Requisição Ajax, "porta de saida no meu Computador"</p>
+				<div class="row">										
+					<input class="form-control" value="Requisição Get:Buscar" type="button" id="getRequest">
+					<div style="margin-top: 5px" id="h4Get">						
+					</div>	
+				</div>
+				<div class="row">										
+					<input class="form-control" value="Requisição Post:Criar" type="button">
+					<input class="form-control" placeholder="Digite o Seu Nome"  type="text" id="nomeRequestPost">
+					<input class="btn btn-success" value="Enviar Requisição Post" type="button" id="postRequest">					
+				</div>
+				<div class="row">										
+					<input class="form-control" value="Requisição Put:Alterar" type="button">
+					<input class="form-control" placeholder="Digite o Cod de Quem Deseja Alterar"  type="text" id="codRequestPut">
+					<input class="form-control" placeholder="Digite o Seu Nome"  type="text" id="nomeRequestPut">
+					<input class="btn btn-success" value="Enviar Requisição Put" type="button" id="putRequest">					
+				</div>
+				<div class="row">										
+					<input class="form-control" value="Requisição Delete:Excluir" type="button">
+					<input class="form-control" placeholder="Digite o Cod de Quem Deseja Excluir"  type="text" id="excluirRequestDelete">
+					<input class="btn btn-success" value="Enviar Requisição Delete" type="button" id="deleteRequest">				
+				</div>
+				<hr>
+				<div class="container" id="scriptRequest">	
+				<h4>Script JavaScript para Requisição por url</h4>
+				<br>				
+<p>					< script></p>
+<p>						//Get - Todos</p>
+<p>					    $('#getRequest').click(function(e) {</p>
+<p>					        e.preventDefault();</p>
+<p>					         $.ajax({</p>
+<p>					        	url : "http://localhost:60267/api/Nomes",</p>
+<p>					        	type : "get",</p>
+<p>					        	dataType : "json",</p>
+<p>					        	success : function(data){</p>
+<p>					        		document.getElementById("h4Get").innerHTML="";</p>
+<p>					        		for (var i = 0; i < data.length; i++)</p>
+<p>					        		{</p>
+<p>									  	console.log(i);</p>
+<p>									  	console.log(data[i]);</p>
+<p>									  	var h4 = document.createElement("p")// Create a < h1> element< /h1></p>
+<p>										var texto = document.createTextNode("Id: " + data[i].Id + " - Nome: " + data[i].Apelido);     // Create a text node</p>
+<p>										h4.appendChild(texto);</p>
+<p>										document.getElementById("h4Get").appendChild(h4)				  	</p>
+<p>									}        		</p>
+<p>					        	},</p>
+<p>					        	error : function(error){</p>
+<p>					        		console.log(error);</p>
+<p>					        		alert(error);</p>
+<p>					        	}</p>
+<p>					        });       </p>
+<p>					    });</p>
+<br>
+<p>					    //POST</p>
+<p>					    $('#postRequest').click(function(e) {</p>
+<p>					        e.preventDefault();</p>
+<p>					        var nome = $("#nomeRequestPost").val();</p>
+<p>					        console.log(nome);        </p>
+<p>					         $.ajax({</p>
+<p>					        	url : "http://localhost:60267/api/Nomes",</p>
+<p>					        	type : "post",</p>
+<p>					        	data : { "Apelido" : nome},</p>
+<p>					        	dataType : "json"</p>
+<p>					        });	</p>
+<p>					    });</p>
+<br>
+<p>					    //PUT</p>
+<p>					    $('#putRequest').click(function(e) {</p>
+<p>					        e.preventDefault();</p>
+<p>					        var nomePut = $("#nomeRequestPut").val();</p>
+<p>					        var numeroId = $("#codRequestPut").val();</p>
+<p>					        var urlSt = "http://localhost:60267/api/Nomes/" + numeroId;</p>
+<p>					        console.log(nomePut); </p>
+<p>					        console.log(urlSt);</p>					      
+<p>					        $.ajax({</p>
+<p>					        	url :urlSt ,</p>
+<p>					        	type : "PUT",</p>
+<p>					        	data : { "Id": numeroId, "Apelido" : nomePut},</p>
+<p>					        	dataType : "json"</p>
+<p>					        }); </p>
+<p>					    });</p>
+<br>
+<p>					    //Delete</p>
+<p>					    $('#deleteRequest').click(function(e) {</p>
+<p>					        e.preventDefault();        </p>
+<p>					        var numeroId = $("#excluirRequestDelete").val();</p>
+<p>					        var urlSt = "http://localhost:60267/api/Nomes/" + numeroId;       </p>
+<p>					        console.log(urlSt);      </p>
+<p>					        $.ajax({</p>
+<p>					        	url :urlSt ,</p>
+<p>					        	type : "DELETE",</p>
+<p>					        	data : { "Id": numeroId},</p>
+<p>					        	dataType : "json"</p>
+<p>					        }); </p>
+<p>					    });</p>
+<p>					< /script></p>
+				</div>
+			</div>		
+		</div>	
+	</div>
+	<script src="../../public/js/jquery.js"></script>
+	<script src="../../public/js/bootstrap.bundle.min.js"></script>
+	
+
+</body>
+</html>
+
+<script>
+	//Get - Todos
+    $('#getRequest').click(function(e) {
+        e.preventDefault();
+         $.ajax({
+        	url : "http://localhost:60267/api/Nomes",
+        	type : "get",
+        	dataType : "json",
+        	success : function(data){
+        		document.getElementById("h4Get").innerHTML="";
+        		for (var i = 0; i < data.length; i++)
+        		{
+				  	console.log(i);
+				  	console.log(data[i]);
+				  	var h4 = document.createElement("p")                // Create a <h1> element
+					var texto = document.createTextNode("Id: " + data[i].Id + " - Nome: " + data[i].Apelido);     // Create a text node
+					h4.appendChild(texto);
+					document.getElementById("h4Get").appendChild(h4)				  	
+				}        		
+        	},
+        	error : function(error){
+        		console.log(error);
+        		alert(error);
+        	}
+        });       
+    });
+    //POST
+    $('#postRequest').click(function(e) {
+        e.preventDefault();
+        var nome = $("#nomeRequestPost").val();
+        console.log(nome);        
+         $.ajax({
+        	url : "http://localhost:60267/api/Nomes",
+        	type : "post",
+        	data : { "Apelido" : nome},
+        	dataType : "json"
+        });	
+    });
+    //PUT
+    $('#putRequest').click(function(e) {
+        e.preventDefault();
+        var nomePut = $("#nomeRequestPut").val();
+        var numeroId = $("#codRequestPut").val();
+        var urlSt = "http://localhost:60267/api/Nomes/" + numeroId;
+        console.log(nomePut); 
+        console.log(urlSt);
+      
+        $.ajax({
+        	url :urlSt ,
+        	type : "PUT",
+        	data : { "Id": numeroId, "Apelido" : nomePut},
+        	dataType : "json"
+        }); 
+    });
+
+    //Delete
+    $('#deleteRequest').click(function(e) {
+        e.preventDefault();        
+        var numeroId = $("#excluirRequestDelete").val();
+        var urlSt = "http://localhost:60267/api/Nomes/" + numeroId;       
+        console.log(urlSt);      
+        $.ajax({
+        	url :urlSt ,
+        	type : "DELETE",
+        	data : { "Id": numeroId},
+        	dataType : "json"
+        }); 
+    });
+</script>
+

@@ -1,0 +1,58 @@
+<html> 
+<head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+
+        google.load('visualization', '1.0', { 'packages': ['corechart'] });
+
+        google.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'text');
+            data.addColumn('number', 'number');
+
+            data.addRows(2);
+            data.setValue(0, 0, 'Work');
+            data.setValue(0, 1, 0);
+
+            data.setValue(1, 0, 'Eat');
+            data.setValue(1, 1, 0);
+
+            var options = {
+                width: 500,
+                height: 500,
+                pieHole: 0.7
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+
+            chart.draw(data, options);
+
+            // initial value
+            var percent = 0;
+            // start the animation loop
+            var handler = setInterval(function () {
+                // values increment
+                percent += 1;
+                // apply new values
+                data.setValue(0, 1, percent);
+                data.setValue(1, 1, 2000 - percent);
+                // update the pie
+                chart.draw(data, options);
+                // check if we have reached the desired value
+                if (percent > 499)
+                    // stop the loop
+                    clearInterval(handler);
+            }, 2);
+
+        }
+    </script>
+</head>
+
+<body>
+    <div id="chart_div"></div>
+</body>
+
+</html>

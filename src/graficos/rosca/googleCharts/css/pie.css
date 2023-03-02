@@ -1,0 +1,44 @@
+#donut_single{
+    height: 500px;
+    width: 500px;
+    background-color: red;
+}
+
+
+#chart_div{
+    width: 500px;
+    height: 500px; 
+}
+
+
+.g-rosca{
+    width: 500;
+    background: yellow;
+    position: relative;
+}
+
+
+.g-graphic{
+    width: 500; 
+    position: relative;
+    height: 500;
+    border-radius: 50%;    
+}
+
+.g-text{
+    margin: 0; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 500%;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.g-text:hover{
+   background-color: chartreuse;
+    z-index: 2;
+}

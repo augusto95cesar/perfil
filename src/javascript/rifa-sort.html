@@ -1,0 +1,140 @@
+<script>
+    const dadosRf = {
+        valorRf: 'R$ 50,00',
+        instRf: '@juliao_speedy',
+        qtdRf: 3
+    };
+    
+    var nSorte = ["000", "201", "200", "173"]
+
+    setTimeout(() => {
+        var style = montarStyle();
+        var table = montarRifa(nSorte.length);
+        document.body.innerHTML = style + table
+    }, 1000)
+
+    montarStyle = () => {
+        return `
+    <style>
+    .n-rf {
+        border: 1px solid;
+        padding: 5px;
+    }
+    .mg-bt{
+        margin-bottom: 15px;
+    }
+    .bold{
+        font-weight: bold;
+    }
+    .n-sorte{
+        font-weight: bold;
+        font-size: 30px;
+    }
+    .lg-w-100{
+        width: 100%;
+    } 
+    .lg-w-400px{
+        width: 400px;
+    }    
+    td {
+        border: 1px solid black;
+        padding: 10px;
+    }
+    .b-inf {
+        border-bottom: 1px solid black;
+        margin-bottom: 3%;
+    }
+    .lg-w {
+        width: 200px;
+    }
+    .font-{
+        font-size: 70%; 
+    }
+
+    .no-pgd{
+        padding: 0px;
+
+    }
+    .title{
+        font-weight: bold;
+        font-size: 25px;        
+    }
+    .txt-ct {
+        text-align: center;
+    }
+   .font-oblique {
+    font-style: oblique; 
+   }
+   @media print {
+        table { 
+            page-break-after: always; 
+        }
+    }
+</style>
+    
+    `
+    }
+
+    montarRifa = (qtd) => {
+        var pag = 1;
+        var tab = '<table>';
+        var cont = 6;
+        for (i = 1; i <= qtd; i++) {
+            if (pag == cont) {
+                tab += `</table>`
+                tab += `<table>`
+                tab += `<tr class="linha_${pag}">`
+                cont += 5;
+            } else {
+                tab += `<tr class="linha_${pag}">`
+            }
+            pag++
+            for (l = 1; l <= 2; l++) {
+                if (l == 2)
+                    i++
+
+                var texto = nSorte[i]
+                tab += `<!-- Rifa ${i} -->`
+                tab += '<td class="no-pgd">'
+                tab += '<table>'
+                tab += '<tr>'
+                tab += '<td> '
+                tab += '<div class="lg-w bold mg-bt">RIFA ENTRE AMIGOS</div>'
+                tab += '<div class="font- mg-bt">'
+                tab += '<div class="b-inf">NOME:</div>'
+                tab += '<div class="b-inf">TEL:</div>'
+                tab += '<div class="b-inf">EMAIL:</div>'
+                tab += '</div>'
+                tab += `<div class="txt-ct bold n-rf">N° ${texto}</div>`
+                tab += '</td>'
+                tab += '<td>'
+                tab += '<div class="title lg-w-100 txt-ct">RIFA ENTRE AMIGOS</div>'
+                tab += '<div class="n-rf mg-bt">'
+                tab += '<div class="lg-w-100 txt-ct">PREMIO: <span class="bold">MOTO HONDA/CG 150 FAN ESI 2012</span></div> '
+                tab += `<div class="txt-ct n-sorte">N° ${texto}</div>`
+                tab += '</div>'
+                tab += `<div class="bold ">VALOR RIFA: ${dadosRf.valorRf}</div>`
+                tab += `<div class="font-oblique bold lg-w-400px">O sorteio da moto ocorrerar dia 30/07/2022 as 16:00hrs no instagram ${dadosRf.instRf}</div>`
+                tab += '</td>'
+                tab += '</tr>'
+                tab += '</table>'
+                tab += '</td>'
+            }
+            tab += '</tr>'
+        }
+        tab += '</table>'
+        return tab
+    }
+
+    format = (x) => {
+        if (x < 10) {
+            return '00' + x
+        } else if (x < 100) {
+            return '0' + x
+        } else {
+            return x
+        }
+    }
+
+
+</script>
