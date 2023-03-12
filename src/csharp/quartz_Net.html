@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>Site</title>
+	
+	<!-- boostrap -->
+	<link href="../../public/css/bootstrap.css" rel="stylesheet">
+
+	<!-- font awesome -->
+	<link href="../../public/css/all.css" rel="stylesheet">
+
+	<!-- folha de estilo propria -->
+	<link href="../../public/css/style.css" rel="stylesheet">
+
+	<!-- favicon -->
+	<link href="../../public/alfahelix/public/img/favicon.png" rel="icon">
+
+
+</head>
+<body>
+	 
+		  <!-- inicio menu -->
+  <nav class="navbar navbar-dark navbar-expand-lg navbar-default fixed-top">
+    <div class="container-fluid"> 
+      <h2 id="menuletra"> MVC ##</h2> 
+      <!-- botao para menu no celular --> 
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+        <span class="navbar-toggler-icon"></span>
+      </button>      
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ml-md-auto text-light">
+          <li class="nav-item">
+            <a class="nav-link" id="menuletra"  href="../../index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="menuletra"  href="../../list_curso.html">Cursos</a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" id="menuletra"  href="../../perfil.html">Perfil</a>
+          </li>                   
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <br>
+  <br>
+  <br>
+	<!-- fim menu -->
+
+	<div class="container margemtop">
+		<h4>Quartz.Net</h4>
+		<!-- # SeCtion 01-->	
+		
+		<p class="list-group-item " >
+			<a href="http://desenvolvedor.ninja/quartz-net-gerenciamento-de-jobstasks-com-asp-net/"> 
+			Site: Quartz.NET: Job Scheduling - Revista .NET Magazine 102</a>		
+		</p>	  
+		<div>
+			<div class="container">
+			<br>					
+				<div class="divpai"> 
+					<!--Conteudo -->
+						<p>"Neste artigo veremos os conceitos fundamentais da biblioteca de job scheduling Quartz.NET e como ela pode nos ajudar no agendamento e execução de tarefas em aplicações .NET." </p>
+						<p>Artigo do tipo <b>Tutorial</b><br>
+							Recursos especiais neste artigo:<BR>
+							<span style="background-color:#E1E1E1;padding:4px;">Artigo no estilo Solução Completa</span>.
+						</p>
+
+
+					<div class='box_lead'><strong>Quartz.NET<br></strong>Neste artigo falaremos sobre a biblioteca de job scheduling
+					Quartz.NET, apresentando seus principais conceitos, como o de Jobs e Triggers,
+					explicando quando e como devem ser utilizados, além dos conceitos de listener
+					dos mesmos. Após apresentar estes conceitos faremos um exemplo prático com a
+					criação de um sistema de notificações, aplicando os principais recursos do
+					Quartz.NET.
+
+					<p><strong><br><b>Em que situação o tema é útil</b><br></strong>Diversos projetos de software possuem demandas para agendamento
+					de tarefas, sejam softwares que executem backups, que enviam notificações ou
+					até mesmo que avaliam indicadores corporativos. O Quartz.NET pode ser muito
+					útil nestes projetos, abstraindo toda a rotina de agendamento e execução destas
+					tarefas permitindo que o desenvolvedor se preocupe apenas com a lógica de sua
+					aplicação.</div></p>
+
+					<p>É extremamente comum
+					nos depararmos com situações em que necessitamos agendar a execução de uma
+					determinada tarefa em nossa aplicação. Seja um aplicativo que precisa
+					diariamente extrair uma informação de um web site, seja um software de
+					importação que precisa de tempos em tempos ler uma determinada fonte de dados,
+					ou até mesmo rotinas mais simples, como a verificação diária dos
+					aniversariantes para envio de mala direta. Em todos estes cenários temos
+					algumas formas de agendar e executar estas tarefas. Uma delas é criar um
+					aplicativo e colocar o mesmo no agendador de tarefas do Windows. Outra é
+					controlarmos, no próprio aplicativo, o agendamento e execução dos ciclos do
+					mesmo. Para esta segunda opção, teríamos que cuidar da execução das nossas
+					rotinas, gerenciando quando é o agendamento delas, qual a periodicidade, quando
+					seria o próximo ciclo de execução da mesma, enfim, teríamos uma série de
+					implementações adicionais que nos tomariam tempo de projeto.</p>
+
+					<p>Uma excelente
+					alternativa é utilizar uma solução pronta, desacoplada e especializada em
+					cuidar exatamente desse agendamento e execução de tarefas: o Quartz.NET.</p>
+
+					<p>O Quartz.NET é uma
+					biblioteca de job scheduling inspirada na biblioteca Quartz do Java. Trata-se
+					de uma iniciativa open-source que visa fornecer uma série de recursos e
+					funcionalidades para agendamento e execução de tarefas em aplicações .NET.</p>
+
+					<p> O primeiro conceito
+					chave do Quartz.NET é o conceito de Jobs, que representa uma tarefa a ser
+					agendada e executada pelo mesmo, sendo representada pela interface <em>IJob</em>.
+					Esta interface possui apenas um método, chamado execute, que contém a
+					implementação da rotina a ser executada.</p>
+
+					<p>Outro conceito chave é
+					o de Trigger, sendo esta a responsável por disparar as nossas Jobs, existindo
+					dois tipos de triggers: SimpleTrigger e CronTrigger. </p>
+
+					<p>A SimpleTrigger representa uma trigger que
+					pode ser executada em duas condições:</p>
+
+					<p>·
+					Execução
+					única - Uma vez disparada a trigger a job vinculada a mesma será executada
+					apenas uma vez.</p>
+
+					<p>·
+					Execução
+					cíclica – Indica que a trigger irá ser disparada a cada X tempo, de maneira
+					repetitiva.</p>
+
+					<p> Por outro lado, a
+					CronTrigger permite que seja definida uma regra baseada em calendário para a
+					trigger, sendo possível definir, por exemplo, que toda segunda-feira às 9 horas
+					da manhã a trigger será disparada.</p>
+
+					<p>Além disso, os Jobs e
+					as triggers podem ser adicionados a grupos, facilitando a organização e
+					gerenciamento dos mesmos.</p>
+
+					<p>Estes dois conceitos,
+					triggers e jobs, se juntam através do objeto Scheduler, que por sua vez é
+					responsável por gerenciar as triggers e vincular as mesmas à determinados jobs.</p>
+
+					<p>A rotina da tarefa a
+					ser executada fica dentro da implementação da interface IJob, porém o Quartz
+					precisa de informações adicionais a respeito da tarefa a ser executada e é
+					através do objeto JobDetail que podemos passar estas informações para o Quartz.</p>
+
+
+					<p>Uma destas informações adicionais é o nome do Job,
+					que serve como identificação do mesmo. Esta informação é passada no construtor
+					do JobDetail, juntamente com o tipo da classe do job que deverá ser executado.
+					Vale ressaltar que toda vez que a trigger for disparada uma nova instância do
+					Job será criada e o método execute será disparado, sendo assim, o Job precisa
+					ter seu construtor padrão (sem argumentos) definido como público.</p>
+
+					<p>Além
+					disso, como o objeto do job é instanciado a cada execução, não faz sentido ter
+					atributos para guardar o estado do mesmo visando o compartilhamento destes
+					entre uma execução e outra. Caso tenha esta necessidade, devemos utilizar o <em>JobDataMap,</em>
+					do <em>JobDetail</em>, pois este está no contexto de execução do job, permitindo
+					que as diversas execuções do mesmo compartilhem informações.</p>
+
+					<p>Veremos
+					agora um exemplo prático, criando alguns jobs e triggers em uma aplicação
+					console. </p>
+
+					<p><strong><span class='subtitulo_texto'>Iniciando o exemplo prático</span></strong></p>
+
+					<p>A
+					instalação do Quartz.NET é bem simples, bastando que a biblioteca seja baixada
+					do site (vide seção <strong>Links</strong>) e
+					adicionada ao projeto em questão (arquivo Quartz.dll). Nos nossos exemplos
+					utilizamos a versão 2.1.1.</p>
+
+					<p>No nosso exemplo
+					teremos um cenário que irá simular notificações de uma editora para seus
+					leitores, desta forma teremos uma classe Leitor com quatro propriedades, como
+					podemos ver na <strong>Listagem 1</strong>. Além disso, teremos uma classe
+					LeitorRepository com dois métodos simulando o retorno de uma lista de leitores,
+					sendo o primeiro método para retornar todos os leitores supostamente
+					cadastrados e o segundo para retornar apenas os novos leitores, como podemos
+					ver na <strong>Listagem 2</strong>.</p>
+
+					<p><strong>Listagem 1</strong>. Classe Leitor</p>
+					<hr>
+					<img src="../../public/img/csharp/quartz_net/01.jpg">
+					<hr>
+					<div class="invisivel_texto">							
+						<pre>
+							using System;
+							using System.Collections.Generic;
+							using System.Linq;
+							using System.Text;								  
+							
+							namespace DevMediaExemploQuartz.Model
+							{
+								public class Leitor
+								{
+									public int Id { get; set; }
+									
+									public string Email { get; set; }
+									
+									public string Saudacao { get; set; }
+									
+									public string Nome { get; set; } 
+								}
+							}
+						</pre>							
+					</div>
+
+					<p><strong>Listagem 2</strong>. Classe
+					LeitorRepository</p>
+
+					<div>
+						<code class='code-sample'><pre>
+
+					using System;
+					using System.Collections.Generic;
+					using System.Linq;
+					using System.Text;
+					namespace DevMediaExemploQuartz.Model
+					{
+					   public class LeitorRepository
+					   {
+					   public IList& lt;Leitor& gt; GetLeitoresCadastrados() { 
+					           IList& lt;Leitor& gt; leitores = new List& lt;Leitor& gt;();
+					           leitores.Add(new Leitor() { Id = 1, 
+					           Email = "rcoelhorj@gmail.com",  Saudacao = "Sr", 
+					           Nome = "Ricardo Coelho"});
+					           leitores.Add(new Leitor() { Id = 2, 
+					            Email = "julieta.gomes.devmedia@gmail.com", 
+					            Saudacao = "Srta", Nome = "Julieta Gomes" });
+					            leitores.Add(new Leitor() { Id = 3, 
+					            Email = "joana.machado.magazine@gmail.com", 
+					            Saudacao = "Sra", Nome = "Joana Machado" });
+					       leitores.Add(new Leitor() { Id = 4, 
+					            Email = "joao_jose_mariano@gmail.com", 
+					            Saudacao = "Sr", Nome = "João José" });
+
+					            return leitores;
+					       }
+					       public IList& lt;Leitor& gt; GetNovosLeitores()
+					       {
+					           IList& lt;Leitor& gt; leitores = new List& lt;Leitor& gt;();
+					           leitores.Add(new Leitor() { Id = 3, 
+					            Email = "joana.machado.magazine@gmail.com", 
+					            Saudacao = "Sra", Nome = "Joana Machado" });
+					            leitores.Add(new Leitor() { Id = 4, 
+					            Email = "joao_jose_mariano@gmail.com", 
+					            Saudacao = "Sr", Nome = "João José" });
+
+					           return leitores;
+					       }
+					   }
+					}
+
+					</pre></code></div>
+
+					<p><strong><span class='subtitulo_texto'>Implementando os Jobs</span></strong></p>
+
+					<p>Uma vez
+					criada a classe de domínio (Leitor) e seu respectivo repositório, podemos então
+					criar nossos jobs com as nossas notificações. Primeiro vamos criar um job que
+					tem como objetivo notificar todos os novos leitores dando boas vindas aos
+					mesmos. Para isso, vamos criar uma classe, que implemente a interface <em>IJob</em>, conforme <strong>Listagem 3.</strong></p>
+
+					<p><strong>Listagem 3</strong>.
+					ClasseNotificacaoLeitoresAssinaturaJob</p>
+
+					<div><code class='code-sample'><pre>
+
+					 using System;
+					 using System.Collections.Generic;
+					 using System.Linq;
+					 using System.Text;
+					 using Quartz;
+					 using System.Collections;
+					 using System.IO;
+					 using DevMediaExemploQuartz.Model;
+						
+					 namespace DevMediaExemploQuartz.Jobs
+					 {
+					    public class NotificacaoLeitoresAssinaturaJob : IJob
+					    {
+					        public void Execute(IJobExecutionContext context)
+					        {
+					            JobDataMap dataMap = context.JobDetail.JobDataMap;
+					
+					             Leitor leitor = (Leitor)dataMap.Get("leitor");
+					             string mensagem = dataMap.GetString("mensagem");
+						
+					             Console.WriteLine("  Caro  , ", 
+					             leitor.Saudacao, leitor.Nome, mensagem);
+					         }
+					    } 
+					 }
+
+					</pre></code></div>
+
+					<p>Observando a
+					<strong>Listagem 3</strong> podemos ver que temos apenas o método execute (linha 14) para
+					ser implementado. Neste método nós recebemos o contexto como parâmetro e
+					recuperamos o dataMap do mesmo. Através do dataMap buscamos um objeto do tipo
+					Leitor (linha 18) e uma string com a mensagem de notificação que enviaremos.
+					Vale ressaltar que vamos apenas simular o envio da mensagem imprimindo a mesma
+					no console da aplicação (linha 21). </p>
+
+					<p><strong>Listagem 4</strong>. Classe
+					NotificacaoPrevisaoEntregaJob</p>
+
+					<div><code class='code-sample'><pre>
+
+						using System;
+						using System.Collections.Generic;
+						using System.Linq;
+						using System.Text;
+						using Quartz;
+						using System.Collections;
+						using DevMediaExemploQuartz.Model;
+						
+						namespace DevMediaExemploQuartz.Jobs
+						{
+						    public class NotificacaoPrevisaoEntregaJob : IJob
+						    {
+						        public void Execute(IJobExecutionContext context)
+						        {
+						            JobDataMap dataMap = context.JobDetail.JobDataMap;
+						
+						            Leitor leitor = (Leitor)dataMap.Get("leitor");
+						            int diasAntecedenciaAviso = dataMap.GetInt(
+					                  "dias_antecedencia_aviso");
+						
+						            DateTime dataPrevistaEntrega = 
+					                  DateTime.Now.AddDays(diasAntecedenciaAviso);
+						
+						
+						            Console.WriteLine("Olá  , a previsão de
+					                   entrega de sua revista é dia ", 
+					                   leitor.Saudacao, leitor.Nome, 
+					                   dataPrevistaEntrega.ToString());
+						        }
+						    } 
+						}
+
+					</pre></code></div>
+
+					<p>Na <strong>Listagem 4</strong> temos o job de
+					notificação de previsão de entrega, onde simulamos uma notificação que será
+					executada X dias antes da previsão de entrega. Observe que neste caso nós
+					buscamos a quantidade de dias de antecedência do aviso (linha 18) para
+					calcularmos quando a revista será entregue. Na <strong>Listagem 5</strong> nós temos nosso
+					último job, onde enviaríamos notificações semanais para os leitores. Neste
+					caso, buscamos uma string com os eventos da semana (linha 19) para compor a
+					mensagem de notificação para o usuário (linha 21).</p>
+
+					<p><strong>Listagem 5</strong>. Classe NotificacaoEventosSemanaisJob</p>
+
+					<div><code class='code-sample'><pre>01	using System;
+						using System.Collections.Generic;
+						using System.Linq;
+						using System.Text;
+						using Quartz;
+						using System.Collections;
+						using System.IO;
+						using DevMediaExemploQuartz.Model;
+						
+						namespace DevMediaExemploQuartz.Jobs
+						{
+						    public class NotificacaoEventosSemanaisJob : IJob
+						    {
+						        public void Execute(IJobExecutionContext context)
+						        {
+						            JobDataMap dataMap = context.JobDetail.JobDataMap;
+						
+						            Leitor leitor = Leitor)dataMap.Get("leitor");
+					                 string eventossemanais = 
+					                  dataMap.GetString("eventossemanais");
+					
+						            Console.WriteLine("  Caro  , informo que esta
+					                  semana teremos o evento ", leitor.Saudacao, 
+					                  leitor.Nome, eventossemanais);
+						        }
+						    } 
+						}</pre></code></div>
+
+					<img class='imagem_artigo' src="http://videos.web-03.net/REVISTAS/net/imagens/102/4/phqp178.jpg">
+
+					<p><strong><span class='subtitulo_texto'>Implementando um JobListener</span></strong></p>
+
+					<p>Um ponto importante
+					do agendamento e execução de tarefas é com relação ao log das mesmas, sendo que
+					é interessante termos a informação de quando determinadas tarefas foram
+					executadas. Para isso poderíamos implementar em cada job, uma rotina para
+					registrar este log, porém isso poderia poluir o código do job além de termos
+					que escrever o mesmo para cada um que desejássemos criar o log.</p>
+
+					<p> Uma
+					alternativa interessante é a criação de listeners. O Quartz nos permite criar
+					listeners globais que serão disparados sempre que algum job for executado,
+					recebendo como parâmetro o contexto de execução da job. Para isso basta criar
+					uma nova classe e implementar a interface <em>IJobListener</em><em>,
+					</em>do Quartz<em>, </em>conforme mostrado na <strong>Listagem 6</strong>, onde implementamos um
+					listener que registra, no próprio console, a execução do job. Observe na linha
+					24 que conseguimos identificar qual job está sendo executado através de seu jobDetail,
+					presente no contexto passado como parâmetro. </p>
+
+					<p><strong>Listagem 6</strong>. Classe JobListener</p>
+
+					<div>
+						<code class='code-sample'>
+							<pre>
+								using System;
+								using System.Collections.Generic;
+								using System.Linq;
+								using System.Text;
+								using Quartz;
+								
+								namespace DevMediaExemploQuartz.Listeners
+								{
+								    public class JobListener:IJobListener
+								    {
+								
+								        public void JobExecutionVetoed(IJobExecutionContext context)
+								        {
+							 	           return;
+							    		 }
+							
+								        public void JobToBeExecuted(IJobExecutionContext context)
+								        {
+								            return;
+								        }
+							
+								        public void JobWasExecuted(IJobExecutionContext context, 
+							               JobExecutionException jobException)
+								        {
+								            Console.WriteLine(DateTime.Now.ToString() + " - Job " +
+							                  context.JobDetail.Key.Name + " foi executado");
+								        }
+							
+								        public string Name
+								        {
+								            get { return "Listener Job"; }
+								        }
+								    }
+								}
+							</pre>
+						</code>
+					</div>
+
+					<p><strong><span class='subtitulo_texto'>Iniciando os Jobs</span></strong></p>
+
+					<p>Uma
+					vez criada toda a infraestrutura necessária para nossas notificações,
+					precisamos agora iniciar as mesmas, passar os respectivos parâmetros e vincular
+					elas às suas respectivas triggers. Para isso vamos criar uma classe chamada
+					StarterJobs, descrita na <strong>Listagem 7.</strong></p>
+
+					<p><strong>Listagem 7</strong>. Classe StarterJobs</p>
+
+					<div><code class='code-sample'><pre>
+					  using System;
+					  using System.Collections.Generic;
+					  using System.Linq;
+					  using System.Text;
+					  using Quartz;
+					  using Quartz.Impl;
+					  using Quartz.Impl.Triggers;
+					  using DevMediaExemploQuartz.Model;
+					  using DevMediaExemploQuartz.Jobs;
+					  using DevMediaExemploQuartz.Listeners;
+						
+					  namespace DevMediaExemploQuartz
+					  {
+					    public class StarterJobs
+					    {
+					        private ISchedulerFactory schedFactory;
+					        private IScheduler scheduler;
+						        
+					        public void StartJobs(){
+					            schedFactory = new StdSchedulerFactory();
+					            scheduler = schedFactory.GetScheduler();
+					            scheduler.ListenerManager.AddJobListener(new JobListener());
+					            scheduler.Start();
+					        }
+					
+					        public void NovosLeitores() {
+					            IList& lt;Leitor& gt; leitoresNovos = new 
+					                 LeitorRepository().GetNovosLeitores();
+					
+					            foreach(Leitor leitor in leitoresNovos){
+					                ITrigger trigger = new 
+					                SimpleTriggerImpl("trigger_execucao_unica_boas_vindas" + 
+					                leitor.Id, "notificacoes", new DateTimeOffset(
+					                DateTime.Parse("08/01/2013 08:42:30")));
+					                IJobDetail jobDetail = new
+					                JobDetailImpl("boas_vindas_leitor_" +
+					                leitor.Id, "notificacoes", 
+					                typeof(NotificacaoLeitoresAssinaturaJob));    
+					                jobDetail.JobDataMap["leitor"] = leitor;
+					                jobDetail.JobDataMap["mensagem"] = 
+					                "Olá, parabéns por assinar 
+					                 nossa revista, é um prazer tê-lo como leitor.";
+					                scheduler.ScheduleJob(jobDetail, trigger);
+					           }           
+					      }
+					
+					        public void PrevisaoEntrega()
+					        {
+					            IList& lt;Leitor& gt; leitoresCadastrados = new 
+					                 LeitorRepository().GetLeitoresCadastrados();
+					
+					            foreach (Leitor leitor in leitoresCadastrados)
+					            {
+					                ITrigger trigger = new SimpleTriggerImpl
+					                   ("trigger_execucao_mensal_previsao_entrega" + 
+					                   leitor.Id,  new DateTimeOffset(DateTime.Parse
+					                   ("08/01/2013 08:42:30")), null, 5, 
+					                   new TimeSpan(0,0,1,0,0));
+					                   IJobDetail jobDetail = new 
+					                   JobDetailImpl("notificacao_previso_entrega_leitor" + 
+					                   leitor.Id, "notificacoes", 
+					                   typeof(NotificacaoPrevisaoEntregaJob));
+						             jobDetail.JobDataMap["leitor"] = leitor;
+						             jobDetail.JobDataMap["dias_antecedencia_aviso"] = 15;
+						             scheduler.ScheduleJob(jobDetail, trigger);
+						       }
+						   }
+						
+						   public void EventosSemanais()
+						  {
+						     IList& lt;Leitor& gt; leitoresCadastrados = new 
+					           LeitorRepository().GetLeitoresCadastrados();
+						
+						      foreach (Leitor leitor in leitoresCadastrados)
+						      {
+						          ITrigger trigger = new CronTriggerImpl
+					               ("trigger_execucao_segunda_feira_eventos" +
+					                leitor.Id, "notificacoes", "0 0 8 ? * MON");
+						
+						          IJobDetail jobDetail = new JobDetailImpl
+					                ("notificacao_eventos_semanais" + leitor.Id, 
+					                 "notificacoes", 
+					                 typeof(NotificacaoEventosSemanaisJob));
+						           jobDetail.JobDataMap["leitor"] = leitor;
+						           jobDetail.JobDataMap["eventossemanais"] = 
+					                 "Engenharia de Software.";
+						            scheduler.ScheduleJob(jobDetail, trigger);
+						       }
+						   }
+						        
+					     }
+					  }
+					</pre></code></div>
+
+					<p>Na
+					<strong>Listagem 7</strong> temos duas variáveis privadas, sendo <em>Scheduler (linha 16)</em>
+					e <em>SchedulerFactory (linha 17). </em>A primeira é responsável por iniciar as triggers e jobs e
+					gerenciar as mesmas, enquanto que a segunda é responsável por criar novas
+					schedules. Na linha 19 nós temos o construtor de nosso Starter, onde criamos o
+					schedule (linha 21), adicionamos o listener ao mesmo (linha 22) e em seguida
+					iniciamos ele<strong>.</strong></p>
+
+					<p>No corpo da
+					classe temos três métodos, cada um responsável por iniciar uma job diferente.
+					No primeiro (linha 26), nós iniciamos o job de notificação de novos leitores.
+					Neste método nós recuperamos uma lista de leitores do nosso repositório (linha
+					27) e percorremos esta lista (linha 29) para criar uma trigger e um job para
+					cada leitor. Na linha 30 nós criamos uma nova trigger do tipo <em>SimplesTriggerImpl</em>,
+					que possui 3 parâmetros, sendo eles:</p>
+
+					<p>·
+					O nome da trigger</p>
+
+					<p>·
+					O grupo da trigger</p>
+
+					<p>·
+					A data e hora de execução</p>
+
+					<p> </p>
+
+					<p> Neste
+					caso, a trigger será executada apenas uma vez. Na linha 31 nós temos a criação
+					de nosso <em>JobDetail</em>,
+					onde informamos no construtor do mesmo o nome do j<em>ob</em><em>, </em>o grupo que o mesmo pertence e a respectiva classe dele. Nas
+					linhas 32 e 33 nós apenas alimentamos o <em>JobDataMap</em> com os valores
+					esperados pelo respectivo <em>Job. </em>Por fim, na linha 34 nós vinculamos a
+					trigger ao Job, através do método <em>ScheduleJob.</em></p>
+
+					<p>Na
+					linha 38 temos o método de notificação de previsão de entrega. A diferença dele
+					é que utilizamos (apenas para fins didáticos) outro construtor para a trigger,
+					onde informamos cinco parâmetros:</p>
+
+					<p>·
+					O nome da trigger;</p>
+
+					<p>·
+					A data de início;</p>
+
+					<p>·
+					A data de término, onde o null indica que não há
+					uma data de término;</p>
+
+					<p>·
+					O número de repetições, que no nosso caso para
+					testes, colocamos cinco repetições;</p>
+
+					<p>·
+					O intervalo de execução, que no nosso caso para
+					testes, colocamos a cada 1 minuto.</p>
+
+					<p> </p>
+
+					<p> Da
+					linha 45 a 48 nós criamos o <em>JobDetail</em>, alimentamos o <em>JobDataMap</em> e
+					iniciamos o mesmo vinculando-o à trigger.</p>
+
+					<p>Por
+					fim nós temos na linha 52 o método para iniciar o job de eventos semanais.
+					Neste caso, criamos uma trigger do tipo <em>CronTriggerImpl</em><em> </em>(linha 58), onde especificamos o nome,
+					o grupo e a expressão cronológica para execução desta trigger. Esta expressão é
+					definida em formato texto e com ela podemos determinar quando e com que
+					frequência a trigger será disparada. Esta expressão é definida pelo formato: <strong>[Segundos] [Minutos] [Horas] [Dia do Mês]
+					[Mês] [Dia da Semana] [Ano(Opcional)]</strong>. </p>
+
+					<p> Sendo assim, no
+					nosso exemplo temos "0
+					0 8 ? * MON", onde
+					indicamos que a trigger será executada toda segunda-feira às 08 horas da manhã.
+					O caracter “?” indica um valor não especificado para o parâmetro em questão. No
+					nosso caso estamos indicando que o dia do mês não foi especificado, fazendo com
+					que o mês seja ignorado na expressão. Além disso, temos também o caractere “*”,
+					que no nosso caso utilizamos no parâmetro mês, indicando que a trigger será
+					disparada todo dia da semana. Por fim definimos que esta execução ocorra somente
+					às segundas-feiras.</p>
+
+					<p>Agora só precisamos iniciar nossos jobs
+					quando iniciarmos a aplicação, para isso altere o arquivo program.cs, para que
+					fique como descrito na <strong>Listagem 8</strong>. </p>
+
+					<p><strong>Listagem 8</strong>. Program.Cs</p>
+
+					<div><code class='code-sample'><pre>01	using System;
+					using System.Collections.Generic;
+					using System.Linq;
+					using System.Text;
+					using DevMediaExemploQuartz;
+					
+					namespace ConsoleApplication1
+					{
+					    class Program
+					    {
+					        static void Main(string[] args)
+					        {
+					
+					            StarterJobs starter = new StarterJobs();
+					            
+					            starter.NovosLeitores();
+					            starter.PrevisaoEntrega();
+					            starter.EventosSemanais();
+					
+					            Console.ReadLine();
+					        }
+					    }
+					}
+					</pre></code></div>
+
+					<p><span class='subtitulo_texto'>Conclusão</span></p>
+
+					<p> Vimos
+					aqui os conceitos fundamentais do Quartz.NET e como é possível utilizá-lo em diversos
+					tipos de aplicação, deixando nossas rotinas de notificação mais desacopladas e
+					elegantes.</p>
+
+					<p> Juntando
+					os recursos de listener com ferramentas de log podemos ter total controle e
+					acompanhamento das trigger e Jobs de nossa aplicação, com um excelente reuso e
+					fácil manutenção.</p>
+
+					<p><div class='nota'><strong>Links<br></strong><strong>Site do Quartz.NET<br></strong><href="http://quartznet.sourceforge.net/">http://quartznet.sourceforge.net</p>
+
+					<p><strong>Fonte do Quartz.NET<br></strong><href="https://github.com/quartznet/">https://github.com/quartznet/</p>
+
+					<p><strong>Documentação do Quartz.NET<br></strong><href="http://quartznet.sourceforge.net/apidoc/2.0/html/webframe.html">http://quartznet.sourceforge.net/<br>apidoc/2.0/html/webframe.html</a></p>
+
+					<p><strong>Download do Quartz.NET<br></strong><href="http://sourceforge.net/projects/quartznet/files/quartznet/">http://sourceforge.net/projects/<br>quartznet/files/quartznet/</div></p>
+					<!--Fim Conteudo -->
+				</div>
+			</p>
+		</div>
+	</div>
+	<!-- # SeCtion 01-->
+	
+	<script src="../../public/js/jquery.js"></script>
+	<script src="../../public/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+<!-- https://www.devmedia.com.br/quartz-net-job-scheduling-revista-net-magazine-102/26956    :Site do Bagulho-->

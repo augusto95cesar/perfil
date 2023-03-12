@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Site</title>
+	
+	<!-- boostrap -->
+	<link href="../../public/css/bootstrap.css" rel="stylesheet">
+
+	<!-- font awesome -->
+	<link href="../../public/css/all.css" rel="stylesheet">
+
+	<!-- folha de estilo propria -->
+	<link href="../../public/css/style.css" rel="stylesheet">
+
+	<!-- favicon -->
+	<link href="../../public/alfahelix/public/img/favicon.png" rel="icon">
+</head>
+<body>
+	 
+		  <!-- inicio menu -->
+  <nav class="navbar navbar-dark navbar-expand-lg navbar-default fixed-top">
+    <div class="container-fluid"> 
+      <h2 id="menuletra"> MVC ##</h2> 
+      <!-- botao para menu no celular --> 
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+        <span class="navbar-toggler-icon"></span>
+      </button>      
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ml-md-auto text-light">
+          <li class="nav-item">
+            <a class="nav-link" id="menuletra"  href="../../index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="menuletra"  href="../../list_curso.html">Cursos</a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" id="menuletra"  href="../../perfil.html">Perfil</a>
+          </li>                   
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <br>
+	<!-- fim menu -->
+	<h4>Amarzenar Fotos</h4>
+	<h2 class="list-group-item list-group-item-action">
+		Sobre Fotos
+	</h2>
+	<div class="container">
+		<br>
+		<h4>Salvar Foto no Banco de Dados Mysql</h4>
+		<ul>
+			<li>
+				Script da Tabela de Imagem
+			</li>
+			<br>
+			<img src="../../public/img/csharp/fotos_bd/script_Imagem.jpg">
+			<br>
+			<img src="../../public/img/csharp/fotos_bd/script_Imagem_mysql.jpg">
+			<br>
+			<div class="divpai">
+				<p>CREATE TABLE `imagem` (</p>
+			  	<p>`id_imagem` int(11) NOT NULL AUTO_INCREMENT,</p>
+			  	<p>`bit_foto` blob,</p>
+			  	<p>`nome_foto` varchar(100) DEFAULT NULL,</p>
+			  	<p>PRIMARY KEY (`id_imagem`)</p>
+				<p>) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1</p>
+			</div>
+			<p>
+				O Tipo blob aceita qualquer informação por gravar informações binarias, usei para gravar imagens
+			</p>
+			<br>
+			<li>
+				Criar Class Imagem
+			</li>
+			<br>
+			<img src="../../public/img/csharp/fotos_bd/Class_Img.jpg">
+			<br>
+			<br>
+			<p>using System.ComponentModel.DataAnnotations;</p>
+			<p>using System.ComponentModel.DataAnnotations.Schema;</p>					
+			<p>namespace SCPPM_CONTROLER.Models.Entidades</p>
+			<p>{</p>
+			<div class="divpai">
+		    	<p>[Table("public.imagem")]</p>
+		    	<p>public class Imagem</p>
+		    	<p>{</p>
+		    	<div class="divpai">
+		        	<p>[Key, Column("id_imagem")]</p>
+		        	<p>public int Id_imagem { get; set; }</p>
+			<br>
+		        	<p>[Column("bit_foto")]</p>
+		        	<p>public byte[] foto { get; set; }</p>
+			<br>
+		        	<p>[Column("nome_foto")]</p>
+		        	<p>public string nomeFoto { get; set; }</p>
+		    	</div>
+		    	<p>}</p>
+			</div>
+			<p>}</p>
+			<li>
+				Method Action Criar Imagem  do Controller
+			</li>
+			<br>
+			<img src="../../ public/img/fotos_bd/Criar_Imagem.jpg">
+			<br>
+			<p>Este Metodo é responsavel em converter a imagem em byte para salvar na coluna do tipo blob</p>
+			<br>
+			<p>[HttpPost]</p>
+        	<p>[ValidateAntiForgeryToken]</p>
+        	<p>public ActionResult Create(Imagem imagem, HttpPostedFileBase image = null)</p>
+        	<p>{</p>
+        	<div class="divpai">
+            	<p>if (ModelState.IsValid)</p>
+            	<p>{</p>
+            	<div class="divpai">
+                	<p>imagem.foto = new byte[image.ContentLength];</p>
+                	<p>imagem.nomeFoto = image.ContentType;</p>
+                	<p>image.InputStream.Read(imagem.foto, 0, image.ContentLength);</p>
+				<br>
+                	<p>db.imagems.Add(imagem);</p>
+                	<p>db.SaveChanges();</p>
+                	<p>return RedirectToAction("Index");</p>
+            	</div>
+            	<p>}</p>						
+            	<p>return View(imagem);</p>
+        	</div>
+        	<p>}</p>
+        	<br>
+        	<li>Method Obter Imagem</li>
+        	<br>			        
+        	<img src="../../ public/img/fotos_bd/Obter_Imagem.jpg">
+        	<br>
+        	<br>
+        	<p>public FileResult ObterImagem(int idImagem )</p>
+        	<p>{</p>
+        	<div class="divpai">
+            	<p>Imagem img =  new Imagem();</p>
+            	<p>img = db.imagems.FirstOrDefault(imgs => imgs.Id_imagem == idImagem);</p>
+				<br>
+            	<p>if (img.foto != null)</p>
+            	<p>{</p>
+            	<div class="divpai">			            	
+                	<p>return File(img.foto, img.nomeFoto);</p>
+            	</div>
+            	<p>}</p>
+            	<p>return null;</p>
+        	</div>
+        	<p>}</p>
+        	<br>
+        	<li>View Create Imagem</li>
+        	<br>
+        	<img src="../../public/img/csharp/fotos_bd/view_Create_img.jpg">
+        	<br>
+        	<br>
+        	<p>@model SCPPM_CONTROLER.Models.Entidades.Imagem</p>
+			<p>@using (Html.BeginForm("Create", "Img", FormMethod.Post, new { enctype = "multipart/form-data" }))</p>
+			<p>{</p>
+			<div class="divpai">
+		    	<p>< div class="form-horizontal"></p>
+		        	<p>@Html.AntiForgeryToken()</p>
+		        	<p>< div class="form-group"></p>
+		        	<div class="divpai">
+		            	<p>< input type="file" name="Image" /></p>
+		        	</div>
+		        	<p>< /div></p>
+					<br>
+		        	<p>< div class="form-group"></p>
+		        	<div class="divpai">
+		            	<p>< div class="col-md-offset-2 col-md-10"></p>
+		            	<div class="divpai">
+		                	<p>< input type="submit" value="Save" class="btn btn-default" /></p>
+		            	</div>
+		            	<p>< /div></p>
+		        	</div>
+		        	<p>< /div></p>
+		    	<p>< /div></p>
+			</div>
+			<p>}</p>
+
+			<br>
+			<li>View Index - Exibir Imagem</li>
+			<br>
+
+			<img src="../../public/img/csharp/fotos_bd/exibir_imagem.jpg">
+			<br>
+			<br>
+			<p>A Url Action faz uma requisição no controler Img com o id da imagem</p>			
+			<p>< td></p>
+			<div class="divpai">
+            	<p>< img class="img-thumbnail" </p>
+            	<div class="divpai">
+                 	<p>width="120" </p>
+                 	<p>height="120" </p>
+                 	<p>src="../../@Url.Action("ObterImagem", "Img", new { idImagem = item.Id_imagem } )" /></p>
+            	</div>
+         	</div>
+        	<p>< /td></p> 
+		</ul>
+		<hr>
+		<!-- Parte Dois do Curso de Arquivar -->
+		<h2 class="list-group-item list-group-item-action">
+			ASP.NET MVC 4: Realizando Upload e download de arquivos
+		</h2>
+		<p>
+		Neste artigo desenvolveremos uma aplicação em ASP.NET MVC 4 que será responsável por realizar o upload de imagens e também disponibilizá-las em seguida para download para o usuário, com o intuito principal de auxiliar desenvolvedores que estão em processo de migração para o MVC Framework. Neste artigo usaremos o Visual Studio 	2012 e o plugin <a href	="https://github.com/blueimp/jQuery-File-Upload">jQuery MultiFile</a>.
+		</p>
+		<p>
+		Iniciaremos entendendo a filosofia de como o MVC trabalha com arquivos e diretórios: o <b>ActionResult</b> é a classe abstrata retornada por cada método das <b>Actions</b>. Várias classes herdam da <b>ActionResult</b>, inclusive a <b>FileResult</b>, que é responsável pelo envio de conteúdo do arquivo binário para o response. 	Vamos ver a seguir um 	pouco sobre essas classes:
+		</p>
+		<ul>
+			<li>
+				<b>ViewResult</b> : Responsável por exibir uma View.
+			</li>
+			<li>
+				<b>ContentResult</b> : Retorna apenas texto.
+			</li>
+			<li>
+				<b>FileResult</b> : A saída é o conteúdo de um arquivo.
+			</li>
+			<li>
+				<b>JavaScriptResult</b> : A saída para o conteúdo de um arquivo JavaScript.
+			</li>
+			<li>
+				<b>JSonResult</b> : Retorna as anotações do <b>Json</b>.
+			</li>
+		</ul>
+		<h3>Criando o Projeto</h3>
+		<p>
+		Vamos montar nosso ambiente criando uma aplicação <b>ASP.NET MVC 4 Web Aplicattion</b> usando o template <b>InternetApllication</b> e <b>Razor</b> como <b>viewengine</b> com o nome de <b>MvcDownUpload</b> no visual 	studio 2012, 	como mostrado nas <b>Figuras 1 e 2.</b>
+		</p>
+	
+		<figure>
+			<img width="70%" class='imagem_artigo' alt="img" src="../../public/img/csharp/fotos_bd/Upload_Arquivos/foto_01.jpg">
+			<figcaption>
+				<b>Figura 1</b>. Criação do projeto no visual studio 2012
+			</figcaption>
+		</figure>
+		<figure>
+			<img width="70%" class='imagem_artigo' alt="img" src="../../public/img/csharp/fotos_bd/Upload_Arquivos/foto_02.jpg">
+			<figcaption>
+				<b>Figura 2</b>. Template <b>InternetApplication</b> com Razor
+			</figcaption>
+		</figure>
+		<p>
+		De início, nos preocuparemos em montar a estrutura da nossa aplicação. Para isso, criaremos uma classe Model que representará o arquivo com que a aplicação irá trabalhar. Nela irá conter as seguintes propriedades: Nome, 	Tamanho, 	Tipo e Caminho, como mostrado na <b>Listagem 1</b>.
+		</p>
+		
+		<div style="display: none;">
+			public class UploadFileResult
+			{
+				public int IDArquivo { get; set; }
+				public string Nome { get; set; }
+				public int Tamanho{ get; set; }
+				public string Tipo{ get; set; }
+				public string Caminho { get; set; }
+			}
+		</div>
+		<figure>
+			<img width="70%" class='imagem_artigo' alt="img" src="../../public/img/csharp/fotos_bd/Upload_Arquivos/foto_03.jpg">
+			<figcaption>
+				<b>Listagem 1</b>. Código fonte do model
+			</figcaption>
+		</figure>
+		<p>
+		No próximo passo criaremos nossa classe <b>Controller FileUpload</b> que será responsável por realizar todo o 	trabalho 	de importação do arquivo, como mostrado na <b>Listagem 2</b>.
+		</p>			
+		<div style="display: none;">
+			public class FileUploadController : Controller
+			{
+			//
+			// GET: /FileUpload/
+			
+			public ActionResult Index()
+			{
+			return View();
+			}
+			
+			public ActionResult FileUpload()
+			{
+			int arquivosSalvos = 0;
+			for (int i = 0; i & lt; Request.Files.Count; i++)
+			{
+			HttpPostedFileBase arquivo = Request.Files[i];
+			
+			//Suas validações ......
+			
+			//Salva o arquivo
+			if (arquivo.ContentLength & gt; 0)
+			{
+			var uploadPath = Server.MapPath("~/Content/Uploads");
+			string caminhoArquivo = Path.Combine(@uploadPath, 
+			Path.GetFileName(arquivo.FileName));
+			
+			arquivo.SaveAs(caminhoArquivo);
+			arquivosSalvos++;
+			}
+			}
+			
+			ViewData["Message"] = String.Format(" arquivo(s) salvo(s) com sucesso.",
+			arquivosSalvos);
+			return View("Upload");
+			}
+			}
+		</div>
+		<figure>
+			<img width="70%" class='imagem_artigo' alt="img" src="../../public/img/csharp/fotos_bd/Upload_Arquivos/foto_04.jpg">
+			<figcaption>
+				<b>Listagem 2</b>. Código fonte do <b>Controller FileUpload</b>
+			</figcaption>
+		</figure>		
+		<p>
+		Agora precisaremos adicionar o plugin <a href="https://github.com/blueimp/jQuery-File-Upload">jQuery MultiFile </a>ao nosso projeto. Para isso, clicaremos com o botão direito na pasta scripts e em seguida <b>add existing</b> item. Em seguida, localize onde foram salvos seus arquivos do plugin e clique em <b>Add</b> para todos, como 	mostrado na <b>	Figura 3.</b>
+		</p>
+		<figure>
+			<img width="70%" class='imagem_artigo' alt="img" src="../../public/img/csharp/fotos_bd/Upload_Arquivos/foto_05.jpg">
+			<figcaption>
+				<b>Figura 3</b>. Adicionando as referencias ao jQuery MultiFile
+			</figcaption>
+		</figure>
+		<div class="lf-nota">
+		<b>Nota</b>: Para realizarem o download do plugin basta clicarem no link: <a href="https://www.fyneworks.com/jquery/	multiple-file-upload/#tab-Download" >FYNEWORKS </a>
+		</div>
+		<p>
+		Por último, criaremos nossa camada de interface, adicionando de início duas Views chamadas index e upload, como mostrado 	nas <	b>Figuras 4 e 5</b>.
+		</p>
+		<figure class="lazy-img">
+			<img width="70%" class='imagem_artigo' alt="img" src="../../public/img/csharp/fotos_bd/Upload_Arquivos/foto_06.jpg">
+			<figcaption>
+				<b>Figura 4</b>. Estrutura da View Upload
+			</figcaption>
+		</figure>
+		<figure class="lazy-img">
+			<img width="70%" class='imagem_artigo' alt="img" src="../../public/img/csharp/fotos_bd/Upload_Arquivos/foto_07.jpg">
+			<figcaption>
+				<b>Figura 5</b>. Estrutura da View index
+			</figcaption>
+		</figure>
+		<p>
+		Como vocês puderam notar, a estrutura das views de início é bem simples, formada por tags básicas do HTML, mas para fazermos nosso componente de upload funcionar devemos implementar uma função JavaScript e adicionarmos as referências 	aos arquivos <b>.Js</b> do plugin na tag Head da <b>view Upload</b>, como na <b>Listagem 3</b>.
+		</p>
+		<div style="display: none;">
+			& lt;link href="~/Content/bootstrap/bootstrap.min.css" rel="stylesheet" /& gt;
+			& lt;link href="~/Content/bootstrap/bootstrap-theme.min.css" rel="stylesheet" /& gt;
+			& lt;script src="../../~/Scripts/jquery-1.9.1.min.js"& gt;& lt;/script& gt;
+			& lt;script src="../../~/Scripts/jquery.ui.widget.js"& gt;& lt;/script& gt;
+			& lt;script src="../../~/Scripts/bootstrap.min.js"& gt;& lt;/script& gt;
+			& lt;script src="../../~/Scripts/jquery.MultiFile.js"& gt;& lt;/script& gt;
+			& lt;script src="../../../../Scripts/jquery-1.3.2.js" type="text/javascript"& gt;& lt;/script& gt;
+			& lt;script type="text/javascript"& gt;
+			$(document).ready(function () {
+				$('#file').MultiFile({
+		 		accept: 'gif|jpg',
+		 		max: 3,
+		 		STRING: {
+		     		remove: 'Remover',
+		     		denied: 'Tipo do arquivo inválido $ext!',
+		     		duplicate: 'Esse arquivo já foi selecionado:\n$file!'
+		 		}
+				});
+			});
+			& lt;/script& gt;
+		</div>	
+		<figure>
+			<img width="70%" class='imagem_artigo' alt="img" src="../../public/img/csharp/fotos_bd/Upload_Arquivos/foto_08.jpg">
+			<figcaption>
+				<b>Listagem 3</b>. Função JavaScript responsável pelo Upload
+			</figcaption>
+		</figure>
+		<p>
+			Executaremos nossa aplicação para verificarmos como está o funcionamento desse primeiro fluxo, conforme mostrado na <b>	Figura 	6.</b>
+		</p>
+		<figure>
+			<img width="70%" class='imagem_artigo' alt="img" src="../../public/img/csharp/fotos_bd/Upload_Arquivos/foto_09.jpg">
+			<figcaption>
+				<b>Figura 6</b>. Selecionando arquivo na View Upload
+			</figcaption>
+		</figure>
+		<p>
+			Na <b>view</b> Upload escolheremos o arquivo local que desejamos mandar e clicaremos no botão enviar, a aplicação executará nossa Action <b>FileUpload</b> criada anteriormente e realizará a importação do arquivo como mostrado na <b> Figura 7.</b>
+		</p> <figure>
+			<img width="70%" class='imagem_artigo' alt="img" src="../../public/img/csharp/fotos_bd/Upload_Arquivos/foto_10.jpg">
+			<figcaption>
+				<b>Figura 7</b>. Importação realizada com sucesso
+			</figcaption>
+		</figure>
+		<p>
+			Para comprovarmos que o arquivo foi importado, basta irmos à pasta onde escolhemos que nossos arquivos seriam salvos, que no caso é <b>Content/Uploads</b><b>,</b> e verificarmos a existência dos mesmos, como mostrado na <b>Figura 8</b>.
+		</p>
+		<figure class="lazy-img">
+			<img width="70%" class='imagem_artigo' alt="img" src="../../public/img/csharp/fotos_bd/Upload_Arquivos/foto_11.jpg">
+			<figcaption>
+				<b>Figura 8</b>. Arquivos importados na pasta do projeto
+			</figcaption>
+		</figure>
+		<p>
+			Na segunda parte trataremos de desenvolver a lógica que listará nossos arquivos e os disponibilizará para download, onde primeiramente criaremos no nosso model <b>UploadResult</b> um método responsável por “pegar” os arquivos 		disponíveis, como mostrado na <b>Listagem 4</b>.
+		</p>
+		<div style="display: none">
+			public List& lt;UploadFileResult& gt; ListaArquivos()
+			{
+			List& lt;UploadFileResult& gt; lstArquivos = new List& lt;UploadFileResult& gt;();
+			DirectoryInfo dirInfo = new DirectoryInfo(Server.MapPath("~/Content/Uploads"));
+			
+			int i = 0;
+			foreach (var item in dirInfo.GetFiles())
+			{
+			lstArquivos.Add(new UploadFileResult()
+			{
+				IDArquivo = i + 1,
+				Nome = item.Name,
+				Caminho = dirInfo.FullName + @"\" + item.Name
+			});
+			i = i + 1;
+			}
+			return lstArquivos;
+		</div>
+		<figure>
+			<img width="70%" class='imagem_artigo' alt="img" src="../../public/img/csharp/fotos_bd/Upload_Arquivos/foto_12.jpg">
+			<figcaption>
+				<b>Listagem 4</b>. Método de Listagem dos arquivos
+		</figure>	
+		<p>
+			Em seguida, definiremos o nosso <b>Controller</b> responsável pelos downloads, como mostrado na <b>Listagem 5.</b>
+		</p>
+		<div style="display: none;">
+			public class DownloadController : Controller
+			{
+			UploadFileResult oModelArquivos = new  UploadFileResult();
+			
+			
+			public ActionResult Index()
+			{
+			var _arquivos = oModelArquivos.ListaArquivos();
+			return View(_arquivos);
+			}
+			
+			public FileResult Download(string id)
+			{
+			int _arquivoId = Convert.ToInt32(id);
+			var arquivos = oModelArquivos.ListaArquivos();
+			
+			string nomeArquivo = (from arquivo in arquivos
+		                  		where arquivo.IDArquivo == _arquivoId
+		                  		select arquivo.Caminho).First();
+			
+			string contentType = "application/pdf";
+			return File(nomeArquivo, contentType, "Report.pdf");
+			}
+			
+			}
+		</div>	
+		<figure>
+			<img width="70%" class='imagem_artigo' alt="img" src="../../public/img/csharp/fotos_bd/Upload_Arquivos/foto_13.jpg">
+			<figcaption>
+				<b>Listagem 5</b>. Fonte do Controller de Download
+			</figcaption>
+		</figure>
+		<figure>
+			<img width="70%" class='imagem_artigo' alt="img" src="../../public/img/csharp/fotos_bd/Upload_Arquivos/foto_14.jpg">
+			<figcaption>
+				Na <b>Listagem 6</b> criaremos nossa <span class="lf-badge">view</span> de interface com o usuário.
+			</figcaption>
+		</figure>
+		<p>
+			Note que criamos essa <b>view</b> do tipo do nosso model <b>UploadFileResult</b> para que assim pudéssemos ter acesso a suas propriedades e, a partir dele, executaremos nossa Action Download que disponibilizará o arquivo para o cliente. Para testarmos vamos executar nossa aplicação mais uma vez, como mostrado na <b>Figura 9</b>. 
+		</p>
+		<figure>
+			<img width="70%" class='imagem_artigo' alt="img" src="../../public/img/csharp/fotos_bd/Upload_Arquivos/foto_15.jpg">
+			<figcaption>
+				<b>Figura 9</b>. View download listando os arquivos
+			</figcaption>
+		</figure>
+		<p>
+			Ao clicarmos em um arquivo será disponibilizada a janela de download, como mostrado na <b>Figura 10</b>.
+		</p>
+		<figure>
+			<img width="70%" class='imagem_artigo' alt="img" src="../../public/img/csharp/fotos_bd/Upload_Arquivos/foto_16.jpg">
+			<figcaption>
+				<b>Figura 10</b>. Janela de Download do arquivo escolhido
+			</figcaption>
+		</figure>
+		<p>
+			Para finalizarmos vamos dar uma melhorada na nossa aplicação tirando a amarração feita no código fonte para que o download seja gerado apenas em formato <b>.pdf</b>. Para isso, realizaremos uma pequena alteração na nossa Action 	 de download, como mostra a <b>Listagem 7</b>.
+		</p>
+		<img width="70%" class='imagem_artigo' alt="img" src="../../public/img/csharp/fotos_bd/Upload_Arquivos/foto_17.jpg">	
+		<hr>
+		<div style="display: none;">
+			public FileResult Download(string id)
+			{
+				int _arquivoId = Convert.ToInt32(id);
+				string contentType="";
+				var arquivos = oModelArquivos.ListaArquivos(Server.MapPath("~/Content/Uploads"));
+				string nomeArquivo = (from arquivo in arquivos
+		                  		where arquivo.IDArquivo == _arquivoId
+		                  		select arquivo.Caminho).First();
+				string extensao = Path.GetExtension(nomeArquivo);
+				string nomeArquivoV = Path.GetFileNameWithoutExtension(nomeArquivo);
+				if (extensao.Equals(".pdf"))
+				contentType = "application/pdf";
+				if (extensao.Equals(".JPG") || extensao.Equals(".GIF") || extensao.Equals(".PNG"))
+				contentType = "application/image";
+				return File(nomeArquivo, contentType, nomeArquivoV+extensao);
+			}
+		</div>
+		<div>
+			<b>Listagem 7</b>. Fonte do <b>Controller</b> de Downloads Alterado
+		</div>
+		<p>
+			Fazendo isso assim que recuperarmos nosso arquivo escolhido para download pelo id, poderemos recuperar sua extensão e 	atribuirmos o <b>contentType</b> adequado. 
+		</p>
+	</div>
+<a href="https://www.devmedia.com.br/asp-net-mvc-4-realizando-upload-e-download-de-arquivos/30244">Meu Artigo Upload</a>
+<script src="../../public/js/jquery.js"></script>
+<script src="../../public/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

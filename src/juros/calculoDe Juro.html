@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>  
+</head>
+
+<body>
+</body>
+
+</html>
+<script>
+  montarTable = (nomeDiv) => {
+    document.body.innerHTML 
+    = `<h1>Augusto</h1>
+    <label>Valor Aporte: </label><input id="${nomeDiv}_aporte">
+    <div id="${nomeDiv}"></div>
+    `;
+
+    var mesesDoAno = ["Jan", "fev", "mar", "abr", "mai", "jun", "julh", "ago", "set", "out", "nov", "dez"]
+    var anoDate = 2023;
+    var ano = 70;
+    var mes = 12;
+    var qtdMesesAno = mes * ano;
+    var aporte = 100
+    var calculoporcentagem = [];
+    var i = 1
+    var juroAnual = 12.53;
+    var juroMes = juroAnual / 12;
+    var valCal = 0;
+    var base = 0;
+    while (i <= qtdMesesAno) {
+      valCal = (valCal + aporte) * ((juroMes / 100) + 1)
+      base += aporte;
+      obj = {"juros" : valCal.toFixed(2), "investido": base.toFixed(2)}
+      calculoporcentagem.push(obj)
+      i++
+    }
+ 
+    var body = `<table><thead><th> Mes / Ano </th>`
+    i = 1
+    while (i <= ano) {
+      body += `<th>Ano ${i} - ${anoDate}</th>`;
+      anoDate++;
+      i++
+    }
+    body += `</thead><tbody> `;
+    i = 0
+    var tdCont = 0
+    mesesDoAno.forEach((e) => {
+      body += `<tr>
+        <td>${e}</td>`;
+      while (tdCont < ano) {
+        body += `<td>
+          sJuros R$ ${calculoporcentagem[i + (12 * tdCont)].investido}<br>
+          cJuros R$ ${calculoporcentagem[i + (12 * tdCont)].juros}<br>
+          Juros R$ ${((calculoporcentagem[i + (12 * tdCont)].juros)-(calculoporcentagem[i + (12 * tdCont)].investido)).toFixed(2)}
+          </td>`;
+        tdCont++
+      }
+      tdCont = 0;
+      body += `</tr>`;
+      i++
+    });
+    body += `</tbody></table>
+              <style>
+              table,td,th {
+              border: 1px solid black;
+              padding: 5px;
+              border-spacing: 0px;}
+              table { width: ${ano*10}%}
+              </style>`;
+    document.getElementById(nomeDiv).innerHTML = body
+  }
+
+  montarTable("minhaDiv")
+
+</script>

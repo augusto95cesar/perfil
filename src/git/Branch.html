@@ -1,0 +1,195 @@
+BrGaap_AUGUSTO@DESKTOP-E458GJ5 MINGW64 /d/Fonte_Pesquisa/site_curso_perfil (master)
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Arquivo De Branch.txt
+        fasfas.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+BrGaap_AUGUSTO@DESKTOP-E458GJ5 MINGW64 /d/Fonte_Pesquisa/site_curso_perfil (master)
+$ git checkout -b Teste
+Switched to a new branch 'Teste'
+
+BrGaap_AUGUSTO@DESKTOP-E458GJ5 MINGW64 /d/Fonte_Pesquisa/site_curso_perfil (Teste)
+$ git status
+On branch Teste
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Arquivo De Branch.txt
+        dfasfdasf.txt
+        fasfas.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+BrGaap_AUGUSTO@DESKTOP-E458GJ5 MINGW64 /d/Fonte_Pesquisa/site_curso_perfil (Teste)
+$ git checkout master
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+
+BrGaap_AUGUSTO@DESKTOP-E458GJ5 MINGW64 /d/Fonte_Pesquisa/site_curso_perfil (master)
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Arquivo De Branch.txt
+        dfasfdasf.txt
+        fasfas.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+BrGaap_AUGUSTO@DESKTOP-E458GJ5 MINGW64 /d/Fonte_Pesquisa/site_curso_perfil (master)
+$ git branch --list
+  Arduino
+  Teste
+* master
+
+BrGaap_AUGUSTO@DESKTOP-E458GJ5 MINGW64 /d/Fonte_Pesquisa/site_curso_perfil (master)
+$ git branch Test2
+
+BrGaap_AUGUSTO@DESKTOP-E458GJ5 MINGW64 /d/Fonte_Pesquisa/site_curso_perfil (master)
+$ git branch --list
+  Arduino
+  Test2
+  Teste
+* master
+
+BrGaap_AUGUSTO@DESKTOP-E458GJ5 MINGW64 /d/Fonte_Pesquisa/site_curso_perfil (master)
+$ git checkout Teste
+Switched to branch 'Teste'
+
+BrGaap_AUGUSTO@DESKTOP-E458GJ5 MINGW64 /d/Fonte_Pesquisa/site_curso_perfil (Teste)
+$ git status
+On branch Teste
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Arquivo De Branch.txt
+        dfasfdasf.txt
+        fasfas.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+BrGaap_AUGUSTO@DESKTOP-E458GJ5 MINGW64 /d/Fonte_Pesquisa/site_curso_perfil (Teste)
+$ git add .
+
+BrGaap_AUGUSTO@DESKTOP-E458GJ5 MINGW64 /d/Fonte_Pesquisa/site_curso_perfil (Teste)
+$ git commit -m "Teste"
+[Teste bceb4dc] Teste
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 Arquivo De Branch.txt
+ create mode 100644 dfasfdasf.txt
+ create mode 100644 fasfas.txt
+
+BrGaap_AUGUSTO@DESKTOP-E458GJ5 MINGW64 /d/Fonte_Pesquisa/site_curso_perfil (Teste)
+$ git status
+On branch Teste
+nothing to commit, working tree clean
+
+BrGaap_AUGUSTO@DESKTOP-E458GJ5 MINGW64 /d/Fonte_Pesquisa/site_curso_perfil (Teste)
+$ git push
+fatal: The current branch Teste has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin Teste
+
+
+BrGaap_AUGUSTO@DESKTOP-E458GJ5 MINGW64 /d/Fonte_Pesquisa/site_curso_perfil (Teste)
+$ git push origin Teste
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 472 bytes | 472.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+remote:
+remote: Create a pull request for 'Teste' on GitHub by visiting:
+remote:      https://github.com/augusto95cesar/site_curso_perfil/pull/new/Teste
+remote:
+To https://github.com/augusto95cesar/site_curso_perfil.git
+ * [new branch]      Teste -> Teste
+
+BrGaap_AUGUSTO@DESKTOP-E458GJ5 MINGW64 /d/Fonte_Pesquisa/site_curso_perfil (Teste)
+$ git merge master
+Already up to date.
+
+BrGaap_AUGUSTO@DESKTOP-E458GJ5 MINGW64 /d/Fonte_Pesquisa/site_curso_perfil (Teste)
+$ git push origin Test
+error: src refspec Test does not match any
+error: failed to push some refs to 'https://github.com/augusto95cesar/site_curso_perfil.git'
+
+BrGaap_AUGUSTO@DESKTOP-E458GJ5 MINGW64 /d/Fonte_Pesquisa/site_curso_perfil (Teste)
+$ git push origin Teste
+fatal: HttpRequestException encountered.
+   Ocorreu um erro ao enviar a solicitação.
+error: unable to read askpass response from 'C:/Program Files/Git/mingw64/libexec/git-core/git-gui--askpass'
+Password for 'https://Timao401@github.com':
+remote: Invalid username or password.
+fatal: Authentication failed for 'https://github.com/augusto95cesar/site_curso_perfil.git/'
+
+BrGaap_AUGUSTO@DESKTOP-E458GJ5 MINGW64 /d/Fonte_Pesquisa/site_curso_perfil (Teste)
+$ git push origin Teste
+Everything up-to-date
+
+BrGaap_AUGUSTO@DESKTOP-E458GJ5 MINGW64 /d/Fonte_Pesquisa/site_curso_perfil (Teste)
+$ git status
+On branch Teste
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   dfasfdasf.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+BrGaap_AUGUSTO@DESKTOP-E458GJ5 MINGW64 /d/Fonte_Pesquisa/site_curso_perfil (Teste)
+$ git add .
+
+BrGaap_AUGUSTO@DESKTOP-E458GJ5 MINGW64 /d/Fonte_Pesquisa/site_curso_perfil (Teste)
+$ git  commit -m"Test2"
+[Teste d52b95d] Test2
+ 1 file changed, 1 insertion(+)
+
+BrGaap_AUGUSTO@DESKTOP-E458GJ5 MINGW64 /d/Fonte_Pesquisa/site_curso_perfil (Teste)
+$ git push origin Teste
+fatal: unable to access 'https://github.com/augusto95cesar/site_curso_perfil.git/': Could not resolve host: github.com
+
+BrGaap_AUGUSTO@DESKTOP-E458GJ5 MINGW64 /d/Fonte_Pesquisa/site_curso_perfil (Teste)
+$ git push origin Teste
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 265 bytes | 265.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/augusto95cesar/site_curso_perfil.git
+   bceb4dc..d52b95d  Teste -> Teste
+
+BrGaap_AUGUSTO@DESKTOP-E458GJ5 MINGW64 /d/Fonte_Pesquisa/site_curso_perfil (Teste)
+$ git checkout master
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+
+BrGaap_AUGUSTO@DESKTOP-E458GJ5 MINGW64 /d/Fonte_Pesquisa/site_curso_perfil (master)
+$ git merge Teste
+Updating 40712cd..d52b95d
+Fast-forward
+ Arquivo De Branch.txt | 0
+ dfasfdasf.txt         | 1 +
+ fasfas.txt            | 0
+ 3 files changed, 1 insertion(+)
+ create mode 100644 Arquivo De Branch.txt
+ create mode 100644 dfasfdasf.txt
+ create mode 100644 fasfas.txt
+
+BrGaap_AUGUSTO@DESKTOP-E458GJ5 MINGW64 /d/Fonte_Pesquisa/site_curso_perfil (master)
+$ git push origin master
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/augusto95cesar/site_curso_perfil.git
+   40712cd..d52b95d  master -> master
+
+BrGaap_AUGUSTO@DESKTOP-E458GJ5 MINGW64 /d/Fonte_Pesquisa/site_curso_perfil (master)

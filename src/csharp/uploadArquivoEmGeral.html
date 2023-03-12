@@ -1,0 +1,68 @@
+<div class="container">
+    <img src="../../../public/img/csharp/aspnetcore/uploadarquivoemgeral/foto01.jpg"/>
+
+<h3> index.cshtml</h3>
+
+<div>
+    "< form asp-action="Index" enctype="multipart/form-data" method="post">
+        < span>Aqruivo</span>
+        < br />
+        < input name="file" type="file" accept="video/mp4"/>
+        < br />
+        < button type="submit">Submit</button>
+    < /form>"
+</div>
+
+<img src="../../../public/img/csharp/aspnetcore/uploadarquivoemgeral/foto02.jpg"/>
+
+<h3>arquivo homecontroller action= index method post</h3>
+
+<div>
+    [HttpPost]
+        [RequestSizeLimit(1000000000)]// 1G
+        public async Task<IActionResult> Index(IFormFile file)
+        {
+            var extencao = file.FileName.Split(".");
+            var caminhoNovoAquivo = "nomedoArquivo." + extencao[(extencao.Length - 1)];
+                
+            using (var filestream = new FileStream(caminhoNovoAquivo, FileMode.Create))
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    await file.CopyToAsync(memoryStream);
+
+                    memoryStream.WriteTo(filestream);
+                } 
+            }
+
+            return View();
+        }
+</div>
+
+<img src="../../../public/img/csharp/aspnetcore/uploadarquivoemgeral/foto03.jpg"/>
+
+<h3>arquivo web.config</h3>
+
+<div>
+    "< ?xml version="1.0" encoding="utf-8"?>
+< configuration>
+	< system.webServer>
+		< security>
+			< requestFiltering>
+				<!--Limit Upload to 700MB-->
+				<requestLimits maxAllowedContentLength="1000000000"></requestLimits>
+			< /requestFiltering>
+		< /security>
+	< /system.webServer>
+< /configuration>"
+</div>
+</div>
+
+<style>
+    img{
+        margin: 25px;          
+    }
+    .container{
+        padding: 0% 15% 2% 15%;
+    }
+</style>

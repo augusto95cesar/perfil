@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Site</title>
+	
+	<!-- boostrap -->
+	<link href="../../public/css/bootstrap.css" rel="stylesheet">
+
+	<!-- font awesome -->
+	<link href="../../public/css/all.css" rel="stylesheet">
+
+	<!-- folha de estilo propria -->
+	<link href="../../public/css/style.css" rel="stylesheet">
+
+	<!-- favicon -->
+	<script type="text/javascript" src="../../public/js/jquery.js"></script>
+	
+
+
+</head>
+<body>
+	 <!-- Css Carrossel  -->
+	
+	<!-- 
+		 <style type="text/css">
+	 	.clear{clear:both;}	 	 	
+	 	.carrosselcontainer{background: #F08080; width: 120px;position: relative;}
+	 	.box-carrossel{ overflow: hidden; background: #DCDCDC; width: 120px; height: 120px; position: relative;}
+	 	img{width: 100px;height: 100px;}
+	 	.carrossel{list-style: none;width: 1000%;background: #7FFFD4;float: left;padding: 10px;
+	 		padding-left:  0px}
+	 	.carrossel .item{float:left; margin-left: 10px;}
+
+	 	.back{float: left;}
+	 	.forth{float: right;}
+
+	 </style>
+	-->
+	 <style type="text/css">
+	 	.item img{
+	 		width: 200px;
+	 		height: 200px;
+	 	}
+	 	.carrossel{
+	 		list-style: none;
+	 		/*
+				width:500px;
+				quantidade Imag * Largura
+	 		*/
+	 		width:1000px;
+	 		background: #7FFFD4;
+	 		float: left;
+	 		padding: 0px;
+	 		position: relative;
+	 		/*Editar Carrossel*/
+	 		/*left: -100px;*/
+	 	}	
+	 	.carrossel .item{float:left; }
+	 	.box-carrossel{
+	 		position: absolute;
+	 		overflow: hidden;
+	 		/*Largura do box carrossel*/
+	 		width: 200px;	 		 
+
+	 		margin-left: 50%;		
+	 	} 
+	 	.box-carrossel .forth{
+	 		margin-left: 50%;
+	 	}
+
+	 </style>
+
+	 <!-- Html Carrossel -->
+	 <div class="box-carrossel">	   
+	    <ul class="carrossel" id="carrossel" >
+	        <li class="item"><img src="../../public/img/csharp/paginacao/action_paginacao.jpg"/></li>
+	        <li class="item"><img src="../../public/img/csharp/paginacao/install_PagedList_MVC.jpg" /></li>
+	        <li class="item"><img src="../../public/img/csharp/paginacao/view_paginacao.jpg" /></li>	       
+	    </ul>
+	    
+	    <span class="back" onclick="back()" ><<</span>		
+		<span class="forth" onclick="forth()" >>></span>
+		<div class="clear"></div>			   
+	</div>
+	
+		
+	
+
+
+	<script type="text/javaScript" >
+
+		var position = 0;
+	    
+	    function back(){
+	    	var movimg = 200;    	
+	    	if(position<0){
+	    		position = position + movimg;
+	    		$('.carrossel').css("left", position);
+	    	}else{
+	    		alert("não dá embecil");
+	    	}
+
+	    }
+	
+		function forth(){
+			var minhaClasse = document.getElementById("carrossel");
+	    	(minhaClasse.children.length);
+			var text =  ((minhaClasse.children.length)-1)*200*(-1);
+			var movimg = -200;	    	
+	    	
+	    	if(position>text){
+	    		position = position + (movimg) ;
+	    		console.log(position);
+	    		$('.carrossel').css("left", position);
+	    	}else{
+	    		alert("não dá embecil");
+	    	}
+	    }
+	    	   
+	</script>	
+</body>
+</html>

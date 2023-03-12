@@ -1,0 +1,120 @@
+<script>
+    calcularValorDeInvMensalPorSaque = (ano, taxaAno, saquePorMes) => {
+        var valorMinInvestimento = 1
+        var mes = 12;
+        var taxaMes = (taxaAno / mes) / 100;
+        var anoMes = ano * mes;
+
+        var valorMesInvestido = 0;
+        var loop = 1;
+        var calc = 0;
+        var calcTaxa = 0;
+        while (saquePorMes >= calcTaxa) {
+            calc = 0;
+            calcTaxa = 0;
+            loop = 1;
+            valorMesInvestido += valorMinInvestimento;
+            while (loop <= anoMes) {
+                calcTaxa = calc * taxaMes
+                calc += calcTaxa + valorMesInvestido;
+                loop++
+            }
+        }
+
+        return {
+            "parcelaMensal": valorMesInvestido,
+            "taxaAnual": taxaAno,
+            "valorDesejado": saquePorMes,
+            "qtdAno": ano,
+            "qtdMeses": anoMes,
+            "anoInicio": 2023,
+            "mesInicio": 3,
+            "jurosMensais": parseFloat(calcTaxa.toFixed(2)),
+            "valorAcumulado": parseFloat(calc.toFixed(2)),
+            "valorAcumuladoSemJuros": (valorMesInvestido * anoMes)
+        }
+    }
+
+    calcularValorDeInvMensal = (meses, taxaAno, parcela) => {
+        var taxaMes = (taxaAno / 12) / 100;
+        var loop = 1;
+        var calc = 0;
+        var calcTaxa = 0;
+
+        while (loop <= meses) {
+            calcTaxa = calc * taxaMes
+            calc += calcTaxa + parcela;
+            loop++
+        }
+
+        return {
+            "parcelaMensal": parcela,
+            "taxaAnual": taxaAno,
+            "qtdAno": meses / 12,
+            "qtdMeses": meses,
+            "anoInicio": 2023,
+            "mesInicio": 3,
+            "jurosMensais": parseFloat(calcTaxa.toFixed(2)),
+            "valorAcumulado": parseFloat(calc.toFixed(2)),
+            "valorAcumuladoSemJuros": (parcela * meses)
+        }
+    }
+
+
+    calcularRetiradaPosFimInvestimetno = (meses, taxaAno, parcela, retiradaPorcentagem) => {
+        var taxaMes = (taxaAno / 12) / 100;
+        var loop = 1;
+        var calc = 0;
+        var calcTaxa = 0;
+        var mesesAno = 50 * 12;
+        var posFimCalcRetirada = 0;
+        var calculoRetirada = [];
+
+        while (loop <= meses) {
+            calcTaxa = calc * taxaMes
+            calc += calcTaxa + parcela;
+            loop++
+        }
+
+
+        loop = 1;
+        var calcTaxaPosFim = calcTaxa;
+        var calcPosFim = calc;
+        while (loop <= mesesAno) {
+            var retirada = (calcTaxaPosFim * (retiradaPorcentagem / 100))
+            calcTaxaPosFim = calcTaxaPosFim - retirada;
+            calcTaxaPosFim = calcPosFim * taxaMes
+            calcPosFim += calcTaxaPosFim;
+            obj = { 
+                    "valorRetirada": retirada.toFixed(2),
+                    "mes": loop,
+                    "taxaAposRetirada": calcTaxaPosFim,
+                    "Saldo": calcPosFim
+
+                }
+            calculoRetirada.push(obj)
+            loop++
+        }
+
+        return {
+            "parcelaMensal": parcela,
+            "taxaAnual": taxaAno,
+            "qtdAno": meses / 12,
+            "qtdMeses": meses,
+            "anoInicio": 2023,
+            "mesInicio": 3,
+            "jurosMensais": parseFloat(calcTaxa.toFixed(2)),
+            "valorAcumulado": parseFloat(calc.toFixed(2)),
+            "valorAcumuladoSemJuros": (parcela * meses),
+            "calculoRetirada" : calculoRetirada
+        }
+    }
+
+
+    var tempo = 10;
+    //console.log(calcularValorDeInvMensalPorSaque(tempo, 11.57, 10000)) 
+    //console.log(calcularValorDeInvMensal(tempo*12, 11.57, 120).jurosMensais)
+    console.log(calcularRetiradaPosFimInvestimetno(tempo * 12, 11.57, 1000, 90))
+
+
+</script>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>Site</title>
+	
+	<!-- boostrap -->
+	<link href="../../public/css/bootstrap.css" rel="stylesheet">
+
+	<!-- font awesome -->
+	<link href="../../public/css/all.css" rel="stylesheet">
+
+	<!-- folha de estilo propria -->
+	<link href="../../public/css/style.css" rel="stylesheet">
+
+	<!-- favicon -->
+	<link href="../../public/alfahelix/public/img/favicon.png" rel="icon">
+
+
+</head>
+<body>
+	 
+		  <!-- inicio menu -->
+  <nav class="navbar navbar-dark navbar-expand-lg navbar-default fixed-top">
+    <div class="container-fluid"> 
+      <h2 id="menuletra"> MVC ##</h2> 
+      <!-- botao para menu no celular --> 
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+        <span class="navbar-toggler-icon"></span>
+      </button>      
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ml-md-auto text-light">
+          <li class="nav-item">
+            <a class="nav-link" id="menuletra"  href="../../index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="menuletra"  href="../../list_curso.html">Cursos</a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" id="menuletra"  href="../../perfil.html">Perfil</a>
+          </li>                   
+        </ul>
+      </div>
+    </div>
+  </nav>
+<br><br><br>
+<div>
+	<div id="list-example" class="list-group" style="position: fixed; ">
+		  <a class="list-group-item list-group-item-action" href="#section01">Criar Class Enum</a>
+		  <a class="list-group-item list-group-item-action" href="#section02">Modificar Class Usuario</a>
+		  <a class="list-group-item list-group-item-action" href="#section03">Adicionar Tipos de Usuários</a>
+		  <a class="list-group-item list-group-item-action" href="#section04">Exibir Menu por Usuário</a>
+		  <a class="list-group-item list-group-item-action" href="#section05">Atributo Authorize</a>
+		  <a class="list-group-item list-group-item-action" href="#section06">Curstomizar Filtro</a>
+		  <a class="list-group-item list-group-item-action" href="#section07">Aplicar Filtro</a>
+		  <a class="list-group-item list-group-item-action" href="#section08">Multiplos Filtros</a>
+		  <a class="list-group-item list-group-item-action" href="#section09">Mensagem de Error</a>
+		  <a class="list-group-item list-group-item-action" href="#section10">View Error</a>
+		
+	</div>
+	<div class="container">
+		<div class="section01" id="section01">
+			<br><br><br>
+			<h4>Criando tipos de usuarios</h4>
+			<hr>
+
+			<p> - Criar uma class "TipoUsuario" do tipo enum</p>
+			<p>(para representar os tipos de asseco ao sistema)</p>
+			<p><img src="../../public/img/csharp/autorizacao/enum_tipousuario.jpg"></p>
+			<hr>
+		</div>
+		<div class="section02" id="section02">
+			<br><br><br>
+			<h4>Vicular o tipo enum a class Usuario e atualizar o campo </h4>
+			<p>na tabela no banco de dados do tipo inteiro</p>
+			<p><img src="../../public/img/csharp/autorizacao/enum_classUsuario.jpg"></p>
+			<p>public TipoUsuarios Tipo { get; set; } = TipoUsuarios.Padrao;</p>
+		</div>
+		<div class="section03" id="section03">
+			<br><br><br>
+			<h4>- Adicionando o tipo do usuário no login</h4>
+
+			<p>No claim no controller autenticacao acrecente</p>
+			<p><img src="../../public/img/csharp/autorizacao/claim_tipousuario.jpg"></p>
+			<p>new Claim(ClaimTypes.Role, usuario)</p>
+		</div>
+		<div class="section04" id="section04">
+			<br><br><br>
+			<h4>- Exibindo menus pelo tipo do usuário.</h4>			
+			<p>Validação frot end</p>
+			<p>Na view Layaut você pode usar o User.IsInRole para </p>
+			<p>diferecinar os usuarios aos links</p>
+			<p><img src="../../public/img/csharp/autorizacao/link_isinrole.jpg"></p>
+
+			<p>validadção back end</p>
+			<p>va ao HomeController</p>			 
+			<p><img src="../../public/img/csharp/autorizacao/mensagem_validacao.jpg"></p>
+		</div>
+		<div class="section05" id="section05">
+			<br><br><br>
+			 <h4>- Usando o atributo Authorize</h4>
+			 <p>=> permite que só o tipo de usuaro da roles tenha acesso </p>
+			 <p><img src="../../public/img/csharp/autorizacao/authorize_roles.jpg">[img](authorize_roles)</p>
+			 <hr>
+			 <div class="divpai">
+			 	<p>using System.Web.Mvc;</p>
+				<p>namespace ConnetionPostgre.Controllers</p>
+				<p>{</p>
+				<div class="divpai">
+				    <p>public class CadastroUsuarioController : Controller</p>
+				    <p>{</p>
+				    <div class="divpai">
+				        <p>[Authorize(Roles = "Administrador")]</p>
+				        <p>public ActionResult Index()</p>
+				        <p>{</p>
+				        <div class="divpai">
+				            <p>return View();</p>
+				        </div>
+				        <p>}</p>
+				    </div>
+				    <p>}</p>
+				</div>
+				<p>}</p>
+			</div>
+		</div>
+		<div class="section06" id="section06">
+			<br><br><br>
+			<h4>- Criando um filtro customizado</h4>
+			<p>sobre escrever o filtro Authorize</p>
+			 <p>cria um folder chamado filters</p>
+			 <p><img src="../../public/img/csharp/autorizacao/class_filtro.jpg"></p>
+			 <hr>
+			 <div class="divpai">
+			 	<p>using ConnetionPostgre.Models;</p>
+				<p>using System.Linq;</p>
+				<p>using System.Web.Mvc;</p>
+				<br>
+				<p>namespace ConnetionPostgre.Filters</p>
+				<p>{</p>
+				<div class="divpai">
+				    <p>public class AutorizacaoTipo : AuthorizeAttribute</p>
+				    <p>{</p>
+				    <div class="divpai">
+				        <p>//mecanismo de autorização customizado</p>
+				        <p>private TipoUsuarios[] tiposAutorizados;</p>
+				        <br>
+				        <p>//contrutor</p>
+				        <p>public AutorizacaoTipo(TipoUsuarios[] tiposUsuarioAutorizados)</p>
+				        <p>{</p>
+				        <div class="divpai">
+				            <p>tiposAutorizados = tiposUsuarioAutorizados;</p>
+				        </div>
+				        <p>}</p>
+				        <br>
+				        <p>//Metodo OnAuthorization</p>
+				        <p>public override void OnAuthorization(AuthorizationContext filterContext)</p>
+				        <p>{</p>
+				        <div class="divpai">
+				            <p>bool autorizado = tiposAutorizados.Any(t => filterContext.HttpContext.User.IsInRole(t.ToString()));</p>
+				            <br>
+				            <p>//caso ele não esteja autorizado</p>
+				            <p>if (!autorizado)</p>
+				            <p>{</p>
+			            	<div class="divpai">
+				                <p>filterContext.Result = new RedirectResult("Painel");</p>
+				            </div>
+				            <p>}</p>
+				        </div>
+				        <p>}</p>
+				    </div>
+				    <p>}</p>
+				</div>
+				<p>}</p>				
+			</div>
+			<hr>
+		</div>
+		<div class="section07" id="section07">
+			<br><br><br>
+			<h4>Usando o filtro customizado</h4>
+			<p>- No controller CadastroUsuarios importar o seu namespace, remover o autorize => colocar no luagar o filtro autorizacaoTipo, ele requer um parametro do tipo array</p>
+			<p><img src="../../public/img/csharp/autorizacao/filter_autorizacaotipo.jpg"></p>
+			<hr>
+			<div class="divpai">
+				<p>using ConnetionPostgre.Filters;</p>
+				<p>using ConnetionPostgre.Models;</p>
+				<p>using System.Web.Mvc;</p>
+				<br>
+				<p>namespace ConnetionPostgre.Controllers</p>
+				<p>{</p>
+				<div class="divpai">
+				    <p>public class CadastroUsuarioController : Controller</p>
+				    <p>{</p>
+				    <div class="divpai">
+				        <p>[AutorizacaoTipo(new[] { TipoUsuarios.Administrador})]</p>
+				        <p>public ActionResult Index()</p>
+				        <p>{</p>
+				        <div class="divpai">
+				            <p>return View();</p>
+				        </div>
+				        <p>}</p>
+				    </div>
+				    <p>}</p>
+				</div>
+				<p>}</p>
+			</div>
+			<hr>
+		</div>
+		<div class="section08" id="section08">
+			<br><br><br>
+			<h4>Para filtrar outras autorização</h4>
+
+			<p>- coloque uma virgula apos ao primeiro nome do perfil aultorizado e escreva o os outros filtros.</p>
+			<div style="background-color: black; padding: 5px;">
+				<p style="color: white; margin-left: 10px;">[AutorizacaoTipo(new[] { TipoUsuarios.Administrador,TipoUsuarios.Padrao})]</p>
+			</div>
+		</div>
+		<div class="section09" id="section09">
+			<br><br><br>
+			<H4>Exibindo uma mensagem de acesso negado</H4>
+
+			<p>- Vá ao filter autorizaotipo</p>
+			<li>crie uma menssagem usando o tempedata</li>
+			<br>
+			<p><img src="../../public/img/csharp/autorizacao/mensagem_permissao.jpg"></p>
+			<hr>
+		</div>
+		<div class="section10" id="section10">
+			<br><br><br>
+			<h4>Mostrar mensagem ao usuario</h4>
+			<p>- Na pagina que é redirecionado ao não ter permissão,  "exibir a menssagem: "erroautorizacao" => no caso view: "Painel"</p>
+			<p><img src="../../public/img/csharp/autorizacao/na_pagina_mensagem.jpg"></p>
+			<hr>
+			<div class="divpai">
+				<p>@if(TempData["ErroAutorizacao"] != null)</p>
+				<p>{</p>
+				<div class="divpai">
+					<p>< div class="alert alert-danger"></p>
+					<div class="divpai">
+						<p>@TempData["ErroAutorizacao"]</p>
+					</div>
+					<p>< /div></p>
+				</div>
+				<p>}</p>
+			</div>
+			<hr>
+			<br><br><br>
+		</div>
+	</div>
+
+	<script src="../../public/js/jquery.js"></script>
+	<script src="../../public/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

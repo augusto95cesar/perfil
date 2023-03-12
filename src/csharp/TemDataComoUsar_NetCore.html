@@ -1,0 +1,92 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using OrcamentosFortAgro.Context;
+using OrcamentosFortAgro.Models;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
+
+namespace OrcamentosFortAgro.Controllers
+{
+    public class HomeController : Controller
+    {
+        private readonly ILogger<HomeController> _logger;
+        private readonly FortAgroContext _db;
+
+        public HomeController(ILogger<HomeController> logger, FortAgroContext context)
+        {
+            _logger = logger;
+            this._db = context;
+        }
+
+        //[TempData]
+        //public object fortFornecedor { get; set; }
+        public IActionResult Index()
+        {
+            //try
+            //{
+            //  TempData["fortFornecedor"] = JsonSerializer.Serialize(_db.Fornecedores.ToList());
+            //   //TempData["FornecedoresTemp"] = _db.Fornecedores.ToList();
+            //   TempData["FornecedoresTemp"] = "Oie Augusto Cesar";
+            //    ViewBag.Fornecedor = "Augusto";
+                 
+            //    //return RedirectToAction("Fornecedor");
+            //}
+            //catch(Exception ex)
+            //{
+            //    var mensagem = ex.Message;
+            //}
+            
+            return View();
+        }
+
+        [HttpPost]
+        public object VerificarCaracterEmail(string email, string senha)
+        {
+            try
+            {
+                var ExistEmail = _db.Fornecedores.Where(x => x.Email == email).FirstOrDefault();
+                if(ExistEmail != null)
+                {
+                    if(ExistEmail.Senha == senha)
+                    {
+                        TempData["UserLogin"] = email.ToString();
+                        return new { result = "Existe" };
+                    }
+                    else
+                    {
+                        return new { result = "Senha Errada!" };
+                    }
+                }
+                return new { result = "Login Não Encontrado! " };
+            }
+            catch(Exception ex)
+            {
+                return new { result = ex.Message.ToString() + " Entrar Encontato Com os Administradores do Sistema!" };
+            }  
+        }
+
+        public IActionResult Fornecedor()
+        {
+            // var temp = this.FornecedoresTemp;
+            var temp = TempData["UserLogin"];
+            //var text = JsonSerializer.Deserialize<List<Fornecedor>>(Convert.ToString(TempData["fortFornecedor"]));
+            //TempData["Message"] = "Pica chuuuuu";
+
+            return View();
+        }
+
+        
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+    }
+}

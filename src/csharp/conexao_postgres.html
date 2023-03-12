@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>Site</title>
+	
+	<!-- boostrap -->
+	<link href="../../public/css/bootstrap.css" rel="stylesheet">
+
+	<!-- font awesome -->
+	<link href="../../public/css/all.css" rel="stylesheet">
+
+	<!-- folha de estilo propria -->
+	<link href="../../public/css/style.css" rel="stylesheet">
+
+	<!-- favicon -->
+	<link href="../../public/alfahelix/public/img/favicon.png" rel="icon">
+
+
+</head>
+<body>
+	 
+		  <!-- inicio menu -->
+  <nav class="navbar navbar-dark navbar-expand-lg navbar-default fixed-top">
+    <div class="container-fluid"> 
+      <h2 id="menuletra"> MVC ##</h2> 
+      <!-- botao para menu no celular --> 
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+        <span class="navbar-toggler-icon"></span>
+      </button>      
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ml-md-auto text-light">
+          <li class="nav-item">
+            <a class="nav-link" id="menuletra"  href="../../index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="menuletra"  href="../../list_curso.html">Cursos</a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" id="menuletra"  href="../../perfil.html">Perfil</a>
+          </li>                   
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <br>
+  <br>
+  <br>
+	<!-- fim menu -->
+
+	<div class="container margemtop">
+		<h4>Banco de Dados Postgres</h4>
+		<!-- # SeCtion 01-->	
+		<div id="list-example" class="list-group">
+			<a class="list-group-item list-group-item-action" href="#section01" data-toggle="collapse"  role="button" aria-expanded="false" aria-controls="collapseExample">Sobre a Class Context</a>			  
+			<div class="section01 collapse" id="section01" >
+				<div class="container">
+				<br>					
+					<div class="divpai"> 
+						<p>1) Instalar o pacote EntityFramework6.Npgsql via NuGet</p>
+						<div class="divfilho">
+							<p >-Clique em  "Console do Gerenciador de pacote".</p>
+							<p style="margin-top: 10px;"><img src="../../public/img/csharp/conexao_postgre/console_gerenciador_pacote.jpg"></p>
+							<p style="margin: 10px;">-digite na linha de comando: "Install-Package EntityFramework6.Npgsql"</p>
+							<p style="margin-top: 10px;"><img src="../../public/img/csharp/conexao_postgre/pacote_linha_comando.jpg"></p>
+							<!-- [img](pacote_linha_comando) -->
+						</div>
+						<p style="margin-top: 10px;">2) Configorar a String de conexão</p>
+						<div class="divfilho"> 
+							<p>-Clique em web.config</p>
+							<p>-verefique se existe a tag system.data</p>
+							<p>-subistitua por:</p>
+							<br>
+							<p ><img src="../../public/img/csharp/conexao_postgre/string_system_data.jpg"></p>
+							<!--[img](string_system_data)-->
+							<br>
+							<div  style="background-color: #D3D3D3; ">
+								<div class="divfilho">
+									<p>< system.data></p>
+									<div class="divfilho">
+									    <p>< DbProviderFactories></p>
+									    <p>< add name="Npgsql Data Provider"</p>
+									    	<div class="divfilho">
+									           <p>invariant="Npgsql"</p>
+									           <p>description=".Net Data Provider for PostgreSQL"</p>
+									           <p>type="Npgsql.NpgsqlFactory, Npgsql"</p>
+									           <p>support="FF" /></p>
+									        </div>
+									    <p>< /DbProviderFactories></p>
+									</div>
+									<p>< /system.data></p>
+								</div>
+							</div>
+							<br>
+							<p>-cole tambem a String de Conexao:</p>
+							<br>
+							<p><img src="../../public/img/csharp/conexao_postgre/string_conexao.jpg"></p>
+							<br>
+							<div  style="background-color: #D3D3D3; ">
+								<div class="divfilho">
+								<p>< connectionStrings></p>
+									<div class="divfilho">
+								    <p>< add name="PgProdutos"
+								        connectionString="server=localhost;Port=5432;user id=postgres;
+								    	password=abcd1234;database=DbProdutos"
+								        providerName="Npgsql" /></p>
+								    </div>
+								  <p>< /connectionStrings></p>
+								  </div>
+							</div>
+
+							<br> 
+							<p>-Configure a String com o seu Banco de dados</p>
+						</div>
+						<p>3)Criar o Context</p>
+						<div class="divfilho">
+							<p>-Criar uma pasta chamada conexao</p>
+							<p>-criar uma class chamada BancoDadosContext</p>
+							<p>-a Classe extende o DbContext e tem o mesmo nome da referencia da  string de conexao do web config
+							.</p>
+							<br>
+							<p><img src="../../public/img/csharp/conexao_postgre/context_string.jpg"></p>
+							<br>
+							<div  style="background-color: #D3D3D3; ">
+								<div class="divfilho">
+								<p>using System.Data.Entity;</p>
+								<br>
+								<p>namespace AspNetProject.Conexao</p>
+								<p>{</p>
+								<div class="divfilho">
+								    <p>public class BancoDadosContext : DbContext</p>
+								    <p>{</p>
+								        <div class="divfilho">
+								        <p>public BancoDadosContext() : base("PgProdutos")</p>
+								        <p>{</p>
+								        <p>}</p>
+								    	</div>
+								    <p>}</p>
+								</div>
+								<p>}</p>
+								</div>
+							</div>							
+						</div>	
+						<br>												
+						<p>4)Op</p>
+						<div class="divfilho">
+							<p>- voce pode colocar alguns comandos dentro do construtor do contex para o mapeamento da classe		</p>					
+				            <p>Database.SetInitializer< pgAdminContext>(null);</p>
+				            <br>
+				            <p><img src="../../public/img/csharp/conexao_postgre/context_string_construtor.jpg"></p>
+					    </div> 
+					</div>
+				</p>
+			</div>
+		</div>
+		<!-- # SeCtion 01-->
+	</div>
+	<script src="../../public/js/jquery.js"></script>
+	<script src="../../public/js/bootstrap.bundle.min.js"></script>
+	
+
+</body>
+</html>
