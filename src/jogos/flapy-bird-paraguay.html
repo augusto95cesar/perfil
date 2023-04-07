@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Flappy Bird</title>
+    <style>
+      canvas {
+        border: 1px solid black;
+		background: black;   
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" width="400" height="600"></canvas>
+    <script>
+	 var pipeSpeed = 4 ;
+      // Inicialização do jogo
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+
+      // Configurações iniciais
+      var gravity = 0.5 ;
+      var velocity = 0 ;
+      var jump = -10 ;
+      var score = 0;
+      var gameOver = false;
+
+      // Imagens
+      var birdImg = new Image();
+      birdImg.src = "https://p.kindpng.com/picc/s/184-1842465_flappy-bird-png-transparent-png.png";
+      var pipeImg = new Image();
+      pipeImg.src = "data:image/jpeg;base64,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";
+
+      // Objetos
+      var bird = {
+        x: 50,
+        y: canvas.height / 2 - 25,
+        width: 50,
+        height: 50,
+        draw: function() {
+          ctx.drawImage(birdImg, this.x, this.y, this.width, this.height);
+        }
+      };
+      var pipes = [];
+      pipes[0] = {
+        x: canvas.width,
+        y: 0,
+        width: 80,
+        height: Math.floor(Math.random() * canvas.height / 2) + 100,
+        draw: function() {
+          ctx.drawImage(pipeImg, this.x, this.y, this.width, this.height);
+          ctx.drawImage(pipeImg, this.x, this.height + 150, this.width, canvas.height - this.height - 150);
+        }
+      };
+
+      // Funções
+      function drawScore() {
+        ctx.fillStyle = "black";
+        ctx.font = "20px Arial";
+        ctx.fillText("Score: " + score, 10, 30);
+      }
+
+      function checkCollision(pipe) {
+        if (bird.x + bird.width > pipe.x && bird.x < pipe.x + pipe.width && (bird.y < pipe.height || bird.y + bird.height > pipe.height + 150)) {
+          gameOver = true;
+        }
+      }
+
+      function update() {
+        // Limpa o canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Desenha o pássaro
+        bird.draw();
+
+        // Desenha os obstáculos
+        for (var i = 0; i < pipes.length; i++) {
+          pipes[i].draw();
+          //pipes[i].x--;
+		  pipes[i].x -= pipeSpeed;
+
+          // Verifica colisão com o pássaro
+          checkCollision(pipes[i]);
+
+          // Adiciona um novo
+      if (pipes[i].x === 100) {
+        pipes.push({
+          x: canvas.width,
+          y: 0,
+          width: 80,
+          height: Math.floor(Math.random() * canvas.height / 2) + 100,
+          draw: function() {
+            ctx.drawImage(pipeImg, this.x, this.y, this.width, this.height);
+            ctx.drawImage(pipeImg, this.x, this.height + 150, this.width, canvas.height - this.height - 150);
+          }
+        });
+      }
+
+      // Incrementa a pontuação
+      if (pipes[i].x + pipes[i].width < bird.x && !pipes[i].scored) {
+        score++;
+        pipes[i].scored = true;
+      }
+    }
+
+    // Desenha a pontuação
+    drawScore();
+
+    // Aplica a gravidade ao pássaro
+    velocity += gravity;
+    bird.y += velocity;
+
+    // Verifica colisão com o chão e o teto
+    if (bird.y + bird.height > canvas.height || bird.y < 0) {
+      gameOver = true;
+    }
+
+    // Atualiza o frame
+    if (!gameOver) {
+      requestAnimationFrame(update);
+    } else {
+      // Exibe a mensagem de game over e reinicia o jogo após 2 segundos
+      ctx.fillStyle = "black";
+      ctx.font = "30px Arial";
+      ctx.fillText("Game Over!", canvas.width / 2 - 75, canvas.height / 2);
+      setTimeout(function() {
+        location.reload();
+      }, 2000);
+    }
+  }
+
+  // Eventos
+  document.addEventListener("keydown", function(event) {
+    if (event.keyCode === 32) {
+      event.preventDefault();
+      if (!gameOver) {
+        velocity = jump;
+      } else {
+        location.reload();
+      }
+    }
+  });
+
+  canvas.addEventListener("click", function() {
+    if (!gameOver) {
+      velocity = jump;
+    } else {
+      location.reload();
+    }
+  });
+
+  // Inicia o jogo
+  update();
+</script>
+ </body>
+</html>

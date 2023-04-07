@@ -1,7 +1,8 @@
 <script>
     setTimeout(() => { //jurosDesc() 
-        teste(10, 12.57, 1500*12);
+        jurosDesc();
     }, 500);
+    
     jurosDesc = () => {
         var i = 0;
         var body =
@@ -18,11 +19,11 @@
                     <option value='35'>35 Anos</option>
                 </select>
                 <br>
-                <label>Valor desejado do investimento</label>
+                <label>Aposentadoria</label>
                 <br>
                 <input id='valorResgate'>
                 <br>
-                <label>Taxa de calculo</label> 
+                <label>Juros Anual</label> 
                 <br>
                 <input id='taxaCalculo'>
                 <br>
@@ -47,9 +48,7 @@
             var taxa = document.getElementById('taxaCalculo').value;
 
             criartab('divTabCalc', temp)
-            var valorpormes = calcValor(taxa, vlresgate);
-
-
+            calcValor(taxa, vlresgate,temp); 
         });
     }
     criartab = (idDiv, temp) => {
@@ -68,97 +67,60 @@
                 </table>`;
         document.getElementById(idDiv).innerHTML = tab
     }
-    calcValor = (taxa, vlresgate) => {
+    calcValor = (taxa, vlresgate,temp) => {
         var lista = []
+        var capital = 0;
 
-        return lista;
-    }
-
-    teste = (anos, taxaAno, resgate) => {
-        var mes = 12;
-        var taxaMes = taxaAno / mes
-        var mesano = anos * mes;
-
-        var valorPagoNoMes = parseFloat((resgate / mes).toFixed(2))
-        var valorPagoNoTotal = parseFloat((valorPagoNoMes * mesano).toFixed(2));
-        var loop = 1;
-        var i = 0;
-
-        var calValor = 0;
-        var calSemJuros = 0;
-        var lucroMes = 0;
-        var montarArry = false;
-
-        var listaValorPorMes = [];
-        var obj;
-
-        var controleLoop = true
-        var AnoAtual = 2023;
-        var controleAno=12;
-        var mesesDoAno = ["Jan", "fev", "mar", "abr", "mai", "jun", "julh", "ago", "set", "out", "nov", "dez"]
-        while (controleLoop) {
-            while (loop <= mesano) {
-                calValor = (calValor + valorPagoNoMes) * ((taxaMes / 100) + 1)
-                if (montarArry) {
-                    calSemJuros = (calValor + valorPagoNoMes) * (taxaMes / 100)
-
-                     obj = {
-                        "id" : loop,
-                        "valorPagoNoMes" : valorPagoNoMes.toFixed(2),
-                        "jurosPorMes" : calSemJuros.toFixed(2),
-                        "jurosComInvestimeno" : calValor.toFixed(2),
-                        "investido": (valorPagoNoMes * loop).toFixed(2),
-                        "ano": AnoAtual,
-                        "mes": mesesDoAno[i],
-                        "qtdAnos": anos,
-                        "qtdMeses":anos * 12,
-                        "TaxaJuroAnual" : taxaAno, 
-                        "TaxaJuroMensal" : (taxaAno/12).toFixed(2),
-                        "Resgate" :resgate 
-                    }                  
-                    i++  
-                    listaValorPorMes.push(obj)
-                    if(loop >= controleAno){
-                        i = 0
-                        controleAno += 12;
-                        AnoAtual ++;
-                    }
-                } 
-                    
-                
-                loop++;
-            }
-            
-            if (lucroMes <= resgate && montarArry == false) {
-                lucroMes = parseFloat(((calValor - valorPagoNoTotal) / mes).toFixed(2));             
-                lucroAno = parseFloat((calValor - valorPagoNoTotal).toFixed(2))
-                calValor = 0;
-                loop = 1;
-                valorPagoNoMes = parseFloat((valorPagoNoMes + 5).toFixed(2));
-                valorPagoNoTotal = parseFloat((valorPagoNoMes * mesano).toFixed(2));
-                
-            } else {
-                
-                if(montarArry == false){                    
-                    montarArry = true;
-                    lucroMes = parseFloat(((calValor - valorPagoNoTotal) / mes).toFixed(2));             
-                    lucroAno = parseFloat((calValor - valorPagoNoTotal).toFixed(2))
-                    calValor = 0;
-                    loop = 1;
-                    valorPagoNoMes = valorPagoNoMes;
-                    valorPagoNoTotal = parseFloat((valorPagoNoMes * mesano).toFixed(2));
-                }else{
-                    console.log('valor investido por mes:            R$ ' + valorPagoNoMes.toFixed(2))
-                    console.log('valor investido até o primeiro sac: R$ ' + valorPagoNoTotal)
-                    console.log('valor total com juros:              R$ ' + calValor.toFixed(2))
-                    console.log('lucro Ano:                          R$ ' + lucroAno)
-                    console.log('lucro mes:                          R$ ' + lucroMes) 
-                    controleLoop = false
-                }
-            }
+        if(vlresgate == ""){
+            vlresgate = 0;
         }
-        listaValorPorMes.forEach((e) => {
-            console.log(e)
-        })
+        else{
+            vlresgate = parseFloat(vlresgate) * 12
+        }
+        
+        if(temp == ""){
+            temp = 5;
+        } else{
+            temp = parseFloat(temp)
+        }
+
+        if(taxa == ""){
+            taxa = 12;
+        } else{
+            taxa = parseFloat(taxa)
+        }
+
+
+        taxa = taxa / 100
+
+        var textlopp = '';
+        var contador = parseFloat(vlresgate);
+        var icr = contador * (25/100)
+        while(capital <= vlresgate*((1/100)+1)){
+            capital = contador * taxa
+            contador += icr
+        }
+        textlopp += `<tr>
+                    <td>R$${(capital/12).toFixed(2)}</td>
+                    <td>R$${contador.toFixed(2)}</td>
+            </tr>`;
+        var loop = 1;
+        while(loop <= temp){  
+            contador -= (contador * taxa)        
+            textlopp += `<tr>
+                    <td>Anos${loop}</td> 
+                    <td>${contador.toFixed(2)}</td> 
+                    <td>${(contador  * taxa).toFixed(2)}</td> 
+            </tr>`;
+            contador -= (contador * taxa)
+            loop++
+        }   
+
+       
+ 
+
+
+        document.getElementById('tabCalculo').innerHTML = textlopp 
     }
+ 
 </script>
