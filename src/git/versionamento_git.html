@@ -1,94 +1,34 @@
 <!DOCTYPE html>
 <html>
-<head>
-
-	<title>Site</title>
-	
-	<!-- boostrap -->
-	<link href="../../public/css/bootstrap.css" rel="stylesheet">
-
-	<!-- font awesome -->
-	<link href="../../public/css/all.css" rel="stylesheet">
-
-	<!-- folha de estilo propria -->
-	<link href="../../public/css/style.css" rel="stylesheet">
-
-	<!-- favicon -->
-	<link href="../../public/alfahelix/public/img/favicon.png" rel="icon">
-
-
+<head> 
+	<link href="../../cdn/perfil/css/git_versionamento.css" rel="stylesheet">  
 </head>
-<body>
-	 
-		  <!-- inicio menu -->
-  <nav class="navbar navbar-dark navbar-expand-lg navbar-default fixed-top">
-    <div class="container-fluid"> 
-      <h2 id="menuletra"> MVC ##</h2> 
-      <!-- botao para menu no celular --> 
-      <button class="navbar-toggler" data-toggle="collapse" data-target="#menu" aria-expanded="false">
-        <span class="navbar-toggler-icon"></span>
-      </button>      
-      <div class="collapse navbar-collapse" id="menu">
-        <ul class="navbar-nav ml-md-auto text-light">
-          <li class="nav-item">
-            <a class="nav-link" id="menuletra"  href="../../index.html">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="menuletra"  href="../../list_curso.html">Cursos</a>
-          </li>
-            <li class="nav-item">
-            <a class="nav-link" id="menuletra"  href="../../perfil.html">Perfil</a>
-          </li>                   
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <br>
-  <br>
-  <br>
-	<!-- fim menu -->
-
-	<div class="container margemtop">
-		<h4>Curso de Verciomaneto</h4>
-		<!-- # SeCtion 01-->	
-		<div id="list-example" class="list-group">
-			<a class="list-group-item list-group-item-action" href="#section01" data-toggle="collapse"  role="button" aria-expanded="false" aria-controls="collapseExample">Sobre O Git</a>			  
-			<div class="section01 collapse" id="section01" >
-			</div>
-
-		</div>
-		<!-- # SeCtion 01-->
-	</div>
-
-	<div class="container">
-		<h4>Aprendendo Sobre o Git</h4>
+<body>  
+	<h1>Curso de Verciomaneto</h1> 
+	<div>
+		<h3>Aprendendo Sobre o Git</h3>
 		<p>-O que é o Git?</p>
-		<p class="divpai">
+		<p>
 			Git é um sistema de controle de versões distribuído, usado principalmente no desenvolvimento de software, mas pode ser usado para registrar o histórico de edições de qualquer tipo de arquivo
 		</p>
-
 		<p><a href="http://educandoweb.com.br">Educando Web</a></p>					
 		<h4>Nivelamento sobre Git e Github</h4>
-		<hr>
+		
 		<p>Objetivo geral:</p>
-		<div class="divpai">
+		<div>
 			<p>- Oferecer um breve nivelamento sobre aspectos teóricos e procedimentos básicos de Git e Github necessários para acompanhar os projetos do curso.</p>
 			<p>- Vamos abordar: usuário único / branch único</p>
 		</div>
 		<p>O que é Git e Github?</p>
-		<div class="divpai">
+		<div>
 			<p>GIT - é um sistema de versionamento: você controla as modificações de um projeto por meio de versões chamadas "commits".</p>
-			<p><img style="width: 100%" src="../../public/img/git/git_versionamento/git_01.jpg"></p>
+			<p><img src="../../cdn/git/git_versionamento/git_01.jpg"></p>
 		</div>
-		<hr>
+		
 		
 		<p style="text-align: justify;">Um projeto controlado pelo Git é chamado de repositório de versionamento. Tipicamente uma cópia "oficial" do repositório fica salvo em um servidor (repositório remoto). Cada pessoa que trabalha no projeto pode fazer uma cópia do repositório para seu computador (repositório local). A pessoa então faz suas alterações no projeto (novos commits) e depois salva as alterações no servidor.</p>
-		<p><img src="../../public/img/git/git_versionamento/git_02.jpg" style="width: 100%"></p>
-		<hr>
-
-		<p>Operações principais:</p>
-		<br>
-
+		<p><img src="../../cdn/git/git_versionamento/git_02.jpg" ></p> 
+		<p>Operações principais:</p> 
 		<table class="table table-bordered" style="width: 100%">
 			<tr>
 				<td>
@@ -107,39 +47,39 @@
 				<td> Salva uma nova versão (tipicamente no seu repositório local)</td>	
 			</tr>
 			<tr>
-				<td> PUSH</</td>
+				<td> PUSH</td>
 				<td> Envia o repositório local para o repositório remoto</td>
 			</tr>
 		</table>
-		<hr>
+		
 		<h4>Como utilizar o Git no meu computador?</h4>
-		<br>
-		<div class="divpai">
+		
+		<div>
 			<p>- É preciso ter um sistema Git instalado em seu computador</p>
-				<div class="divpai">
+				<div>
 				<p>- Linux: já possui</p>
 				<p>- Mac: já possui / instalação semiautomática</p>
 				<p>- Windows: <a href="https://git-scm.com">https://git-scm.com</a></p>
 			</div>
 			<p>- O Git pode ser usado por ou por terminal de comando, ou por um aplicativo gráfico.</p>
 		</div>
-		<hr>
+		
 		<h4>GITHUB - é um serviço de hospedagem de repositórios Git remotos.</h4>
-		<br>
-		<div class="divpai">
+		
+		<div>
 			<p>- Possui uma interface gráfica web: github.com</p>
 			<p>- É uma plataforma social (usuários, página de perfil, seguidores, colaboração, etc.). Dica: currículo!</p>
 			<p>- Maior serviço do mundo de hospedagem de projetos de código aberto</p>
 			<p>- Modelo de cobrança: gratuito para projetos de código aberto, pago para projetos privados</p>
 			<p>- Alternativas: BitBucket, GitLab, etc.</p>
 		</div>
-		<hr>
+		
 		<h4>Instalação do Git e GitBash no Windows</h4>
-		<br>
+		
 		<p>Download: <a href="https://git-scm.com">https://git-scm.com</a></p>
-		<br>
+		
 		<p>Opções recomendadas:</p>
-		<div class="divpai">
+		<div>
 			<p>- Use Vim as Git's default editor</p>
 			<p>- Use Git from the Windows Command Prompt</p>
 			<p>- Use the OpenSSL library</p>
@@ -147,34 +87,34 @@
 			<p>- Use MinTTY</p>
 			<p>- DESMARCAR: Enable Git Credential Manager</p>
 		</div>
-		<hr>
+		
 		<h4>Demo - criar um novo projeto</h4>
-		<br>
+		
 		<p>ATENÇÃO USUÁRIOS WINDOWS: configurar o sistema para mostrar extensões de arquivos</p>
-		<p class="divpai">Painel de controle -> Opções de pasta -> Modo de exibição</p>
-		<div class="divpai">
-			<p class="divpai"> Desmarcar "Ocultar as extensões de tipos de arquivos conhecidos"</p>
+		<p >Painel de controle -> Opções de pasta -> Modo de exibição</p>
+		<div>
+			<p > Desmarcar "Ocultar as extensões de tipos de arquivos conhecidos"</p>
 		</div>
 		
 		<p>Passos:</p>
-		<hr>
-		<div class="divpai">
+		
+		<div>
 			<p>1. Crie um novo projeto no seu ambiente de desenvolvimento</p>
-			<hr>
+			
 			<p>2. Crie um novo repositório no Github</p>
-			<div class="divpai">
+			<div>
 				<p>a. ATENÇÃO: se seu ambiente de desenvolvimento não gera o arquivo .gitignore automaticamente, escolha o seu tipo desejado de .gitignore na tela de criação de repositório do Github</p>
 			</div>
-			<hr>
+			
 			<p>3. Abra um terminal na pasta do seu projeto</p>
-			<hr>
+			
 			<p>4. IMPORTANTE: certifique-se de estar identificado no Git do seu computador (nome e email)</p>
-			<div class="divpai">
+			<div>
 				<p>- git config --list</p>
 				<p>- git config --global user.name "Nelio Alves"</p>
 				<p>- git config --global user.email "acenelio@gmail.com"</p>
 			</div>
-			<hr>
+			
 
 			<p>5. Faça os comandos a seguir</p>
 			<table class="table table-bordered" style="width: 100%">
@@ -207,72 +147,52 @@
 					<td>Envia o repositório local para o repositório remoto</td>
 				</tr>
 			</table>
-			<hr>
+			
 			
 			<h4>Arquivo .gitignore</h4>
-			<br>			
+						
 			<p>ATENÇÃO USUÁRIOS WINDOWS: configurar o sistema para mostrar extensões de arquivos</p>
-			<div class="divpai">
+			<div>
 				<p>Painel de controle -> Opções de pasta -> Modo de exibição</p>
-				<p class="divpai"> Desmarcar "Ocultar as extensões de tipos de arquivos conhecidos"</p>
+				<p> Desmarcar "Ocultar as extensões de tipos de arquivos conhecidos"</p>
 			</div>
-				
 			<p>Checklist:</p>
-			<div class="divpai">
+			<div>
 				<p>- Pra quê serve o arquivo .gitignore?</p>
 				<p>- Como saber o que colocar no arquivo .gitignore?</p>
 			</div>
-			<hr>
-
 			<h4>Demo - Trabalhando com um projeto existente</h4>
-			<br>
 			<p>Passos:</p>
-			<hr>
 			<p>1. IMPORTANTE: certifique-se de estar identificado no Git do seu computador (nome e email)</p>
-			<div class="divpai">
+			<div>
 				<p>USUÁRIOS WINDOWS: verifique o "Cofre" (gerenciador de credenciais)</p>
-				<br>
 				<p>- git config --list</p>
 				<p>- git config --global user.name "Nelio Alves"</p>
 				<p>- git config --global user.email "acenelio@gmail.com"</p>
 			</div>
 			<h4>2. Se o projeto já não estiver no seu computador, Clonar o repositório do Github</h4>
-			<hr>			
-			<p class="divpai">git clone https://github.com/acenelio/meuprojeto.git</p>
-			<hr>
+			<p >git clone https://github.com/acenelio/meuprojeto.git</p>
 			<p>3. Altere o que você precisar no projeto</p>
-			<hr>
 			<p>4. Commitar as mudanças feitas no projeto</p>
-			<div class="divpai">
+			<div>
 				<p>4.1. Verificar arquivos:</p>
 				<p>git status</p>
-				<p><img src="../../public/img/git/git_versionamento/git_03.jpg" style="width: 100%"></p>
-				<hr>
+				<p><img src="../../cdn/git/git_versionamento/git_03.jpg" ></p>
 				<p>4.2. Realizar o commit:</p>
 				<p>git add .</p>
 				<p>git commit -m "Mensagem explicativa"</p>
-				<br>
 				<p>4.3. Listar histórico de commits:</p>
 				<p>git log --oneline</p>
 			</div>
-			<hr>
-
 			<h4>5. Salvar projeto atualizado no seu Github (push)</h4>
-			<br>
 			<p>git push</p>
-			<hr>
 			<h4>Importante entender - a sequência de commits deve ser respeitada</h4>
-			<br>
 			<p>POR EXEMPLO:</p>
-			<br>
 			<p>Suponha que o repositório do seu computador estava em uma versão atrasada em relação ao Github, daí você esquece de atualizá-lo (git pull origin master) e faz algumas alterações.</p>
-			<br>
 			<p>O Git não vai aceitar o push neste caso.</p>
-			<p><img src="../../public/img/git/git_versionamento/git_04.jpg" style="width: 100%"></p>			
-			<hr>
-		 	<h4>Kit de primeiros socorros</h4>
-		 	<br>
-		 	<table class="table table-bordered" style="width: 100%">
+			<p><img src="../../cdn/git/git_versionamento/git_04.jpg" ></p>			
+		 	<h4>Kit de primeiros socorros</h4> 
+		 	<table >
 			 	<tr>			
 					<td>PROBLEMA </td>
 					<td>COMANDO</td>
@@ -280,8 +200,7 @@
 				<tr>
 					<td>Quero desfazer tudo que eu fiz desde o último commit </td>
 					<td>
-						<p>git clean -df</p>
-						<p>git checkout -- .</p>
+						 git clean -df (git checkout -- .)
 					</td>
 				</tr>
 				<tr>
@@ -294,19 +213,13 @@
 				</tr>
 				<tr>
 					<td>
-						<p>Quero alterar temporariamente os arquivos do projeto de modo a ficarem no estado do commit informado.</p>
-						<br>
-						<p>ATENÇÃO: não podem haver modificações não commitadas no projeto.</p>
-						<br>
-						<p>NOTA: para voltar ao último commit faça:</p>
-						<p>git checkout master</p>
+						 Quero alterar temporariamente os arquivos do projeto de modo a ficarem no estado do commit informado.  
+						 ATENÇÃO: não podem haver modificações não commitadas no projeto.
+						 NOTA: para voltar ao último commit faça:
+						 git checkout master						 
 					</td>
-					<td>
-						<br>
-						<br>
-						<p>git checkout < código do commit></p>
-						<br>
-						<p>EXEMPLO: git checkout e8a52f3</p>
+					<td> 
+						git checkout < código do commit> EXEMPLO: git checkout e8a52f3
 					</td>
 				</tr>
 				<tr>
@@ -321,13 +234,9 @@
 					<td>Entrei no VIM por engano. Como sair? </td>
 					<td>Tecle ESC, depois digite :q! e tecle ENTER</td>
 				</tr>
-			</table>
-			<br>
-			<br>
-			<br>
+			</table> 
 		</div>
 	</div>
-	<script src="../../public/js//gitjquery.js"></script>
-	<script src="../../public/js//gitbootstrap.bundle.min.js"></script>
+	<script src="../../cdn/perfil/js/git_versionamento.js"></script> 
 </body>
 </html>
